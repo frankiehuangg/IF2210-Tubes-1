@@ -1,13 +1,16 @@
 #ifndef _TABLE_HPP_
 #define _TABLE_HPP_
 
+#include <vector>
 #include "Inventory.hpp"
 #include "MainCard.hpp"
+
+using namespace std;
 
 class Table : public Inventory {
 private:
 	int opened;
-	MainCard *cards;
+	vector<MainCard> cards;
 
 public:
 
@@ -26,6 +29,7 @@ public:
 
 	// Ambil n-buah kartu dari deck dari index teratas (amount -1)
 	Inventory& operator+ (Inventory&);
+	Inventory& operator- (Inventory&);
 };
 
 #endif
