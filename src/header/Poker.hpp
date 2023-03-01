@@ -1,9 +1,12 @@
 #ifndef _POKER_HPP_
 #define _POKER_HPP_
 
+#include <vector>
 #include "Player.hpp"
 #include "Table.hpp"
 #include "Deck.hpp"
+
+using namespace std;
 
 class Poker {
 protected:
@@ -11,7 +14,7 @@ protected:
 	int round;
 	int point;
 
-	Player* players;
+	vector<Player> players;
 	Table table;
 	Deck deck;
 
@@ -20,9 +23,6 @@ public:
 	/***** Constructor dan destructor *****/
 	// Pada awal permainan, inisiasi 7 orang pemain dengan mengisialisasikan nilai players.
 	Poker();
-	
-	// Pada akhir permainan, output pemenang serta destruct players dari memori.
-	~Poker();
 
 	/***** Getter & Setter *****/
 	// Dipanggil pada akhir ronde ke-6 melalui metode givePoint, kembalikan nilai point
@@ -56,6 +56,7 @@ public:
 	// - Awal ronde pertama: pemain mendapatkan 2 MainCard dari Deck
 	// - Awal ronde kedua: pemain mendapatkan 1 AbilityCard dari Deck
 	// - Akhir ronde pertama hingga kelima: 1 MainCard akan diletakkan pada Table
+
 	void newRound();
 };
 
