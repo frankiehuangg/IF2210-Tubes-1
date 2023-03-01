@@ -4,7 +4,6 @@
 #include <vector>
 #include "Inventory.hpp"
 #include "MainCard.hpp"
-#include "AbilityCard.hpp"
 
 using namespace std;
 
@@ -16,10 +15,7 @@ public:
 	
 	/***** Constructor and destructor *****/
 	// Construct sebuah deck dengan nilai amount = 52 serta inisialisasikan attribute cards dengan panjang 52 dan abilities dengan panjang 7
-	Deck(int);
-
-	// Destruct cards dan abilities dari memori
-	~Deck();
+	Deck();
 
 	// Acak MainCard dan AbilityCard
 	void shuffleDeck();
