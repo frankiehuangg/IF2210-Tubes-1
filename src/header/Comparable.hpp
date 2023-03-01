@@ -7,7 +7,7 @@ protected:
 
 public:
 	/***** Getter & Setter *****/
-	virtual float getValue() = 0;
+	virtual float getValue() const = 0;
 	virtual void setValue(float) = 0;
 
 	/***** Comparison operator *****/
