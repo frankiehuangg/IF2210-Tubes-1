@@ -16,10 +16,7 @@ public:
 
 	/***** Constructor and destructor *****/
 	// Construct sebuah table dengan amount = 5, opened = 0, serta inisialisasikan atribut cards dengan panjang amount 
-	Table(int);
-
-	// Destruct cards dari memori
-	~Table();
+	Table();
 
 	// Tambahkan nilai opened dengan 1, kemudian panggil fungsi operator +
 	void openCard();
