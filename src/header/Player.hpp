@@ -40,7 +40,7 @@ public:
 	void useAbility();
 
 	/***** Print *****/
-	// Cetak cards dan ability
+	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
 	void printCards();
 
 	/***** Operator overloading *****/

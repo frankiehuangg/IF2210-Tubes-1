@@ -21,7 +21,7 @@ public:
 	// Tambahkan nilai opened dengan 1, kemudian panggil fungsi operator +
 	void openCard();
 
-	// Print semua kartu yang terdapat pada table (yang sudah terbuka)
+	// Print semua kartu yang terdapat pada table (yang sudah terbuka), panggil fungsi printCard dari kelas MainCard untuk masing-masing card.
 	void printCards();
 
 	// Ambil n-buah kartu dari deck dari index teratas (amount -1)
