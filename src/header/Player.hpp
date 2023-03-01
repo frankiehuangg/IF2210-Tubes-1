@@ -2,22 +2,24 @@
 #define _PLAYER_HPP_
 
 #include <iostream>
-
 #include "Comparable.hpp"
 #include "Inventory.hpp"
 #include "Action.hpp"
 #include "MainCard.hpp"
-#include "AbilityCard.hpp"
 
 using namespace std;
 
-class Player : public Comparable, public Inventory, public Action {
+// Forward declaration
+class AbilityCard;
+
+class Player : public Comparable, public Inventory {
 private:
 	string name;
 	int point;
 
-	MainCard* cards;
+	pair<MainCard, MainCard> cards;
 	AbilityCard* ability;
+	Action playerAction;
 
 public:
 	/***** Constructor dan destructor *****/
@@ -28,17 +30,11 @@ public:
 	~Player();
 
 
-	/***** Player actions *****/
-	// Giliran player selesai, tidak ada implementasi
-	void actionDoNext();
-
-	// Ubah nilai point pada game menjadi 2x lipat
-	void actionDoDouble(const Game&);
-
-	// Ubah nilai point pada game menjadi 1/2 nya
-	void actionDoHalf(const Game&);
-
-	// Gunakan ability dari abilitycard, lakukan pengecekan apakah card sudah bisa digunakan.
+	/***** Getter & Setter *****/
+	// Kembalikan nilai kartu
+	const pair<MainCard, MainCard> getCards();
+	// Ubah nilai kartu
+	void setCards(pair<MainCard, MainCard>);
 
 	/**** Use ability, different for each card *****/
 	void useAbility();
@@ -55,13 +51,13 @@ public:
 	Inventory& operator- (Inventory&);
 
 	// Cek apakah nilai kombo player > player lain
-	bool operator< (Comparable* other);
+	bool operator< (Comparable& other);
 
 	// Cek apakah nilai kombo player < player lain
-	bool operator> (Comparable* other);
+	bool operator> (Comparable& other);
 
 	// Cek apakah nilai kombo player = player lain
-	bool operator== (Comparable* other);
+	bool operator== (Comparable& other);
 };
 
 #endif
