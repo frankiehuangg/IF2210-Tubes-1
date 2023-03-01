@@ -5,14 +5,14 @@
 
 class Action {
 public:
-	// End player turn
-	virtual void actionDoNext() = 0;
+	// End player turn (No implementation)
+	void actionDoNext();
 
-	// Double the value point in Game
-	virtual void actionDoDouble(const Game&) = 0;
+	// Double the value print in Game
+	void actionDoDouble(const Game&);
 
 	// Half the value point in Game
-	virtual void actionDoHalf(const Game&) = 0;
+	void actionDoHalf(const Game&);
 };
 
 #endif
