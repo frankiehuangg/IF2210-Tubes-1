@@ -16,6 +16,10 @@ public:
 
 	/**** Use ability, different for each card *****/
 	virtual void useAbility(const Game&) = 0;
+
+	/***** Print card *****/
+	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
+	virtual void printCard() = 0;
 };
 
 #endif
