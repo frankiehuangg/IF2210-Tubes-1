@@ -8,7 +8,7 @@
 class Combo : public Comparable {
 public:
 	/****** Getter & Setter *****/
-	float getValue();
+	float getValue() const;
 	void setValue(float);
 
 	/***** Comparison *****/
