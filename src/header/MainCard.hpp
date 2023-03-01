@@ -14,26 +14,26 @@ public:
 
 	/***** Getter & Setter *****/
 	// Value
-	float getValue();
+	float getValue() const;
 	void setValue(float);
 
 	// Number
-	int getNumber();
+	int getNumber() const;
 	void setNumber(int);
 
 	// Color
-	int getColor();
+	int getColor() const;
 	void setColor(int);
 
 	/***** Comparison *****/
 	// Cek apakah nilai kartu > kartu lain
-	bool operator< (Comparable*);
+	bool operator< (Comparable&);
 
 	// Cek apakah nilai kartu < kartu lain
-	bool operator> (Comparable*);
+	bool operator> (Comparable&);
 	
 	// Cek apakah nilai kartu = kartu lain
-	bool operator== (Comparable*);
+	bool operator== (Comparable&);
 };
 
 #endif
