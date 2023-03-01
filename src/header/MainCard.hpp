@@ -25,6 +25,10 @@ public:
 	int getColor() const;
 	void setColor(int);
 
+	/***** Print *****/
+	// Print card number and color, ends with endl
+	void printCard();
+
 	/***** Comparison *****/
 	// Cek apakah nilai kartu > kartu lain
 	bool operator< (Comparable&);
