@@ -1,14 +1,16 @@
 #ifndef _DECK_HPP_
 #define _DECK_HPP_
 
+#include <vector>
 #include "Inventory.hpp"
 #include "MainCard.hpp"
 #include "AbilityCard.hpp"
 
+using namespace std;
+
 class Deck : public Inventory {
 private:
-	MainCard* cards;
-	AbilityCard* abilities;
+	vector<MainCard> cards;
 
 public:
 	
@@ -25,8 +27,11 @@ public:
 	// Baca urutan deck dari file
 	void getDeckFromInput();
 
+	void printCards();
+
 	// Tarik n-buah kartu dari deck dimulai dari index teratas (amount-1)
 	Inventory& operator- (Inventory&);
+	Inventory& operator+ (Inventory&);
 };
 
 #endif
