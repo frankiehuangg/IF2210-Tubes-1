@@ -10,7 +10,8 @@ public:
 	virtual bool getStatus();
 	virtual void setStatus(bool);
 
-	// Set other player ability card status = false
+	/**** Use ability, different for each card *****/
+	// Ubah status abilityCard pemain lain menjadi false 
 	virtual void useAbility(const Player&);
 };
 

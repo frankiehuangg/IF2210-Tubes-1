@@ -11,7 +11,8 @@ public:
 	virtual void setStatus(bool);
 
 	/**** Use ability, different for each card *****/
-	virtual void useAbility(const Game&);
+	// Reverse player's turn RoundRobin (baca specc)
+	void useAbility(const Game&);
 };
 
 #define

@@ -10,8 +10,9 @@ public:
 	virtual bool getStatus();
 	virtual void setStatus(bool);
 
-	// Set other player ability card status = false
-	virtual void useAbility(const Player&);
+	/**** Use ability, different for each card *****/
+	// Swap 1 kartu pemain lain dengan 1 kartu pemain lain
+	void useAbility(const Game&);
 };
 
 #endif

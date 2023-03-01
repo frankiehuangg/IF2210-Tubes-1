@@ -11,7 +11,8 @@ public:
 	virtual void setStatus(bool);
 
 	/**** Use ability, different for each card *****/
-	virtual void useAbility(const Game&);
+	// Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
+	void useAbility(const Game&);
 };
 
 #endif
