@@ -21,12 +21,6 @@ public:
 	void getDeckFromInput();
 
 	void printCards();
-
-	/***** Operator overloading *****/
-	// Tidak perlu diimplementasi 
-	Inventory& operator+(Inventory&);
-	// Mengurangi n buah kartu pertama dari deck, kemudian mengembalikannya. Hasil akhir kartu deck berkurang sebanyak n.
-	Inventory operator-(int);
 };
 
 #endif
