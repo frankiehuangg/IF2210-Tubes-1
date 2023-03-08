@@ -11,8 +11,8 @@ protected:
 public:
 	/***** Getter & Setter *****/
 	// If used, then status is true, else status is false;
-	virtual bool getStatus() = 0;
-	virtual void setStatus(bool) = 0;
+	bool getStatus() const;
+	void setStatus(bool);
 
 	/**** Use ability, different for each card *****/
 	virtual void useAbility(const Game&) = 0;
