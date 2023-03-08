@@ -21,6 +21,10 @@ public:
 
 	/***** Print value *****/
 	virtual void printCards();
+
+	/***** Operator overloading *****/
+	Inventory& operator+(Inventory&);
+	Inventory operator-(int);
 };
 
 #endif
