@@ -2,7 +2,6 @@
 #define _ACTION_HPP_
 
 #include "Game.hpp"
-#include "Poker.hpp"
 
 class Action {
 public:
