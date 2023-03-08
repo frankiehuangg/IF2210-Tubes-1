@@ -8,9 +8,6 @@
 using namespace std;
 
 class Deck : public Inventory {
-private:
-	vector<MainCard> cards;
-
 public:
 	
 	/***** Constructor and destructor *****/
@@ -24,10 +21,6 @@ public:
 	void getDeckFromInput();
 
 	void printCards();
-
-	// Tarik n-buah kartu dari deck dimulai dari index teratas (amount-1)
-	Inventory& operator- (Inventory&);
-	Inventory& operator+ (Inventory&);
 };
 
 #endif

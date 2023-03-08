@@ -1,7 +1,6 @@
 #ifndef _TABLE_HPP_
 #define _TABLE_HPP_
 
-#include <vector>
 #include "Inventory.hpp"
 #include "MainCard.hpp"
 
@@ -10,23 +9,23 @@ using namespace std;
 class Table : public Inventory {
 private:
 	int opened;
-	vector<MainCard> cards;
 
 public:
 
 	/***** Constructor and destructor *****/
 	// Construct sebuah table dengan amount = 5, opened = 0, serta inisialisasikan atribut cards dengan panjang amount 
-	Table();
+	Table(Inventory&);
 
-	// Tambahkan nilai opened dengan 1, kemudian panggil fungsi operator +
+	// Tambahkan nilai opened dengan 1
 	void openCard();
 
 	// Print semua kartu yang terdapat pada table (yang sudah terbuka), panggil fungsi printCard dari kelas MainCard untuk masing-masing card.
 	void printCards();
 
-	// Ambil n-buah kartu dari deck dari index teratas (amount -1)
-	Inventory& operator+ (Inventory&);
-	Inventory& operator- (Inventory&);
+	/***** Operator overloading *****/
+	// Menambahkan kartu yang ditarik dari Deck ke dalam Table. Asumsi semua kartu deck pasti berukuran 5.
+	Inventory& operator+(Inventory&);
+	Inventory operator-(int x);
 };
 
 #endif

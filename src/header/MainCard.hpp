@@ -1,12 +1,14 @@
 #ifndef _CARD_HPP_
 #define _CARD_HPP_
 
+#include <iostream>
 #include "Comparable.hpp"
+
+using namespace std;
 
 class MainCard : public Comparable {
 private:
-	int number;
-	int color;
+	pair<int, int> card;
 
 public:
 	/* Constructor & destructor */
