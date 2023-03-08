@@ -50,6 +50,11 @@ public:
 
 	// Cek apakah nilai kombo player = player lain
 	bool operator== (Comparable& other);
+
+	// Menambahkan kartu yang ditarik dari player lain/deck ke dalam table. Asumsi semua kartu inventory pasti berukuran 2.
+	Inventory& operator+(Inventory&);
+	// Mengurangi n buah kartu pertama dari player, kemudian mengembalikannya. Hasil akhir kartu player berkurang sebanyak n.
+	Inventory operator-(int);
 };
 
 #endif

@@ -25,6 +25,7 @@ public:
 	/***** Operator overloading *****/
 	// Menambahkan kartu yang ditarik dari Deck ke dalam Table. Asumsi semua kartu deck pasti berukuran 5.
 	Inventory& operator+(Inventory&);
+	// Tidak perlu diimplementasi
 	Inventory operator-(int x);
 };
 
