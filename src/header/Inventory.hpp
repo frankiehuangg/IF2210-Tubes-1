@@ -20,11 +20,11 @@ public:
 	void setCard(int, MainCard);
 
 	/***** Print value *****/
-	virtual void printCards();
+	virtual void printCards() = 0;
 
 	/***** Operator overloading *****/
-	Inventory& operator+(Inventory&);
-	Inventory operator-(int);
+	Inventory& operator+(vector<MainCard>);
+	vector<MainCard> operator-(int);
 };
 
 #endif

@@ -25,25 +25,25 @@ void Inventory::setCard(int index, MainCard card)
 	this->cards[index] = card;
 }
 
-Inventory& Inventory::operator+(Inventory& other)
+Inventory& Inventory::operator+(vector<MainCard> vector)
 {
-	this->amount = other.amount;
-	this->cards = other.cards;
+	this->cards = vector;
 
 	return *this;
 }
 
-Inventory Inventory::operator-(int num)
+vector<MainCard> Inventory::operator-(int num)
 {
-	Inventory inventory(num);
-	
+	vector<MainCard> vec;
 	vector<MainCard>::iterator it = this->cards.begin();
+
 	for (int i = 0; i < num; i++)
 	{
-		inventory.cards[i] = this->cards[i];
+		MainCard m = this->cards[i];
+		vec.push_back(m);
 		this->cards.erase(it);
 		it++;
 	}
 
-	return inventory;
+	return vec;
 }
