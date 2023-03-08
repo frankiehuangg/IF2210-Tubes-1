@@ -5,11 +5,6 @@
 
 class Switch : public AbilityCard {
 public:
-	/***** Getter & Setter *****/
-	// If used, then status is true, else status is false;
-	bool getStatus();
-	void setStatus(bool);
-
 	/**** Use ability, different for each card *****/
 	// Tukar 2 kartu milik sendiri dengan 2 kartu milik pemain lain 
 	// Minta input nama pemain yang ingin ditukarkan kartunya, lalu tukar

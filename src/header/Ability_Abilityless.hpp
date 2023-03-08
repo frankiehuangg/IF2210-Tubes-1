@@ -5,11 +5,6 @@
 
 class Abilityless : public AbilityCard {
 public:
-	/***** Getter & Setter *****/
-	// If used, then status is true, else status is false;
-	bool getStatus();
-	void setStatus(bool);
-
 	/**** Use ability, different for each card *****/
 	// Ubah status abilityCard pemain lain menjadi false 
 	void useAbility(const Game&);
