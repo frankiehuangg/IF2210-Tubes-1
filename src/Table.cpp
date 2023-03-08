@@ -1,4 +1,4 @@
-#include "Table.hpp"
+#include "header/Table.hpp"
 #include <iostream>
 using namespace std;
 
@@ -14,10 +14,6 @@ Table::Table(Inventory& deck){
     }
 }
 
-// Destruct cards dari memori
-Table::~Table(){
-}
-
 // Tambahkan nilai opened dengan 1, kemudian panggil fungsi operator +
 void Table::openCard(){
     this->opened +=1;
@@ -31,10 +27,4 @@ void Table::printCards(){
     }
 }
 
-Inventory& Table::operator+ (Inventory& deck){
-    
-}
 
-Inventory& Table::operator- (Inventory& deck){
-
-}
