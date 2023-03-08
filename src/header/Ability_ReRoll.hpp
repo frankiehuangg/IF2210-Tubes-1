@@ -7,7 +7,6 @@ class ReRoll : public AbilityCard {
 public:
 	/**** Use ability, different for each card *****/
 	// Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
-	// sementara belum bisa, tunggu yang operator + sama - selesai dulu
 	void useAbility(const Game&);
 
 	/***** Print card *****/
