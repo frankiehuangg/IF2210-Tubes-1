@@ -28,6 +28,7 @@ void Inventory::setCard(int index, MainCard card)
 Inventory& Inventory::operator+(vector<MainCard> vector)
 {
 	this->cards = vector;
+	this->amount += vector.size();
 	return *this;
 }
 
@@ -43,6 +44,6 @@ vector<MainCard> Inventory::operator-(int num)
 		vec.push_back(m);
 	}
 	this->cards.erase(it,it2);
-	amount-=num;
+	this->amount-=num;
 	return vec;
 }
