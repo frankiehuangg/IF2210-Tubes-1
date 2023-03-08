@@ -17,7 +17,6 @@ private:
 	string name;
 	int point;
 
-	pair<MainCard, MainCard> cards;
 	AbilityCard* ability;
 	Action playerAction;
 
@@ -42,13 +41,6 @@ public:
 	/***** Print *****/
 	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
 	void printCards();
-
-	/***** Operator overloading *****/
-	// Ambil n-buah kartu dari deck, player lain, atau table
-	Inventory& operator+ (Inventory&);
-
-	// Tarik n-buah kartu dari player
-	Inventory& operator- (Inventory&);
 
 	// Cek apakah nilai kombo player > player lain
 	bool operator< (Comparable& other);
