@@ -18,7 +18,7 @@ void MainCard::setValue(float value)
     this->value = value;
 }
 
-// Number - Asumption: First element of the pair
+// Number - Assumption: First element of the pair
 int MainCard::getNumber() const
 {
     return this->card.first;
@@ -28,7 +28,7 @@ void MainCard::setNumber(int number)
     this->card.first = number;
 }
 
-// Color - Asumption: Second element of the pair
+// Color - Assumption: Second element of the pair
 int MainCard::getColor() const
 {
     return this->card.second;
