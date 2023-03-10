@@ -1,8 +1,8 @@
-#include "header/Ability_Abilityless.hpp"
+#include "header/Ability_Quadruple.hpp"
 
 /**** Use ability, different for each card *****/
 // Ubah status abilityCard pemain lain menjadi false
-void Abilityless::useAbility(const Game &game)
+void Quadruple::useAbility(const Game &game)
 {
     // Assumption we can access other player by its id from game object
     // I think this can avoid loop(?)
@@ -11,14 +11,10 @@ void Abilityless::useAbility(const Game &game)
     // Example:
     /*
     if (this->status) {
-        bool statusOther = game.players[id].ability.status
-        if (statusOrder) {
-            game.players[id].ability.setStatus(false)
-            cout << "Pemain " << game.players[id].name << " telah dinonaktifkan abilitynya." << endl;
-        } else {
-            cout << "Pemain " << game.players[i].name << " tidak memiliki ability card yang dapat digunakan" << endl;
-        }
+        int initialPoint = game.point;
+        game.point *= 4;
         this->setStatus(false);
+        cout << "Point game berubah dari " << initialPoint << " menjadi " << game.point << endl;
     } else {
         cout << "Anda tidak dapat menggunakan ability ini." << endl;
     }
@@ -27,15 +23,15 @@ void Abilityless::useAbility(const Game &game)
 
 /***** Print card *****/
 // Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
-void Abilityless::printCard()
+void Quadruple::printCard()
 {
     /*
     if (game.round = 1) {
         cout << "NOT AVAILABLE"
     } else {
-        cout << "NAME     : ABILITYLESS" << endl;
+        cout << "NAME     : QUADRUPLE" << endl;
         cout << "STATUS   : " << this->status << endl;
-        cout << "ABILITY  : Mematikan kemampuan kartu lawan" << endl;
+        cout << "ABILITY  : Menaikkan total poin hadiah menjadi 4x lipat" << endl;
     }
     */
 }
