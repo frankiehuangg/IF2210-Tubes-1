@@ -13,4 +13,12 @@ struct InvalidFileSyntax: public exception
 	}
 };
 
+struct NoAbilityAvailable: public exception
+{
+	const char* printError() const throw()
+	{
+		return "Player has no ability available\n";
+	}
+};
+
 #endif
