@@ -16,6 +16,8 @@ public:
 	// Construct sebuah table dengan amount = 5, opened = 0, serta inisialisasikan atribut cards dengan panjang amount 
 	Table();
 
+	int getOpened() const;
+
 	// Tambahkan nilai opened dengan 1
 	void openCard();
 

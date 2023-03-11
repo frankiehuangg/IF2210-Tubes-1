@@ -9,6 +9,10 @@ Table::Table():Inventory(5)
     this->opened = 0;   
 }
 
+int Table::getOpened() const{
+	return this->opened;
+}
+
 // Tambahkan nilai opened dengan 1
 void Table::openCard()
 {
