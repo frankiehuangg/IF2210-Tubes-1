@@ -85,7 +85,7 @@ bool Poker::gameOver()
 void Poker::roundRobin()
 {
 	this->players.push_back(this->players[0]);
-	this->players.pop_back();
+	this->players.erase(this->players.begin())
 }
 
 void Poker::newShuffle()

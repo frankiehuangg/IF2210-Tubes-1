@@ -16,6 +16,8 @@ public:
 	int getAmount() const;
 	void setAmount(int);
 
+	vector<MainCard> getInventoryCards() const;
+
 	MainCard getCard(int) const;
 	void setCard(int, MainCard);
 

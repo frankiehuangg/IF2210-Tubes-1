@@ -2,8 +2,10 @@
 #include "header/Poker.hpp"
 
 // Untuk sementara ini parameter aku ganti ke Poker dulu soalnya yg Game blm beres implementasinya
-void Swap::useAbility(const Poker& poker) {
-    if (!this->getStatus()) {
+void Swap::useAbility(const Poker& poker) 
+{
+    if (!this->getStatus()) 
+    {
         cout << "Oops, kartu ability swapmu telah dimatikan sebelumnya :(" << endl
              << "Silahkan lakukan perintah lain.";
     }
@@ -45,7 +47,8 @@ void Swap::useAbility(const Poker& poker) {
     }
 }
 
-void Swap::printCard() {
+void Swap::printCard() 
+{
     cout << "Nama : " << "Swap" << endl;
     cout << "Status : ";
     this->getStatus() ? cout << "Belum digunakan" : cout << "Sudah digunakan";

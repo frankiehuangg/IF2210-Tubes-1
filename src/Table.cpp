@@ -4,17 +4,24 @@ using namespace std;
 
 /***** Constructor and destructor *****/
 // Construct sebuah table dengan amount = 5, opened = 0, serta inisialisasikan atribut cards dengan panjang amount
-Table::Table():Inventory(5){ 
-    this->opened=0;   
+Table::Table():Inventory(5)
+{ 
+    this->opened = 0;   
+}
+
+int Table::getOpened() const{
+	return this->opened;
 }
 
 // Tambahkan nilai opened dengan 1
-void Table::openCard(){
+void Table::openCard()
+{
     this->opened +=1;
 }
 
 // Print semua kartu yang terdapat pada table (yang sudah terbuka)
-void Table::printCards(){
+void Table::printCards()
+{
     for(int i=0; i < opened; i++){
         this->cards[i].printCard();
     }
