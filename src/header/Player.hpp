@@ -7,34 +7,52 @@
 #include "Action.hpp"
 #include "MainCard.hpp"
 #include "Exception.hpp"
+#include "Combo.hpp"
 
 using namespace std;
 
 // Forward declaration
 class AbilityCard;
 
-class Player : public Comparable, public Inventory {
+class Player : public Inventory {
 private:
 	string name;
+	int number;
 	int point;
 
 	AbilityCard* ability;
 	Action playerAction;
+	Combo combo;
 
 public:
 	/***** Constructor dan destructor *****/
 	// Buat sebuah player dengan parameter name dan point awal 0. Lalu inisialisasikan cards dan ability
-	Player(string);	
+	Player(string, int);	
 
 	// Destruct cards dan ability ke memori
 	~Player();
 
+	// Kembalikan nilai number pemain
+	int getPlayerNumber() const;
+	// Kembalikan nama player
+	string getPlayerName() const;
+	
+	// Kembalikan nilai point pemain
+	int getPlayerPoint() const;
+	// tambah point pemain
+	void addPlayerPoint(int);
 
-	/***** Getter & Setter *****/
-	// Kembalikan nilai kartu
-	const pair<MainCard, MainCard> getCards();
-	// Ubah nilai kartu
-	void setCards(pair<MainCard, MainCard>);
+	bool doesAbilityCardExist() const;
+
+	bool getAbilityCardStatus() const;
+
+	void setAbilityCardStatus(bool);
+
+	void returnAbilityToDeck(Inventory&);
+
+	void takeAbilityFromDeck(Inventory&);
+
+	void doAction();
 
 	/**** Use ability, different for each card *****/
 	void useAbility();

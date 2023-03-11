@@ -19,6 +19,12 @@ public:
 	MainCard getCard(int) const;
 	void setCard(int, MainCard);
 
+	bool isInventoryEmpty();
+
+	void returnCardToDeck(Inventory&);
+
+	void takeCardFromDeck(Inventory&, int);
+
 	/***** Print value *****/
 	virtual void printCards() = 0;
 

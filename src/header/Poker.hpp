@@ -2,6 +2,7 @@
 #define _POKER_HPP_
 
 #include <vector>
+#include "Exception.hpp"
 #include "Player.hpp"
 #include "Table.hpp"
 #include "Deck.hpp"
@@ -9,10 +10,13 @@
 using namespace std;
 
 class Poker {
-protected:
+private:
 	int shuffle;
 	int round;
 	int point;
+
+	const int ROUND_AMOUNT;
+	const int PLAYER_AMOUNT;
 
 	vector<Player> players;
 	Table table;
@@ -24,6 +28,8 @@ public:
 	// Pada awal permainan, inisiasi 7 orang pemain dengan mengisialisasikan nilai players.
 	Poker();
 
+	void checkPlayerNameExist(string);
+
 	/***** Getter & Setter *****/
 	// Dipanggil pada akhir ronde ke-6 melalui metode givePoint, kembalikan nilai point
 	int getPoint() const;
@@ -31,12 +37,20 @@ public:
 	// Dipanggil pada awal ronde ke-1, buat point menjadi 64
 	void setPoint();
 
+	// Ambil jumlah pemain
+	int getPlayerCount() const;
+
+	// Ambil player dengan urutan tertentu
+	Player& getPlayer(int);
+
+	// Ambil player dengan nama tertentu
+	Player& getPlayer(string);
+
 	/***** Fungsi Gameplay *****/
 	// Cek apakah point > 2^32, jika iya maka kembalikan true
 	bool gameOver();
-
-	// Berikan point pada pemenang ronde
-	void givePoint(Player&);
+	
+	void roundRobin();
 
 	// Panggil ketika awal permainan atau ronde ke-6 sudah berakhir.
 	// Pada fungsi, implementasikan sebagai berikut:
@@ -57,7 +71,7 @@ public:
 	// - Awal ronde kedua: pemain mendapatkan 1 AbilityCard dari Deck
 	// - Akhir ronde pertama hingga kelima: 1 MainCard akan diletakkan pada Table
 
-	void newRound();
+	void newRound(int);
 };
 
 #endif
