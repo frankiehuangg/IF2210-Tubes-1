@@ -1,26 +1,22 @@
 #ifndef _POKER_HPP_
 #define _POKER_HPP_
 
+class Poker;
+
 #include <vector>
 #include "Exception.hpp"
-#include "Player.hpp"
 #include "Table.hpp"
-#include "Deck.hpp"
+#include "Game.hpp"
 
 using namespace std;
 
-class Poker {
+class Poker : public Game {
 private:
 	int shuffle;
 	int round;
 	int point;
 
 	const int ROUND_AMOUNT;
-	const int PLAYER_AMOUNT;
-
-	vector<Player> players;
-	Table table;
-	Deck deck;
 
 public:
 
