@@ -62,13 +62,13 @@ public:
 	void printCards();
 
 	// Cek apakah nilai kombo player > player lain
-	bool operator< (Comparable& other);
+	bool operator< (Player& other);
 
 	// Cek apakah nilai kombo player < player lain
-	bool operator> (Comparable& other);
+	bool operator> (Player& other);
 
 	// Cek apakah nilai kombo player = player lain
-	bool operator== (Comparable& other);
+	bool operator== (Player& other);
 };
 
 #endif

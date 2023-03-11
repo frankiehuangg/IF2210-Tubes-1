@@ -95,12 +95,12 @@ void Poker::newShuffle()
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 		newRound(i);
 
-	int winner = 0;
+	Player& winner = this->players[0];
 	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i].getPlayerPoint() > this->players[winner].getPlayerPoint())
-			winner = i;
+		if (this->players[i] > winner)
+			winner = this->players[i];
 
-	this->players[winner].addPlayerPoint(this->point);
+	winner.addPlayerPoint(this->point);
 
 	if (!gameOver())
 	{

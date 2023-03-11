@@ -28,7 +28,12 @@ public:
 	bool operator== (Comparable&);
 
 private:
-	map<vector<MainCard>, float> combo_list;
+	// Combo list:
+	// 0 = no combo
+	// 1 = pair
+	// 2 = two pair
+	// 3 = three of a kind dst.
+	map<int, float> combo_list;
 	vector<MainCard> cards;
 };
 
