@@ -15,6 +15,11 @@ void Inventory::setAmount(int amount)
 	this->amount = amount;
 }
 
+vector<MainCard> Inventory::getInventoryCards() const
+{	
+	return this->cards;
+}
+
 MainCard Inventory::getCard(int index) const
 {
 	return this->cards[index];
