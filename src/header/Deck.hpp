@@ -4,6 +4,7 @@
 #include <vector>
 #include "Inventory.hpp"
 #include "MainCard.hpp"
+#include "AbilityCard.hpp"
 
 using namespace std;
 
@@ -14,13 +15,20 @@ public:
 	// Construct sebuah deck dengan nilai amount = 52 serta inisialisasikan attribute cards dengan panjang 52 dan abilities dengan panjang 7
 	Deck();
 
-	// Acak MainCard dan AbilityCard
-	void shuffleDeck();
+	// Acak MainCard
+	void shuffleMainCards();
 
 	// Baca urutan deck dari file
 	void getDeckFromInput();
 
+	// Acak AbilityCard
+	void shuffleAbilityCards();
+
+	// Cetak kartu
 	void printCards();
+
+private:
+	vector<AbilityCard> abilities;
 };
 
 #endif
