@@ -6,6 +6,7 @@
 #include "Inventory.hpp"
 #include "Action.hpp"
 #include "MainCard.hpp"
+#include "Exception.hpp"
 
 using namespace std;
 
