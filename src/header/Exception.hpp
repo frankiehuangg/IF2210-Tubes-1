@@ -9,7 +9,23 @@ struct InvalidFileSyntax: public exception
 {
 	const char* printError() const throw()
 	{
-		return "File input invalid!\n";
+		return "File input invalid!";
+	}
+};
+
+struct PlayerNotExist : public exception
+{
+	const char* printError() const throw()
+	{
+		return "Player does not exist!";
+	}
+};
+
+struct CreatePlayerFailed : public exception
+{
+	const char* printError() const throw()
+	{
+		return "Name not allowed. Please choose another name";
 	}
 };
 
