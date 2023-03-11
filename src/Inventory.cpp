@@ -25,6 +25,27 @@ void Inventory::setCard(int index, MainCard card)
 	this->cards[index] = card;
 }
 
+bool Inventory::isInventoryEmpty()
+{
+	if (this->cards.empty())
+		return true;
+	return false;
+}
+
+void Inventory::returnCardToDeck(Inventory& deck)
+{
+	int size = this->cards.size();
+
+	vector<MainCard> temp = *this - size;
+	deck = deck + temp;
+}
+
+void Inventory::takeCardFromDeck(Inventory& deck, int amount)
+{
+	vector<MainCard> temp = deck - amount;
+	*this = *this + temp;
+}
+
 Inventory& Inventory::operator+(vector<MainCard> vector)
 {
 	this->cards = vector;
