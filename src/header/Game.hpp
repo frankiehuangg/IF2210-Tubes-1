@@ -12,6 +12,7 @@ protected:
 	const int WIN_POINT;
 
 	vector<Player> players;
+	Table table;
 	Deck deck;
 
 public:
