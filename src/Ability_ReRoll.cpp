@@ -1,11 +1,18 @@
 #include "header/Ability_ReRoll.hpp"
 
 // Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
-void useAbility(const Game &game)
+void ReRoll::useAbility(Game &game)
 {
-	game.players[game.turn] - 2;		   // discard 2 cards
-	vector<MainCard> newCards = game.deck - 2; // grab 2 new cards from deck
-	game.players[game.turn] + newCards;
+	Player& player = game.getPlayer();
+	Deck& deck = game.getDeck();
+
+	// move to deck
+	vector<MainCard> vec = player - 2;
+	deck + vec;
+
+	// take from deck
+	vector<MainCard> pull = deck - 2;
+	player + pull;
 }
 
 /***** Print card *****/
