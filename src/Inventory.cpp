@@ -53,7 +53,8 @@ void Inventory::takeCardFromDeck(Inventory& deck, int amount)
 
 Inventory& Inventory::operator+(vector<MainCard> vector)
 {
-	this->cards = vector;
+	for (int i = 0; i < vector.size(); i++)
+		this->cards.push_back(vector[i]);
 	this->amount += vector.size();
 	return *this;
 }
