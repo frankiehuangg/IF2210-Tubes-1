@@ -4,25 +4,23 @@
 #include <iostream>
 #include "Comparable.hpp"
 #include "Inventory.hpp"
-#include "Action.hpp"
 #include "MainCard.hpp"
 #include "Exception.hpp"
-#include "Combo.hpp"
 
 using namespace std;
 
 // Forward declaration
 class AbilityCard;
+class Action;
 
-class Player : public Inventory {
+class Player : public Inventory, public Comparable {
 private:
 	string name;
 	int number;
 	int point;
 
 	AbilityCard* ability;
-	Action playerAction;
-	Combo combo;
+	Action* playerAction;
 
 public:
 	/***** Constructor dan destructor *****/
@@ -36,6 +34,9 @@ public:
 	int getPlayerNumber() const;
 	// Kembalikan nama player
 	string getPlayerName() const;
+
+	float getValue() const;
+	void setValue(float);
 	
 	// Kembalikan nilai point pemain
 	int getPlayerPoint() const;
@@ -62,13 +63,13 @@ public:
 	void printCards();
 
 	// Cek apakah nilai kombo player > player lain
-	bool operator< (Player& other);
+	bool operator< (Comparable&);
 
 	// Cek apakah nilai kombo player < player lain
-	bool operator> (Player& other);
+	bool operator> (Comparable&);
 
 	// Cek apakah nilai kombo player = player lain
-	bool operator== (Player& other);
+	bool operator== (Comparable&);
 };
 
 #endif
