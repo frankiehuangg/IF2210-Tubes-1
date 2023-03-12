@@ -28,6 +28,14 @@ string Player::getPlayerName() const {
     return name;
 }
 
+float Player::getValue() const {
+    return point;
+}
+
+void Player::setValue(float _point) {
+    point = _point;
+}
+
 int Player::getPlayerPoint() const {
     return point;
 }
@@ -84,7 +92,7 @@ void Player::doAction() {
 void Player::useAbility() {
     if (ability == NULL) throw NoAbilityAvailable();
     else {
-        ability->Quadruple::useAbility();
+        ability->useAbility();
     }
 }
 
@@ -98,14 +106,14 @@ void Player::printCards() {
     // cout << '\n';
 }
 
-bool Player::operator< (Player& other) {
-    combo < other.combo;
+bool Player::operator< (Comparable& other) {
+    point < other.getValue();
 }
 
-bool Player::operator> (Player& other) {
-    combo > other.combo;
+bool Player::operator> (Comparable& other) {
+    point > other.getValue();
 }
 
-bool Player::operator== (Player& other) {
-    combo == other.combo;
+bool Player::operator== (Comparable& other) {
+    point == other.getValue();
 }
