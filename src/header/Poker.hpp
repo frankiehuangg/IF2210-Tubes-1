@@ -14,6 +14,7 @@ class Poker : public Game {
 private:
 	int shuffle;
 	int round;
+	int turn;
 	int point;
 
 	const int ROUND_AMOUNT;
@@ -28,23 +29,12 @@ public:
 
 	/***** Getter & Setter *****/
 	// Dipanggil pada akhir ronde ke-6 melalui metode givePoint, kembalikan nilai point
+	int getTurn() const;
+
 	int getPoint() const;
 
 	// Dipanggil pada awal ronde ke-1, buat point menjadi 64
 	void setPoint();
-
-	// Ambil jumlah pemain
-	int getPlayerCount() const;
-
-	// Ambil player dengan urutan tertentu
-	Player& getPlayer(int);
-
-	// Ambil player dengan nama tertentu
-	Player& getPlayer(string);
-
-	/***** Fungsi Gameplay *****/
-	// Cek apakah point > 2^32, jika iya maka kembalikan true
-	bool gameOver();
 	
 	void roundRobin();
 
@@ -67,7 +57,7 @@ public:
 	// - Awal ronde kedua: pemain mendapatkan 1 AbilityCard dari Deck
 	// - Akhir ronde pertama hingga kelima: 1 MainCard akan diletakkan pada Table
 
-	void newRound(int);
+	void newRound();
 };
 
 #endif
