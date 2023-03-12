@@ -22,9 +22,7 @@ void Table::openCard()
 // Print semua kartu yang terdapat pada table (yang sudah terbuka)
 void Table::printCards()
 {
-    for(int i=0; i < opened; i++){
-        this->cards[i].printCard();
-    }
+    cout<<(*this);
 }
 
 
