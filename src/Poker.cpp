@@ -1,11 +1,10 @@
 #include <iostream>
 #include "header/Poker.hpp"
 
-Poker::Poker() : ROUND_AMOUNT(6), PLAYER_AMOUNT(7)
+Poker::Poker() : Game(64, 7, 1<<31), ROUND_AMOUNT(6)
 {
 	this->shuffle = 0;
 	this->round = 0;
-	this->point = 64;
 
 	// Create player
 	int i = 0;
@@ -16,6 +15,8 @@ Poker::Poker() : ROUND_AMOUNT(6), PLAYER_AMOUNT(7)
 		try
 		{
 			string name; cin >> name;
+
+			checkPlayerNameExist(name);
 
 			Player p(name, i+1);
 
@@ -33,11 +34,9 @@ Poker::Poker() : ROUND_AMOUNT(6), PLAYER_AMOUNT(7)
 	}
 }
 
-void Poker::checkPlayerNameExist(string name)
+int Poker::getTurn() const
 {
-	for (int i = 0; i < this->players.size(); i++)
-		if (this->players[i].getPlayerName() == name)
-			throw CreatePlayerFailed();
+	return this->turn;
 }
 
 int Poker::getPoint() const
@@ -50,42 +49,10 @@ void Poker::setPoint()
 	this->point = 64;
 }
 
-int Poker::getPlayerCount() const
-{
-	return this->PLAYER_AMOUNT;
-}
-
-Player& Poker::getPlayer(int number)
-{
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i].getPlayerNumber() == number)
-			return this->players[i];
-
-	throw PlayerNotExist();
-}
-
-Player& Poker::getPlayer(string name)
-{
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i].getPlayerName() == name)
-			return this->players[i];
-
-	throw PlayerNotExist();
-}
-
-bool Poker::gameOver()
-{
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i].getPlayerPoint() > (1 << 31))
-			return true;
-
-	return false;
-}
-
 void Poker::roundRobin()
 {
 	this->players.push_back(this->players[0]);
-	this->players.erase(this->players.begin())
+	this->players.erase(this->players.begin());
 }
 
 void Poker::newShuffle()
@@ -93,7 +60,10 @@ void Poker::newShuffle()
 	setPoint();
 
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
-		newRound(i);
+	{
+		newRound();
+		this->round++;
+	}
 
 	Player& winner = this->players[0];
 	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
@@ -109,9 +79,9 @@ void Poker::newShuffle()
 	}
 }
 
-void Poker::newRound(int round)
+void Poker::newRound()
 {
-	int turn = 0;
+	this->turn = 0;
 
 	// Ronde sebanyak pemain
 	while (turn < this->PLAYER_AMOUNT)
@@ -172,6 +142,6 @@ void Poker::newRound(int round)
 		// Acak pemain dengan round robin
 		roundRobin();
 		
-		turn++;
+		this->turn++;
 	}
 }
