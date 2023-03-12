@@ -4,13 +4,14 @@
 #include <map>
 #include "Comparable.hpp"
 #include "MainCard.hpp"
+#include "Player.hpp"
 #include "Table.hpp"
 
 class Combo : public Comparable {
 public:
 	/***** Constructor *****/
 	// Inisialisasi map berisi combo-combo yang ada
-	Combo();
+	Combo(Player, Table);
 
 	/****** Getter & Setter *****/
 	float getValue() const;
@@ -33,7 +34,7 @@ private:
 	// 1 = pair
 	// 2 = two pair
 	// 3 = three of a kind dst.
-	map<int, float> combo_list;
+	map<pair<int, int>, float> combo_list;
 	vector<MainCard> cards;
 };
 
