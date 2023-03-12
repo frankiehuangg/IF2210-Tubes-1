@@ -33,8 +33,23 @@ struct NoAbilityAvailable: public exception
 {
 	const char* printError() const throw()
 	{
-		return "Player has no ability available\n";
+		return "Player has no ability available";
 	}
+};
+
+struct InputInvalid: public exception
+{
+	InputInvalid(int _line) {
+		line = _line;
+	}
+
+	const char* printError() const throw()
+	{
+		return "Input format invalid at line " + (char) line;
+	}
+
+	private:
+		int line;
 };
 
 #endif
