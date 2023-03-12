@@ -7,7 +7,7 @@ class Quarter : public AbilityCard {
 public:
 	/**** Use ability, different for each card *****/
 	// Ubah nilai point pada Game menjadi 1/4 nilai semula
-	void useAbility(const Game&);
+	void useAbility(Game&);
 
 	/***** Print card *****/
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"

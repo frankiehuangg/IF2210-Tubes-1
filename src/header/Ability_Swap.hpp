@@ -8,7 +8,7 @@ public:
 	/**** Use ability, different for each card *****/
 	// Swap 1 kartu pemain lain dengan 1 kartu pemain lain
 	// Minta input nama pemain yang ingin ditukar, lalu tanya kartu yang mana (1 atau 2)
-	void useAbility(const Game&);
+	void useAbility(Game&);
 
 	/***** Print card *****/
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"

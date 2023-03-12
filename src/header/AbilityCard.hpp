@@ -1,11 +1,7 @@
 #ifndef _ABILITY_HPP_
 #define _ABILITY_HPP_
 
-class AbilityCard;
-
-#include "Player.hpp"
-
-class Game;
+#include "Game.hpp"
 
 class AbilityCard {
 protected:
@@ -18,7 +14,7 @@ public:
 	void setStatus(bool);
 
 	/**** Use ability, different for each card *****/
-	virtual void useAbility(const Game&) = 0;
+	virtual void useAbility(Game&) = 0;
 
 	/***** Print card *****/
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"

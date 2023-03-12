@@ -7,7 +7,7 @@ class Abilityless : public AbilityCard {
 public:
 	/**** Use ability, different for each card *****/
 	// Ubah status abilityCard pemain lain menjadi false 
-	void useAbility(const Game&);
+	void useAbility(Game&);
 
 	/***** Print card *****/
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"

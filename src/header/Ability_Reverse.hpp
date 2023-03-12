@@ -7,7 +7,7 @@ class Reverse : public AbilityCard {
 public:
 	/**** Use ability, different for each card *****/
 	// Reverse player's turn RoundRobin (baca specc)
-	void useAbility(const Game&);
+	void useAbility(Game&);
 
 	/***** Print card *****/
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
