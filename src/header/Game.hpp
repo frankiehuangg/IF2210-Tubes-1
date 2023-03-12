@@ -2,7 +2,10 @@
 #define _GAME_H_
 
 #include "Player.hpp"
+#include "Table.hpp"
 #include "Deck.hpp"
+
+class AbilityCard;
 
 class Game {
 protected:
@@ -18,17 +21,25 @@ protected:
 public:
 	Game(int, int, int);
 
-	virtual void checkPlayerNameExist(string) = 0;
+	void checkPlayerNameExist(string);
 
-	virtual int getPlayerCount() const = 0;
+	int getPlayerCount() const;
 
-	virtual Player& getPlayer(int) = 0;
+	Player& getPlayer();
 
-	virtual Player& getPlayer(string) = 0;
+	Player& getPlayer(int);
 
-	virtual bool gameOver() = 0;
+	Player& getPlayer(string);
 
-	virtual void newRound(int) = 0;
+	Table& getTable();
+
+	Deck& getDeck();
+
+	bool gameOver();
+
+	virtual void newShuffle() = 0;
+
+	virtual void newRound() = 0;
 };
 
 #endif
