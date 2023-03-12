@@ -1,8 +1,7 @@
 #include "header/Ability_Swap.hpp"
-#include "header/Poker.hpp"
 
 // Untuk sementara ini parameter aku ganti ke Poker dulu soalnya yg Game blm beres implementasinya
-void Swap::useAbility(const Poker& poker) 
+void Swap::useAbility(const Game& poker) 
 {
     if (!this->getStatus()) 
     {
