@@ -4,9 +4,10 @@
 #include <vector>
 #include "Inventory.hpp"
 #include "MainCard.hpp"
-#include "AbilityCard.hpp"
 
 using namespace std;
+
+class AbilityCard;
 
 class Deck : public Inventory {
 public:

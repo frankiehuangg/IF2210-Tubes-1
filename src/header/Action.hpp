@@ -1,7 +1,7 @@
 #ifndef _ACTION_HPP_
 #define _ACTION_HPP_
 
-class Game;
+#include "Game.hpp"
 
 class Action {
 public:
