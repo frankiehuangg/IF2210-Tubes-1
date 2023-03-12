@@ -3,16 +3,24 @@
 // Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
 void ReRoll::useAbility(Game &game)
 {
-	Player& player = game.getPlayer();
-	Deck& deck = game.getDeck();
+	if (!this->getStatus()) 
+    {
+        cout << "Oops, kartu ability ReRoll telah dimatikan sebelumnya :(" << endl
+             << "Silahkan lakukan perintah lain.";
+    }
+	else
+	{
+		Player& player = game.getPlayer();
+		Deck& deck = game.getDeck();
 
-	// move to deck
-	vector<MainCard> vec = player - 2;
-	deck + vec;
+		// move to deck
+		vector<MainCard> vec = player - 2;
+		deck + vec;
 
-	// take from deck
-	vector<MainCard> pull = deck - 2;
-	player + pull;
+		// take from deck
+		(*this).takeCardFromDeck(deck,2);
+	}
+	
 }
 
 /***** Print card *****/
