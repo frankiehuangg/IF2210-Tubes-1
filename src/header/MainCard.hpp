@@ -40,6 +40,11 @@ public:
 	
 	// Cek apakah nilai kartu = kartu lain
 	bool operator== (Comparable&);
+
+	bool operator< (MainCard&);
+	bool operator> (MainCard&);
+	bool operator== (MainCard&);
+	friend bool operator<(const MainCard,const MainCard);
 };
 
 #endif

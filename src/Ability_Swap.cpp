@@ -33,7 +33,7 @@ void Swap::useAbility(Game& game)
         cin >> playerNumber1;
         /*********************************************************/
 
-        if (playerNumber1 < 1 || playerNumber1 > playerNumsTemp.size()); 
+        if (playerNumber1 < 1 || playerNumber1 > playerNumsTemp.size())
         {
             throw PlayerNotExist();
         }
@@ -53,7 +53,7 @@ void Swap::useAbility(Game& game)
         cin >> playerNumber2;   
         /*********************************************************/
 
-        if (playerNumber2 < 1 || playerNumber2 > playerNumsTemp.size()); 
+        if (playerNumber2 < 1 || playerNumber2 > playerNumsTemp.size())
         {
             throw PlayerNotExist();
         }

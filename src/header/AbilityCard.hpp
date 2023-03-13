@@ -3,6 +3,9 @@
 
 #include "Game.hpp"
 
+class Game;
+#include "Player.hpp" //idk kalo w make ini erornya ilang
+
 class AbilityCard {
 protected:
 	bool status;
@@ -14,11 +17,14 @@ public:
 	void setStatus(bool);
 
 	/**** Use ability, different for each card *****/
-	virtual void useAbility(Game&) = 0;
+	virtual void useAbility(Game&);
 
 	/***** Print card *****/
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
-	virtual void printCard() = 0;
+	virtual void printCard();
+
+	// dia aku ubah virtual karena kita ada make stl (deque) dengan class AbilityCard
+	// antara ini gajadi virtual ATO make stlnya sama reference/pointer
 };
 
 #endif
