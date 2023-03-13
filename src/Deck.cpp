@@ -33,6 +33,14 @@ void Deck::getDeckFromInput() {
     ifstream fin(filename);
     if(!fin.is_open()) throw InvalidFileSyntax();
 
+    // create card table to check for duplicate card during input
+    map<MainCard, bool> cardTable;
+    for (int i = 1; i <= 13; i++) {
+        for (int j = 0; j <= 3; j++) {
+            cardTable.emplace(MainCard(i, j), false);
+        }
+    }
+
     // parse input
     string line;
     int n = 0;
@@ -90,6 +98,7 @@ void Deck::getDeckFromInput() {
         if (!(numRead && colorRead)) throw InputInvalid(n+1);
 
         MainCard inCard(num, color);
+        if(cardTable[inCard]) throw DuplicateCardExist(n+1);
         
         cards[n] = MainCard(num, color);
         n++;
