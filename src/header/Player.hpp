@@ -63,13 +63,13 @@ public:
 	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
 	void printCards();
 
-	// Cek apakah nilai kombo player > player lain
+	// Cek apakah poin player > player lain
 	bool operator< (Comparable&);
 
-	// Cek apakah nilai kombo player < player lain
+	// Cek apakah poin player < player lain
 	bool operator> (Comparable&);
 
-	// Cek apakah nilai kombo player = player lain
+	// Cek apakah poin player = player lain
 	bool operator== (Comparable&);
 };
 
