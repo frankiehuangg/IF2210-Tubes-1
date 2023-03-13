@@ -1,19 +1,23 @@
 #include "header/Ability_Quarter.hpp"
+#include <iostream>
 
 /**** Use ability, different for each card *****/
 // Ubah status abilityCard pemain lain menjadi false
-void Quarter::useAbility(const Game &game)
+void Quarter::useAbility(Game &game)
 {
-    /*
-    if (this->status) {
-        int initialPoint = game.point;
-        game.point /= 4; // Not sure between this or *= 0.25, but the type of point is int?
-        this->setStatus(false);
-        cout << "Point game berubah dari " << initialPoint << " menjadi " << game.point << endl;
-    } else {
-        cout << "Anda tidak dapat menggunakan ability ini." << endl;
+    if (this->status)
+    {
+        int initialPoint = game.getPoint();
+        // Di spek tidak dibatasi point harus > 3
+        game.setPoint(initialPoint / 4);
+        this->status = false;
+        std::cout << game.getPlayer().getPlayerName() << " melakukan QUARTER!" << std::endl;
+        std::cout << "Point hadiah turun dari " << initialPoint << " menjadi " << game.getPoint() << "!" << std::endl;
     }
-    */
+    else
+    {
+        std::cout << "Anda tidak dapat menggunakan ability QUARTER. Ability sudah digunakan" << std::endl;
+    }
 }
 
 /***** Print card *****/
