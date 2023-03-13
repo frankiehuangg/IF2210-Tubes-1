@@ -1,7 +1,7 @@
 #ifndef _ABILITY_HPP_
 #define _ABILITY_HPP_
 
-#include "Game.hpp"
+class Game;
 
 class AbilityCard {
 protected:

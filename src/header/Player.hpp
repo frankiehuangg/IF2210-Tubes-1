@@ -5,12 +5,12 @@
 #include "Comparable.hpp"
 #include "Inventory.hpp"
 #include "MainCard.hpp"
+#include "AbilityCard.hpp"
 #include "Exception.hpp"
 
 using namespace std;
 
 // Forward declaration
-class AbilityCard;
 class Action;
 
 class Player : public Inventory, public Comparable {
