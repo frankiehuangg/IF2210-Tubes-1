@@ -14,7 +14,7 @@ ostream& operator<<(ostream& os, vector<MainCard>& m)
 
 	char line[100];
 
-	for (int i = 0; i < m.size(); i++)
+	for (unsigned i = 0; i < m.size(); i++)
 	{
 		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
@@ -38,9 +38,9 @@ ostream& operator<<(ostream& os, vector<MainCard>& m)
 		}
 	}
 
-	for (int i = 0; i < 11; i++)
+	for (unsigned i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < m.size(); j++)
+		for (unsigned j = 0; j < m.size(); j++)
 		{
 			if (m[j].getColor() == 0)
 				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";

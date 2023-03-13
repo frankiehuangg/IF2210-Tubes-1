@@ -9,7 +9,7 @@ Game::Game(int round, int point, int turn, int PLAYER_AMOUNT, int WIN_POINT) : P
 
 void Game::checkPlayerNameExist(string name)
 {
-	for (int i = 0; i < this->players.size(); i++)
+	for (unsigned i = 0; i < this->players.size(); i++)
 		if (this->players[i].getPlayerName() == name)
 			throw CreatePlayerFailed();
 }

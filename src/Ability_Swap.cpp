@@ -33,7 +33,7 @@ void Swap::useAbility(Game& game)
         cin >> playerNumber1;
         /*********************************************************/
 
-        if (playerNumber1 < 1 || playerNumber1 > playerNumsTemp.size())
+        if (playerNumber1 < 1 || (unsigned)playerNumber1 > playerNumsTemp.size())
         {
             throw PlayerNotExist();
         }
@@ -44,7 +44,7 @@ void Swap::useAbility(Game& game)
 
         /*** Ini mungkin dijadiin satu method aja biar modular ***/
         cout << "Silahkan pilih pemain lain yang kartunya ingin kamu tukar: " << endl;
-        for (int idx = 0; idx < playerNumsTemp.size(); idx++) 
+        for (unsigned idx = 0; idx < playerNumsTemp.size(); idx++) 
         {
             cout << idx + 1 << ". " << game.getPlayer(playerNumsTemp.at(idx)).getPlayerName() << endl;
         }
@@ -53,7 +53,7 @@ void Swap::useAbility(Game& game)
         cin >> playerNumber2;   
         /*********************************************************/
 
-        if (playerNumber2 < 1 || playerNumber2 > playerNumsTemp.size())
+        if (playerNumber2 < 1 || (unsigned)playerNumber2 > playerNumsTemp.size())
         {
             throw PlayerNotExist();
         }
