@@ -3,13 +3,12 @@
 
 #include "Table.hpp"
 #include "Deck.hpp"
-#include "Player.hpp" //this?
-class Player; //gangerti tapi work
+#include "Player.hpp"
 
 class Game {
 protected:
 	int round;
-	int point;
+	long long point;
 	int turn;
 
 	const int PLAYER_AMOUNT;
@@ -45,6 +44,8 @@ public:
 	Deck& getDeck();
 
 	bool gameOver();
+
+	void startGame();
 
 	virtual void newShuffle() = 0;
 
