@@ -67,7 +67,7 @@ void Deck::getDeckFromInput() {
                     continue;
                 }
                 else if (isdigit(*it)) {
-                    int temp = (int) *it;
+                    int temp = *it - '0';
                     if(temp == 0) {
                         continue;
                     }
@@ -78,9 +78,9 @@ void Deck::getDeckFromInput() {
                     throw InputInvalid(n+1);
                 }
             }
-            else if (num == 1 && (int) *it <= 3) {
+            else if (num == 1 && (*it - '0')<= 3) {
                 num *= 10;
-                num += (int) *it;
+                num += *it - '0';
             }
             else throw InputInvalid(n+1);
         }
@@ -91,7 +91,7 @@ void Deck::getDeckFromInput() {
                 continue;
             }
             else if (isdigit(*it) && !colorRead) {
-                int temp = (int) *it;
+                int temp = *it - '0';
                 if(temp == 0) {
                     continue;
                 }
