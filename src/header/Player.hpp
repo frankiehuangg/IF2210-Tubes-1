@@ -63,6 +63,8 @@ public:
 	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
 	void printCards();
 
+	friend ostream& operator<<(ostream&, Player&);
+
 	// Cek apakah nilai kombo player > player lain
 	bool operator< (Comparable&);
 
