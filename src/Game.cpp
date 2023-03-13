@@ -75,3 +75,8 @@ bool Game::gameOver()
 
 	return false;
 }
+
+void Game::startGame()
+{
+	newShuffle();
+}
