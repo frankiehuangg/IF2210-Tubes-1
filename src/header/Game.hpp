@@ -1,11 +1,10 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include "Player.hpp"
 #include "Table.hpp"
 #include "Deck.hpp"
 
-class AbilityCard;
+class Player;
 
 class Game {
 protected:
