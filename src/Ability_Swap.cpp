@@ -1,57 +1,91 @@
 #include "header/Ability_Swap.hpp"
 
-// Untuk sementara ini parameter aku ganti ke Poker dulu soalnya yg Game blm beres implementasinya
-void Swap::useAbility(const Game& poker) 
+void Swap::useAbility(Game& game) 
 {
     if (!this->getStatus()) 
     {
         cout << "Oops, kartu ability swapmu telah dimatikan sebelumnya :(" << endl
-             << "Silahkan lakukan perintah lain.";
+             << "Silahkan lakukan perintah lain." << endl;
     }
-    else {
-        int jumlahPemain; // Ini harusnya dapetnya dari poker.players.size(), tapi players nya protected
-        int pemain1, pemain2;
-        int kartuTerpilihPemain1, kartuTerpilihPemain2;
+    else 
+    {
+        int playerCount = game.getPlayerCount();
+        Player& currentPlayer = game.getPlayer();
+        int playerNumber1, playerNumber2;
+        vector<int> playerNumsTemp;
 
-        try {
-            cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: " << endl;
-            for (int i = 1; i < jumlahPemain; i++) {
-                // if poker.players[i] != pemain yang panggil command ini: 
-                    cout << i << ". <nama_pemain_ke-i>" << endl;
+        cout << currentPlayer.getPlayerName() << " melakukan SWAPCARD!" << endl;
+
+        /*** Ini mungkin dijadiin satu method aja biar modular ***/
+        cout << "Silahkan pilih pemain yang kartunya ingin kamu tukar: " << endl;
+        for (int i = 1, num = 1; i <= playerCount; i++, num++) 
+        {
+            Player playerLoop = game.getPlayer(i);
+
+            if (playerLoop.getPlayerNumber() != currentPlayer.getPlayerNumber()) 
+            {
+                cout << num << ". " << playerLoop.getPlayerName() << endl;
+                playerNumsTemp.push_back(playerLoop.getPlayerNumber());
             }
-            
-            cout << "< " << endl;
-            cin >> pemain1;
+        }
+        
+        cout << "< " << endl;
+        cin >> playerNumber1;
+        /*********************************************************/
 
-            cout << "Silahkan pilih pemain lain yang kartunya ingin anda tukar: " << endl;
-            for (int i = 1; i < jumlahPemain; i++) {
-                // if poker.players[i] != pemain yang panggil command ini &&
-                // i != pemain 1: 
-                    cout << i << ". <nama_pemain_ke-i>" << endl;
-            }
-
-            cout << "Silakan pilih kartu kanan/kiri <nama_pemain_1>" << endl;
-            cout << "1. Kanan \n2. Kiri" << endl;
-            cin >> kartuTerpilihPemain1;
-            cout << "Silakan pilih kartu kanan/kiri <nama_pemain_2>" << endl;
-            cout << "1. Kanan \n2. Kiri" << endl;
-            cin >> kartuTerpilihPemain2;
-
-            // Swap kartu pemain_1 dengan pemain_2
+        if (playerNumber1 < 1 || playerNumber1 > playerNumsTemp.size()); 
+        {
+            throw PlayerNotExist();
         }
 
-        catch(...) {
-            cout << "Masukan tidak valid" << endl;
-        } 
+        Player& player1 = game.getPlayer(playerNumsTemp.at(playerNumber1 - 1));
+        playerNumsTemp.erase(playerNumsTemp.begin() + playerNumber1 - 1);
+
+
+        /*** Ini mungkin dijadiin satu method aja biar modular ***/
+        cout << "Silahkan pilih pemain lain yang kartunya ingin kamu tukar: " << endl;
+        for (int idx = 0; idx < playerNumsTemp.size(); idx++) 
+        {
+            cout << idx + 1 << ". " << game.getPlayer(playerNumsTemp.at(idx)).getPlayerName() << endl;
+        }
+
+        cout << "< " << endl;
+        cin >> playerNumber2;   
+        /*********************************************************/
+
+        if (playerNumber2 < 1 || playerNumber2 > playerNumsTemp.size()); 
+        {
+            throw PlayerNotExist();
+        }
+
+        Player& player2 = game.getPlayer(playerNumsTemp.at(playerNumber2 - 1));
+
+
+        /*** Ini mungkin dijadiin satu method aja biar modular ***/
+        int option1, option2;
+        
+        cout << "Silakan pilih kartu kanan/kiri " << player1.getPlayerName() << endl;
+        cout << "1. Kanan \n2. Kiri" << endl;
+        cin >> option1;
+        
+        cout << "Silakan pilih kartu kanan/kiri " << player2.getPlayerName() << endl;
+        cout << "1. Kanan \n2. Kiri" << endl;
+        cin >> option2;
+        /*********************************************************/
+        
+        // Swap kartu pemain_1 dengan pemain_2 (Mungkin juga bisa dibikin satu method)
+        MainCard temp = player1.getCard(option1 - 1);
+        player1.setCard(option1 - 1, player2.getCard(option2 - 1));
+        player2.setCard(option2 - 1, temp);
+        
     }
 }
 
 void Swap::printCard() 
 {
-    cout << "Nama : " << "Swap" << endl;
-    cout << "Status : ";
-    this->getStatus() ? cout << "Belum digunakan" : cout << "Sudah digunakan";
-    cout << endl;
-    cout << "Info : Jika kamu memakai Ability Card ini, kamu bisa memilih dua pemain" << endl
+    cout << "NAME     : Swap" << endl;
+    cout << "STATUS   : " << this->status << endl;
+    cout << "ABILITY  : Jika kamu memakai Ability Card ini, kamu bisa memilih dua pemain" << endl
          <<  "yang akan menukarkan masing-masing satu kartu secara acak" << endl; 
 }
+ 

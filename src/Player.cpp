@@ -90,12 +90,7 @@ void Player::useAbility() {
 
 void Player::printCards() {
     cout << "Kartumu sekarang adalah:\n";
-    cout << "1. ";
-    cards[0].printCard();
-    // cout << " && ";
-    cout << "2. ";
-    cards[1].printCard();
-    // cout << '\n';
+    cout << (*this).cards;
 }
 
 bool Player::operator< (Player& other) {
