@@ -5,9 +5,17 @@
 #include "Comparable.hpp"
 #include "Inventory.hpp"
 #include "MainCard.hpp"
+#include "Table.hpp"
 #include "AbilityCard.hpp"
 #include "Action.hpp"
 #include "Exception.hpp"
+
+#define C00 "\x1B[0m"
+#define C01 "\x1B[31m"
+#define C02 "\033[0;33m"
+#define C03 "\x1B[32m"
+#define C04 "\x1B[34m"
+#define C05 "\x1b[38;5;238m"
 
 using namespace std;
 
@@ -18,7 +26,7 @@ class Player : public Inventory, public Comparable {
 private:
 	string name;
 	int number;
-	int point;
+	long long point;
 
 	AbilityCard* ability;
 	Action playerAction;
@@ -63,7 +71,7 @@ public:
 	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
 	void printCards();
 
-	friend ostream& operator<<(ostream&, Player&);
+	friend ostream& operator<<(ostream&, Player);
 
 	// Cek apakah poin player > player lain
 	bool operator< (Comparable&);
