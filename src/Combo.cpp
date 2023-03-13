@@ -8,10 +8,10 @@ Combo::Combo(const Player& player, const Table& table) {
     vector<MainCard> handCard = player.getInventoryCards();
     vector<MainCard> tableCard = table.getInventoryCards();
 
-    for (int i = 0; i < handCard.size(); i++) {
-        for(int j = 0; j < tableCard.size(); j++) {
+    for (int i = 0; i < (1 << handCard.size()); i++) {
+        for(int j = 0; j < (1 << tableCard.size()); j++) {
             vector<MainCard> temp;
-            
+
         }
     }
 
