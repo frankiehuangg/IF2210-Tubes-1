@@ -6,13 +6,13 @@
 #include "Inventory.hpp"
 #include "MainCard.hpp"
 #include "AbilityCard.hpp"
+#include "Action.hpp"
 #include "Exception.hpp"
 
 using namespace std;
 
 // Forward declaration
 class Game;
-class Action;
 
 class Player : public Inventory, public Comparable {
 private:
