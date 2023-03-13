@@ -18,7 +18,7 @@ void ReRoll::useAbility(Game &game)
 		deck + vec;
 
 		// take from deck
-		(*this).takeCardFromDeck(deck,2);
+		player.takeCardFromDeck(deck,2);
 	}
 	
 }

@@ -55,69 +55,6 @@ ostream& operator<<(ostream& os, vector<MainCard>& m)
 	return os;
 }
 
-ostream& operator<<(ostream& os, Table table)
-{
-	string print[11][5];
-
-	char line[100];
-
-	vector<MainCard> vec = table.getInventoryCards();
-
-	for (int i = 0; i < table.getOpened(); i++)
-	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
-
-		int line_num = (vec[i].getNumber() - 1) * 11;
-
-		int num = 0;
-		while (num < line_num)
-		{
-			fgets(line, sizeof(line), fin);
-			num++;
-		}
-
-		for (int j = 0; j < 11; j++)
-		{
-			fgets(line, sizeof(line), fin);
-			print[j][i] = line;
-		}
-	}
-
-	for (int i = table.getOpened(); i < 5; i++)
-	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
-
-		int line_num = 143;
-
-		int num = 0;
-		while (num < line_num)
-		{
-			fgets(line, sizeof(line), fin);
-			num++;
-		}
-
-		for (int j = 0; j < 11; j++)
-		{
-			fgets(line, sizeof(line), fin);
-			print[j][i] = line;
-		}
-	}
-
-	for (int i = 0; i < 11; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			os << C05 << print[i][j].erase(print[i][j].length() - 1) << " ";
-		}
-		os << endl;
-	}
-
-	os << C00;
-
-
-	return os;
-}
-
 int main()
 {
 	vector<MainCard> red, yellow, green, blue;
