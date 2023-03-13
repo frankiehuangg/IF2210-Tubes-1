@@ -2,6 +2,7 @@
 #define _COMBO_HPP_
 
 #include <map>
+#include <algorithm>	// sort
 #include "Comparable.hpp"
 #include "MainCard.hpp"
 #include "Player.hpp"
@@ -11,7 +12,7 @@ class Combo : public Comparable {
 public:
 	/***** Constructor *****/
 	// Inisialisasi map berisi combo-combo yang ada
-	Combo(Player, Table);
+	Combo(const Player&, const Table&);
 
 	/****** Getter & Setter *****/
 	float getValue() const;
@@ -34,8 +35,9 @@ private:
 	// 1 = pair
 	// 2 = two pair
 	// 3 = three of a kind dst.
-	map<pair<int, int>, float> combo_list;
+	static const map<int, float> combo_list;
 	vector<MainCard> cards;
+	float value;
 };
 
 #endif
