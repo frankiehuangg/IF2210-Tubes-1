@@ -107,14 +107,23 @@ void Deck::getDeckFromInput() {
 
 // Acak AbilityCard
 void Deck::shuffleAbilityCards() {
+    deque<AbilityCard> shuffledDeck;
+
     int size = abilities.size();
     srand(time(NULL));
     for(int i = 0; i < size; i++) {
-        int idx = rand() % size;  // generate random index from 0..size
-        // swap
-        AbilityCard temp = abilities[i];
-        abilities[i] = abilities[idx];
-        abilities[idx] = temp;
+        int idx = rand() % 2;  // generate random index to push from front or back
+        if(idx == 1){
+            shuffledDeck.push_back(abilities[i]);
+        }
+        else {
+            shuffledDeck.push_front(abilities[i]);
+        }
+    }
+    abilities.clear();
+    while(!shuffledDeck.empty()) {
+        abilities.push_back(shuffledDeck.front());
+        shuffledDeck.pop_front();
     }
 }
 
