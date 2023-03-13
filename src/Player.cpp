@@ -1,4 +1,4 @@
-#include "header\Player.hpp"
+#include "header/Player.hpp"
 
 Player::Player(string _name, int _number) : Inventory(2) {
     name = _name;
@@ -65,7 +65,7 @@ void Player::takeAbilityFromDeck(AbilityCard* _ability) {
     ability = _ability;
 }
 
-void Player::doAction() {
+void Player::doAction(Game& game) {
     string input;
     bool invalidInput;
     do {
@@ -76,7 +76,7 @@ void Player::doAction() {
         }
         else if (input == "USE ABILITY") {
             try {
-                useAbility();
+                useAbility(game);
             }
             catch (NoAbilityAvailable& err) {
                 cout << err.what();
@@ -89,26 +89,29 @@ void Player::doAction() {
     } while (invalidInput);
 }
 
-void Player::useAbility() {
+void Player::useAbility(Game& game) {
     if (ability == NULL) throw NoAbilityAvailable();
     else {
-        ability->useAbility();
+        ability->useAbility(game);
     }
 }
 
 void Player::printCards() {
     cout << "Kartumu sekarang adalah:\n";
-    cout << (*this).cards;
+    cout << "1. ";
+    cards[0].printCard();
+    cout << "2. ";
+    cards[1].printCard();
 }
 
 bool Player::operator< (Comparable& other) {
-    point < other.getValue();
+    return point < other.getValue();
 }
 
 bool Player::operator> (Comparable& other) {
-    point > other.getValue();
+    return point > other.getValue();
 }
 
 bool Player::operator== (Comparable& other) {
-    point == other.getValue();
+    return point == other.getValue();
 }

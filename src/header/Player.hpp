@@ -50,9 +50,9 @@ public:
 
 	void setAbilityCardStatus(bool);
 
-	void returnAbilityToDeck(Inventory&);
+	void returnAbilityToDeck();
 
-	void takeAbilityFromDeck(Inventory&);
+	void takeAbilityFromDeck(AbilityCard*);
 
 	void doAction(Game&);
 
