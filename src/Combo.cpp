@@ -8,42 +8,52 @@ Combo::Combo(const Player& player, const Table& table) {
     vector<MainCard> handCard = player.getInventoryCards();
     vector<MainCard> tableCard = table.getInventoryCards();
 
-    for (int i = 0; i < (1 << handCard.size()); i++) {
-        for(int j = 0; j < (1 << tableCard.size()); j++) {
-            vector<MainCard> temp;
+    // for (int i = 0; i < (1 << handCard.size()); i++) {
+    //     for(int j = 0; j < (1 << tableCard.size()); j++) {
+    //         vector<MainCard> temp;
 
-        }
-    }
-
-    // vector<vector<MainCard>> perm;
-    // vector<MainCard> temp;
-
-    // // handCard must be of size 2
-    // // insert handCard permutations
-    // temp.push_back(handCard[0]);
-    // perm.push_back(temp);
-    // temp.clear();
-    
-    // temp.push_back(handCard[1]);
-    // perm.push_back(temp);
-    
-    // temp.push_back(handCard[0]);
-    // perm.push_back(temp);
-    // temp.clear();
-
-    // // insert tableCard permutations
-    // for (int i = 0; i < tableCard.size(); i++){
-    //     int n = perm.size();
-    //     for(int j = 0; j < n; j++){
-    //         if(perm[j].size() < 5){
-    //             temp = perm[j];
-    //             temp.push_back(tableCard[i]);
-    //         }
     //     }
     // }
 
-    // for(int i = 0; i < perm.size(); i++)
-    //     sort(perm.begin(), perm.end());
+    vector<vector<MainCard>> perm;
+    vector<MainCard> temp;
+
+    // handCard must be of size 2
+    // insert handCard permutations
+    // insert {hand_0}
+    temp.push_back(handCard[0]);
+    perm.push_back(temp);
+    
+    // insert {hand_0, hand_1}
+    temp.push_back(handCard[1]);
+    perm.push_back(temp);
+    temp.clear();
+    
+    // insert {hand_1}
+    temp.push_back(handCard[1]);
+    perm.push_back(temp);
+    temp.clear();
+
+    // insert tableCard permutations
+    for (int i = 0; i < tableCard.size(); i++){
+        int n = perm.size();
+        for(int j = 0; j < n; j++){
+            if(perm[j].size() < 5){
+                temp = perm[j];
+                temp.push_back(tableCard[i]);
+                perm.push_back(temp);
+                temp.clear();
+            }
+        }
+    }
+
+    // check for combos
+    for(int i = 0; i < perm.size(); i++){
+        sort(perm[i].begin(), perm[i].end());
+        if(/*StraightFlush(perm[i])*/){
+            // count
+        }
+    }
         
 }
 
