@@ -12,6 +12,16 @@
 #include "MainCard.hpp"
 #include "Exception.hpp"
 
+// include cards for initialization in deck
+#include "AbilityCard.hpp"
+#include "Ability_Abilityless.hpp"
+#include "Ability_Quadruple.hpp"
+#include "Ability_Quarter.hpp"
+#include "Ability_ReRoll.hpp"
+#include "Ability_Reverse.hpp"
+#include "Ability_Swap.hpp"
+#include "Ability_Switch.hpp"
+
 using namespace std;
 
 class AbilityCard;
@@ -35,8 +45,12 @@ public:
 	// Cetak kartu
 	void printCards();
 
+	// Ambil kartu ability dari atas tumpukan kartu ability
+	AbilityCard* takeAbilityFromDeck();
+
 private:
 	vector<AbilityCard> abilities;
+	int abilityCardTop;	// indeks top dari tumpukan ability card
 };
 
 #endif

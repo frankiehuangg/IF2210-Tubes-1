@@ -1,5 +1,4 @@
 #include "header/Deck.hpp"
-#include "header/AbilityCard.hpp" //this?
 
 Deck::Deck() : Inventory(52) {
     for (int i = 1; i <= 13; i++) {
@@ -7,8 +6,17 @@ Deck::Deck() : Inventory(52) {
             cards.push_back(MainCard(i, j));
         }
     }
+
     // initiate ability cards
-    // abilities = vector<AbilityCard>(7);
+    abilities.push_back(ReRoll());
+    abilities.push_back(Quadruple());
+    abilities.push_back(Quarter());
+    abilities.push_back(Reverse());
+    abilities.push_back(Swap());
+    abilities.push_back(Switch());
+    abilities.push_back(Abilityless());
+
+    abilityCardTop = 6;  // 0..6, -1 means empty
 }
 
 // Acak MainCard
@@ -131,4 +139,12 @@ void Deck::shuffleAbilityCards() {
 }
 
 // Cetak kartu
-void Deck::printCards() {}
+void Deck::printCards() {
+    Inventory::printCards();
+}
+
+AbilityCard* Deck::takeAbilityFromDeck() {
+    AbilityCard* ability = &abilities[abilityCardTop];
+    abilityCardTop--;
+    return ability;
+}
