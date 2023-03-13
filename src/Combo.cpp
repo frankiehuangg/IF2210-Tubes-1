@@ -81,3 +81,85 @@ bool Combo::operator< (Comparable& other) {
 bool Combo::operator== (Comparable& other) {
     return value == other.getValue();
 }
+
+/*
+Methods untuk melakukan pengecekan combo pada suatu subset/sublist kartu.
+Prekondisi: ukuran subset/sublist kartu minimal 1 dan subset kartu terurut menaik berdasarkan nomor kartu dan warna
+*/
+
+bool Combo::checkHighCard(vector<MainCard>& cardSublist) 
+{
+    return cardSublist.size() == 1;
+}
+
+bool Combo::checkPair(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 2) return false;
+    return cardSublist[0].getNumber() == cardSublist[1].getNumber();
+}
+
+bool Combo::checkTwoPair(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 4) return false;
+    return cardSublist[0].getNumber() == cardSublist[1].getNumber() && 
+    cardSublist[2].getNumber() == cardSublist[3].getNumber();
+}
+
+bool Combo::checkThreeOfaKind(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 3) return false;
+    return cardSublist[0].getNumber() == cardSublist[1].getNumber() &&
+    cardSublist[1].getNumber() == cardSublist[2].getNumber();
+}
+
+bool Combo::checkStraight(vector<MainCard>& cardSublist)
+{
+    if (cardSublist.size() != 5) return false;
+    for (int i = 0; i < 4; i++) 
+    {
+        if (cardSublist[i].getNumber() + 1 != cardSublist[i + 1].getNumber()) return false;
+    }
+    return true;
+}
+
+bool Combo::checkFlush(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 5) return false;
+    int color = cardSublist[0].getColor();
+    for (int i = 1; i < 5; i++) 
+    {
+        if (cardSublist[i].getColor() != color) return false;
+    }
+    return true;
+}
+
+bool Combo::checkFullHouse(vector<MainCard>& cardSublist)
+{
+    if (cardSublist.size() != 5) return false;
+    int cardNum1 = cardSublist[0].getNumber();
+    int cardNum2 = cardSublist[cardSublist.size() - 1].getNumber();
+    int count1 = 0, count2 = 0;
+    for (MainCard card: cardSublist) 
+    {
+        if (card.getNumber() == cardNum1) ++count1;
+        else if (card.getNumber() == cardNum2) ++count2;
+        else return false;
+    }
+    return (count1 == 2 && count2 == 3) || (count1 == 3 && count2 == 2);
+}
+
+bool Combo::checkFourOfaKind(vector<MainCard>& cardSublist)
+{
+    if (cardSublist.size() != 5) return false;
+    int cardNum = cardSublist[0].getNumber();
+    for (int i = 1; i < 5; i++) 
+    {
+        if (cardSublist[i].getNumber() != cardNum) return false;
+    }
+    return true;
+}
+
+bool Combo::checkStraightFlush(vector<MainCard>& cardSublist) 
+{
+    return checkStraight(cardSublist) && checkFlush(cardSublist);
+}
