@@ -1,8 +1,10 @@
 #include "header/Game.hpp"
 
-Game::Game(int point, int PLAYER_AMOUNT, int WIN_POINT) : PLAYER_AMOUNT(PLAYER_AMOUNT), WIN_POINT(WIN_POINT)
+Game::Game(int round, int point, int turn, int PLAYER_AMOUNT, int WIN_POINT) : PLAYER_AMOUNT(PLAYER_AMOUNT), WIN_POINT(WIN_POINT)
 {
+	this->round = turn;
 	this->point = point;
+	this->turn = turn;
 }
 
 void Game::checkPlayerNameExist(string name)
@@ -10,6 +12,21 @@ void Game::checkPlayerNameExist(string name)
 	for (int i = 0; i < this->players.size(); i++)
 		if (this->players[i].getPlayerName() == name)
 			throw CreatePlayerFailed();
+}
+
+int Game::getTurn() const
+{
+	return this->turn;
+}
+
+int Game::getPoint() const
+{
+	return this->point;
+}
+
+void Game::setPoint(int point)
+{
+	this->point = point;
 }
 
 int Game::getPlayerCount() const
