@@ -3,8 +3,8 @@
 
 #include "Table.hpp"
 #include "Deck.hpp"
-
-class Player;
+#include "Player.hpp" //this?
+class Player; //gangerti tapi work
 
 class Game {
 protected:
@@ -36,9 +36,9 @@ public:
 
 	Player& getPlayer();
 
-	Player& getPlayer(int);
-
 	Player& getPlayer(string);
+
+	Player& getPlayer(int);
 
 	Table& getTable();
 

@@ -9,3 +9,7 @@ void AbilityCard::setStatus(bool status)
 {
 	this->status = status;
 }
+
+void AbilityCard::useAbility(Game&){}
+
+void AbilityCard::printCard(){}

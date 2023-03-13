@@ -25,7 +25,7 @@ void ReRoll::useAbility(Game &game)
 
 /***** Print card *****/
 // Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
-void printCard()
+void ReRoll::printCard()
 {
 	// tidak bisa cek round, tdk ada passing parameter :(
 	// MUNGKIN klo butuh jadi void printCard(const Game&) ?

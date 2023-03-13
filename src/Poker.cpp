@@ -23,7 +23,7 @@ Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
 
 			exception_caught = false;
 		}
-		catch (CreatePlayerFailed e)
+		catch (CreatePlayerFailed &e)
 		{
 			cout << e.printError() << endl;
 		}
@@ -99,6 +99,7 @@ void Poker::newRound()
 		// Ronde 2, pemain dapat menggunakan abilityCard
 		if (round == 1)
 		{
+			/* tar buka comment tapi gtau salahnya apa
 			// Cek apakah pemain sudah mempunyai ability card, jika iya pindahkan ke deck
 			if (this->players[turn].doesAbilityCardExist())
 				for (int i = 0; i < this->PLAYER_AMOUNT; i++)
@@ -110,6 +111,7 @@ void Poker::newRound()
 			// Ambil ability card dari pemain
 			for (int i = 0; i < this->PLAYER_AMOUNT; i++)
 				this->players[i].takeAbilityFromDeck(this->deck);
+			*/
 		}
 
 		this->table.printCards();

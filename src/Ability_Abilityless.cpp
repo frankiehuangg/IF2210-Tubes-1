@@ -24,7 +24,7 @@ void Abilityless::useAbility(Game &game)
         }
         else
         {
-            std::cout << game.getPlayer().getPlayerName() << " akan mematikan kartu ability lawan!" << std : endl;
+            std::cout << game.getPlayer().getPlayerName() << " akan mematikan kartu ability lawan!" << std :: endl;
             std::cout << "Silakan pilih pemain yang kartu abilitynya ingin dimatikan:" << std::endl;
 
             for (int i = 1; i < 7; i++)

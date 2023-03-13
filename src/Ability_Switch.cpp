@@ -32,7 +32,7 @@ void Switch::useAbility(Game& game)
         cin >> playerOption;
         /*********************************************************/
 
-        if (playerOption < 1 || playerOption > playerCount - 1); 
+        if (playerOption < 1 || playerOption > playerCount - 1)
         {
             throw PlayerNotExist();
         }
