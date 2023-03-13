@@ -1,9 +1,15 @@
 #ifndef _DECK_HPP_
 #define _DECK_HPP_
 
+#include <iostream>
+#include <fstream>	// file processing
+#include <cstdlib>	// random shuffle
+#include <time.h>	// random initial seed
 #include <vector>
+#include <map>		// ensure card table
 #include "Inventory.hpp"
 #include "MainCard.hpp"
+#include "Exception.hpp"
 
 using namespace std;
 
