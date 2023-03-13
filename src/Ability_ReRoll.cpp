@@ -1,4 +1,5 @@
 #include "header/Ability_ReRoll.hpp"
+#include "header/Game.hpp"
 
 // Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
 void ReRoll::useAbility(Game &game)

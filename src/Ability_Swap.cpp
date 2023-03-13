@@ -1,4 +1,5 @@
 #include "header/Ability_Swap.hpp"
+#include "header/Game.hpp"
 
 void Swap::useAbility(Game& game) 
 {

@@ -1,4 +1,5 @@
 #include "header/Ability_Abilityless.hpp"
+#include "header/Game.hpp"
 #include <iostream>
 
 /**** Use ability, different for each card *****/
