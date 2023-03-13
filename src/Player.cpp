@@ -12,8 +12,7 @@ Player::Player(string _name, int _number) : Inventory(2) {
     cards.push_back(dummy);
     cards.push_back(dummy);
 
-    // Action();
-    // Combo();
+    // initialize Action;
 }
 
 Player::~Player() {
