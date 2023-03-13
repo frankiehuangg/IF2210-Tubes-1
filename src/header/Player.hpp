@@ -11,6 +11,7 @@
 using namespace std;
 
 // Forward declaration
+class Game;
 class Action;
 
 class Player : public Inventory, public Comparable {
@@ -53,10 +54,10 @@ public:
 
 	void takeAbilityFromDeck(Inventory&);
 
-	void doAction();
+	void doAction(Game&);
 
 	/**** Use ability, different for each card *****/
-	void useAbility();
+	void useAbility(Game&);
 
 	/***** Print *****/
 	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
