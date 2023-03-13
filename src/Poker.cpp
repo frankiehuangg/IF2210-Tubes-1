@@ -23,7 +23,7 @@ Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
 
 			exception_caught = false;
 		}
-		catch (CreatePlayerFailed e)
+		catch (CreatePlayerFailed &e)
 		{
 			cout << e.printError() << endl;
 		}
