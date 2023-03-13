@@ -1,4 +1,4 @@
-#include "header\Player.hpp"
+#include "header/Player.hpp"
 
 Player::Player(string _name, int _number) : Inventory(2) {
     name = _name;
