@@ -13,6 +13,7 @@ Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
 
 		try
 		{
+			cout << "Masukkan nama pemain ke-" << i+1 << ": ";
 			string name; cin >> name;
 
 			checkPlayerNameExist(name);
@@ -35,8 +36,9 @@ Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
 
 void Poker::roundRobin()
 {
-	this->players.push_back(this->players[0]);
+	Player temp = this->players[0];
 	this->players.erase(this->players.begin());
+	this->players.push_back(temp);
 }
 
 void Poker::newShuffle()
@@ -45,7 +47,11 @@ void Poker::newShuffle()
 
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 	{
+		table.setOpened(0);
+		
 		newRound();
+		roundRobin();
+		
 		this->round++;
 	}
 
@@ -55,6 +61,8 @@ void Poker::newShuffle()
 			winner = this->players[i];
 
 	winner.addPlayerPoint(this->point);
+
+	cout << "STATS: " << gameOver() << endl;
 
 	if (!gameOver())
 	{
@@ -68,10 +76,12 @@ void Poker::newRound()
 	this->turn = 0;
 
 	// Ronde sebanyak pemain
-	while (turn < this->PLAYER_AMOUNT)
+	while (this->turn < this->PLAYER_AMOUNT)
 	{
+		cout << this->turn << endl;
+		system("clear");
 		// Ronde 1, pemain mendapatkan 2 MainCard dari Deck
-		if (round == 0)
+		if (this->turn == 0)
 		{
 			// Cek apakah pemain sudah mempunyai kartu, jika iya pindahkan ke deck
 			if (!this->players[turn].isInventoryEmpty())
@@ -97,7 +107,7 @@ void Poker::newRound()
 		}
 			
 		// Ronde 2, pemain dapat menggunakan abilityCard
-		if (round == 1)
+		if (this->turn == 1)
 		{
 			// Cek apakah pemain sudah mempunyai ability card, jika iya pindahkan ke deck
 			if (this->players[turn].doesAbilityCardExist())
@@ -117,6 +127,8 @@ void Poker::newRound()
 			
 		}
 
+		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
+
 		this->table.printCards();
 
 		this->players[turn].printCards();
@@ -127,9 +139,6 @@ void Poker::newRound()
 		// Buka 1 kartu di table
 		if (turn > 0)
 			this->table.openCard();
-
-		// Acak pemain dengan round robin
-		roundRobin();
 		
 		this->turn++;
 	}
