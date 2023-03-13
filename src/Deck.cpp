@@ -48,6 +48,8 @@ void Deck::getDeckFromInput() {
     while(getline(fin, line)) {
         bool numRead = false, colorRead = true;
         int num, color;
+        num = 1;
+        color = 0;
 
         string::iterator it;
         // read card number
@@ -86,7 +88,7 @@ void Deck::getDeckFromInput() {
                     continue;
                 }
                 else if (0 <= temp && temp <= 3){
-                    num = temp;
+                    color = temp;
                     colorRead = true;
                 }
                 else throw InputInvalid(n+1);
