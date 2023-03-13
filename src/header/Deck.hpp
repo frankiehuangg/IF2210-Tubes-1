@@ -7,6 +7,7 @@
 #include <time.h>	// random initial seed
 #include <vector>
 #include <map>		// ensure card table
+#include <deque>	// deck shuffle
 #include "Inventory.hpp"
 #include "MainCard.hpp"
 #include "Exception.hpp"
