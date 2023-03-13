@@ -45,7 +45,24 @@ struct InputInvalid: public exception
 
 	const char* printError() const throw()
 	{
-		return "Input format invalid at line " + (char) line;
+		string msg = "Input format invalid at line " + to_string(line);
+		return msg.c_str();
+	}
+
+	private:
+		int line;
+};
+
+struct DuplicateCardExist: public exception
+{
+	DuplicateCardExist(int _line) {
+		line = _line;
+	}
+
+	const char* printError() const throw()
+	{
+		string msg = "Duplicate card exist at line " + to_string(line);
+		return msg.c_str();
 	}
 
 	private:
