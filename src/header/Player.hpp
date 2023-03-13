@@ -7,6 +7,7 @@
 #include "MainCard.hpp"
 #include "AbilityCard.hpp"
 #include "Action.hpp"
+#include "Deck.hpp"
 #include "Exception.hpp"
 
 using namespace std;
@@ -52,7 +53,7 @@ public:
 
 	void returnAbilityToDeck();
 
-	void takeAbilityFromDeck(AbilityCard*);
+	void takeAbilityFromDeck(Deck&);
 
 	void doAction(Game&);
 
