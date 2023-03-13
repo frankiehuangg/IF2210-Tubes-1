@@ -23,6 +23,8 @@ public:
 
 	// Print semua kartu yang terdapat pada table (yang sudah terbuka), panggil fungsi printCard dari kelas MainCard untuk masing-masing card.
 	void printCards();
+
+	friend ostream& operator<< (ostream&, Table);
 };
 
 #endif

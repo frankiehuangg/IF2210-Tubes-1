@@ -13,9 +13,6 @@ using namespace std;
 class Poker : public Game {
 private:
 	int shuffle;
-	int round;
-	int turn;
-	int point;
 
 	const int ROUND_AMOUNT;
 
@@ -24,17 +21,6 @@ public:
 	/***** Constructor dan destructor *****/
 	// Pada awal permainan, inisiasi 7 orang pemain dengan mengisialisasikan nilai players.
 	Poker();
-
-	void checkPlayerNameExist(string);
-
-	/***** Getter & Setter *****/
-	// Dipanggil pada akhir ronde ke-6 melalui metode givePoint, kembalikan nilai point
-	int getTurn() const;
-
-	int getPoint() const;
-
-	// Dipanggil pada awal ronde ke-1, buat point menjadi 64
-	void setPoint();
 	
 	void roundRobin();
 

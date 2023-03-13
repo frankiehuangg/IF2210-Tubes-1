@@ -1,10 +1,9 @@
 #include <iostream>
 #include "header/Poker.hpp"
 
-Poker::Poker() : Game(64, 7, 1<<31), ROUND_AMOUNT(6)
+Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
 {
 	this->shuffle = 0;
-	this->round = 0;
 
 	// Create player
 	int i = 0;
@@ -34,21 +33,6 @@ Poker::Poker() : Game(64, 7, 1<<31), ROUND_AMOUNT(6)
 	}
 }
 
-int Poker::getTurn() const
-{
-	return this->turn;
-}
-
-int Poker::getPoint() const
-{
-	return this->point;
-}
-
-void Poker::setPoint()
-{
-	this->point = 64;
-}
-
 void Poker::roundRobin()
 {
 	this->players.push_back(this->players[0]);
@@ -57,7 +41,7 @@ void Poker::roundRobin()
 
 void Poker::newShuffle()
 {
-	setPoint();
+	setPoint(64);
 
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 	{
@@ -133,7 +117,7 @@ void Poker::newRound()
 		this->players[turn].printCards();
 
 		// Ambil aksi pemain
-		this->players[turn].doAction();
+		this->players[turn].doAction(*this);
 
 		// Buka 1 kartu di table
 		if (turn > 0)

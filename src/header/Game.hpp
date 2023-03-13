@@ -1,15 +1,16 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include "Player.hpp"
 #include "Table.hpp"
 #include "Deck.hpp"
 
-class AbilityCard;
+class Player;
 
 class Game {
 protected:
+	int round;
 	int point;
+	int turn;
 
 	const int PLAYER_AMOUNT;
 	const int WIN_POINT;
@@ -19,9 +20,17 @@ protected:
 	Deck deck;
 
 public:
-	Game(int, int, int);
+	Game(int, int, int, int, int);
 
 	void checkPlayerNameExist(string);
+
+	/***** Getter & Setter *****/
+	// Dipanggil pada akhir ronde ke-6 melalui metode givePoint, kembalikan nilai point
+	int getTurn() const;
+
+	int getPoint() const;
+	// Dipanggil pada awal ronde ke-1, buat point menjadi 64
+	void setPoint(int);
 
 	int getPlayerCount() const;
 

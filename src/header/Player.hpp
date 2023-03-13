@@ -6,13 +6,13 @@
 #include "Inventory.hpp"
 #include "MainCard.hpp"
 #include "AbilityCard.hpp"
+#include "Action.hpp"
 #include "Exception.hpp"
 
 using namespace std;
 
 // Forward declaration
 class Game;
-class Action;
 
 class Player : public Inventory, public Comparable {
 private:
@@ -21,7 +21,7 @@ private:
 	int point;
 
 	AbilityCard* ability;
-	Action* playerAction;
+	Action playerAction;
 
 public:
 	/***** Constructor dan destructor *****/
@@ -62,6 +62,8 @@ public:
 	/***** Print *****/
 	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
 	void printCards();
+
+	friend ostream& operator<<(ostream&, Player&);
 
 	// Cek apakah poin player > player lain
 	bool operator< (Comparable&);
