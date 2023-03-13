@@ -43,13 +43,17 @@ ostream& operator<<(ostream& os, Table table)
 		int num = 0;
 		while (num < line_num)
 		{
-			fgets(line, sizeof(line), fin);
+			if(fgets(line, sizeof(line), fin)==NULL){
+				cout<<"ERROR : error occured when opening file"<<endl;
+			}
 			num++;
 		}
 
 		for (int j = 0; j < 11; j++)
 		{
-			fgets(line, sizeof(line), fin);
+			if(fgets(line, sizeof(line), fin)==NULL){
+				cout<<"ERROR : error occured when opening file"<<endl;
+			}
 			print[j][i] = line;
 		}
 	}
@@ -63,13 +67,17 @@ ostream& operator<<(ostream& os, Table table)
 		int num = 0;
 		while (num < line_num)
 		{
-			fgets(line, sizeof(line), fin);
+			if(fgets(line, sizeof(line), fin)==NULL){
+				cout<<"ERROR : error occured when opening file"<<endl;
+			}
 			num++;
 		}
 
 		for (int j = 0; j < 11; j++)
 		{
-			fgets(line, sizeof(line), fin);
+			if(fgets(line, sizeof(line), fin)==NULL){
+				cout<<"ERROR : error occured when opening file"<<endl;
+			}
 			print[j][i] = line;
 		}
 	}

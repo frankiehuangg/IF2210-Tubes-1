@@ -14,7 +14,7 @@ ostream& operator<<(ostream& os, vector<MainCard>& m)
 
 	char line[100];
 
-	for (int i = 0; i < m.size(); i++)
+	for (unsigned i = 0; i < m.size(); i++)
 	{
 		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
@@ -23,20 +23,24 @@ ostream& operator<<(ostream& os, vector<MainCard>& m)
 		int num = 0;
 		while (num < line_num)
 		{
-			fgets(line, sizeof(line), fin);
+			if(fgets(line, sizeof(line), fin)==NULL){
+				cout<<"ERROR : error occured when opening file"<<endl;
+			}
 			num++;
 		}
 
 		for (int j = 0; j < 11; j++)
 		{
-			fgets(line, sizeof(line), fin);
+			if(fgets(line, sizeof(line), fin)==NULL){
+				cout<<"ERROR : error occured when opening file"<<endl;
+			}
 			print[j][i] = line;
 		}
 	}
 
-	for (int i = 0; i < 11; i++)
+	for (unsigned i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < m.size(); j++)
+		for (unsigned j = 0; j < m.size(); j++)
 		{
 			if (m[j].getColor() == 0)
 				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";

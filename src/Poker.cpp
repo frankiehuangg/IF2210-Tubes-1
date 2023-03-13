@@ -99,19 +99,22 @@ void Poker::newRound()
 		// Ronde 2, pemain dapat menggunakan abilityCard
 		if (round == 1)
 		{
-			/* tar buka comment tapi gtau salahnya apa
 			// Cek apakah pemain sudah mempunyai ability card, jika iya pindahkan ke deck
 			if (this->players[turn].doesAbilityCardExist())
 				for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-					this->players[i].returnAbilityToDeck(this->deck);
+					this->players[i].returnAbilityToDeck();
 
 			// Acak kartu ability
 			this->deck.shuffleAbilityCards();
 
+			/* ini cara ambil ability cardnya salah (compile error)
+			mohon dibenarkan~
 			// Ambil ability card dari pemain
 			for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-				this->players[i].takeAbilityFromDeck(this->deck);
+				this->players[i].takeAbilityFromDeck();
+			
 			*/
+			
 		}
 
 		this->table.printCards();
