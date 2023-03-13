@@ -21,7 +21,7 @@ private:
 	int point;
 
 	AbilityCard* ability;
-	Action* playerAction;
+	Action playerAction;
 
 public:
 	/***** Constructor dan destructor *****/
