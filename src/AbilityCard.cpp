@@ -1,5 +1,10 @@
 #include "header/AbilityCard.hpp"
 
+AbilityCard::~AbilityCard()
+{
+
+}
+
 bool AbilityCard::getStatus() const
 {
 	return this->status;
