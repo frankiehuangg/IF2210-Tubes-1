@@ -7,6 +7,8 @@ OUTPUT_FILE = main
 G++ = g++ -Wall -O1 $(SOURCE_FOLDER)
 
 run: build
+	@clear
+	@./bin/main
 
 clean: 
 	rm -rf *.* $(OUTPUT_FOLDER)/

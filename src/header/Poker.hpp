@@ -4,6 +4,7 @@
 class Poker;
 
 #include <vector>
+#include <stdlib.h>
 #include "Exception.hpp"
 #include "Table.hpp"
 #include "Game.hpp"

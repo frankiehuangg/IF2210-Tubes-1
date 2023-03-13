@@ -1,16 +1,14 @@
 #ifndef _ABILITY_HPP_
 #define _ABILITY_HPP_
 
-#include "Game.hpp"
-
 class Game;
-#include "Player.hpp" //idk kalo w make ini erornya ilang
 
 class AbilityCard {
 protected:
 	bool status;
 
 public:
+	virtual ~AbilityCard();
 	/***** Getter & Setter *****/
 	// If used, then status is true, else status is false;
 	bool getStatus() const;

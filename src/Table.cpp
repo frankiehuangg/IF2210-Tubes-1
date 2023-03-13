@@ -19,6 +19,11 @@ int Table::getOpened() const{
 	return this->opened;
 }
 
+void Table::setOpened(int opened)
+{
+	this->opened = opened;
+}
+
 // Tambahkan nilai opened dengan 1
 void Table::openCard()
 {
@@ -32,13 +37,13 @@ ostream& operator<<(ostream& os, Table table)
 
 	char line[100];
 
-	vector<MainCard> vec = table.getInventoryCards();
+	vector<MainCard> cards = table.getInventoryCards();
 
 	for (int i = 0; i < table.getOpened(); i++)
 	{
 		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
-		int line_num = (vec[i].getNumber() - 1) * 11;
+		int line_num = (cards[i].getNumber() - 1) * 11;
 
 		int num = 0;
 		while (num < line_num)
@@ -84,7 +89,18 @@ ostream& operator<<(ostream& os, Table table)
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < table.getOpened(); j++)
+		{
+			if (cards[j].getColor() == 0)
+				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";
+			else if (cards[j].getColor() == 1)
+				os << C02 << print[i][j].erase(print[i][j].length()-1) << " ";
+			else if (cards[j].getColor() == 2)
+				os << C03 << print[i][j].erase(print[i][j].length()-1) << " ";
+			else
+				os << C04 << print[i][j].erase(print[i][j].length()-1) << " ";
+		}
+		for (int j = table.getOpened(); j < 5; j++)
 		{
 			os << C05 << print[i][j].erase(print[i][j].length() - 1) << " ";
 		}

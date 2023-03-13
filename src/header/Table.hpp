@@ -17,6 +17,7 @@ public:
 	Table();
 
 	int getOpened() const;
+	void setOpened(int);
 
 	// Tambahkan nilai opened dengan 1
 	void openCard();

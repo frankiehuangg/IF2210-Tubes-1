@@ -1,4 +1,5 @@
 #include "header/Ability_Switch.hpp"
+#include "header/Game.hpp"
 
 void Switch::useAbility(Game& game) 
 {
