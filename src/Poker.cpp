@@ -92,7 +92,7 @@ void Poker::newShuffle()
 			// 	this->players[i].takeAbilityFromDeck(this->deck);
 		}
 		// Buka 1 kartu di table
-		if (this->round > 1)
+		if (this->round > 0)
 			this->table.openCard();
 
 		newRound();
@@ -108,8 +108,6 @@ void Poker::newShuffle()
 
 	winner.addPlayerPoint(this->point);
 
-	cout << "STATS: " << gameOver() << endl;
-
 	if (!gameOver())
 	{
 		this->shuffle++;
@@ -124,8 +122,9 @@ void Poker::newRound()
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-		cout << this->turn << endl;
-		// system("clear");
+		system("clear");
+		
+		cout << "Round: " << getRound()+1 << endl;
 
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
 
