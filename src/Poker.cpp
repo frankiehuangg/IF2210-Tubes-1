@@ -45,9 +45,54 @@ void Poker::newShuffle()
 {
 	setPoint(64);
 
+	table.setOpened(0);
+	
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 	{
-		table.setOpened(0);
+		// Ronde 1, pemain mendapatkan 2 MainCard dari Deck
+		if (this->round == 0)
+		{
+			// Cek apakah pemain sudah mempunyai kartu, jika iya pindahkan ke deck
+			if (!this->players[round].isInventoryEmpty())
+			{
+				for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+				{
+					this->players[i].returnCardToDeck(this->deck);
+				}
+			}
+
+			// Cek apakah table sudah mempunyai kartu, jika iya pindahkan ke deck
+			if (!this->table.isInventoryEmpty())
+				this->table.returnCardToDeck(this->deck);
+
+			this->deck.shuffleMainCards();
+
+			// Ambil 2 kartu dari deck ke pemain
+			for (int i = 0; i < this->PLAYER_AMOUNT*2; i++)
+				this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
+
+			// Taruh 5 kartu dari deck ke table
+			this->table.takeCardFromDeck(this->deck, 5);
+		}
+			
+		// Ronde 2, pemain dapat menggunakan abilityCard
+		if (this->round == 1)
+		{
+			// Cek apakah pemain sudah mempunyai ability card, jika iya pindahkan ke deck
+			if (this->players[round].doesAbilityCardExist())
+				for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+					this->players[i].returnAbilityToDeck(this->deck);
+
+			// Acak kartu ability
+			this->deck.shuffleAbilityCards();
+
+			// // Ambil ability card dari pemain
+			// for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+			// 	this->players[i].takeAbilityFromDeck(this->deck);
+		}
+		// Buka 1 kartu di table
+		if (this->round > 1)
+			this->table.openCard();
 		
 		newRound();
 		roundRobin();
@@ -79,53 +124,7 @@ void Poker::newRound()
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
 		cout << this->turn << endl;
-		system("clear");
-		// Ronde 1, pemain mendapatkan 2 MainCard dari Deck
-		if (this->turn == 0)
-		{
-			// Cek apakah pemain sudah mempunyai kartu, jika iya pindahkan ke deck
-			if (!this->players[turn].isInventoryEmpty())
-			{
-				for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-				{
-					this->players[i].returnCardToDeck(this->deck);
-				}
-			}
-
-			// Cek apakah table sudah mempunyai kartu, jika iya pindahkan ke deck
-			if (!this->table.isInventoryEmpty())
-				this->table.returnCardToDeck(this->deck);
-
-			this->deck.shuffleMainCards();
-
-			// Ambil 2 kartu dari deck ke pemain
-			for (int i = 0; i < this->PLAYER_AMOUNT*2; i++)
-				this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
-
-			// Taruh 5 kartu dari deck ke table
-			this->table.takeCardFromDeck(this->deck, 5);
-		}
-			
-		// Ronde 2, pemain dapat menggunakan abilityCard
-		if (this->turn == 1)
-		{
-			// Cek apakah pemain sudah mempunyai ability card, jika iya pindahkan ke deck
-			if (this->players[turn].doesAbilityCardExist())
-				for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-					this->players[i].returnAbilityToDeck(this->deck);
-
-			// Acak kartu ability
-			this->deck.shuffleAbilityCards();
-
-			/* ini cara ambil ability cardnya salah (compile error)
-			mohon dibenarkan~
-			// Ambil ability card dari pemain
-			for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-				this->players[i].takeAbilityFromDeck();
-			
-			*/
-			
-		}
+		// system("clear");
 
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
 
@@ -138,10 +137,6 @@ void Poker::newRound()
 		// Ambil aksi pemain
 		this->players[turn].doAction(*this);
 
-		// Buka 1 kartu di table
-		if (turn > 0)
-			this->table.openCard();
-		
 		this->turn++;
 	}
 }
