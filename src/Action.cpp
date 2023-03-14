@@ -7,13 +7,13 @@ using namespace std;
 void Action::actionDoNext(){}
 
 // Double the value point in Game
-void actionDoDouble(Game& game)
+void Action::actionDoDouble(Game& game)
 {
    game.setPoint(game.getPoint() * 2);
 }
 
 // Half the value point in Game
-void actionDoHalf(Game& game)
+void Action::actionDoHalf(Game& game)
 {
    game.setPoint(game.getPoint() / 2);
 }
