@@ -45,11 +45,15 @@ public:
 	// Cetak kartu
 	void printCards();
 
-	// Ambil kartu ability dari atas tumpukan kartu ability
-	AbilityCard* takeAbilityFromDeck();
+	// Ambil kartu ability dari atas tumpukan kartu ability, set ability dimiliki oleh player ke-n
+	AbilityCard* takeAbilityFromDeck(int);
+
+	// kartu ability kembali ke deck set ability dimiliki oleh -1 (tidak ada player memiliki)
+	void returnAbilityToDeck(AbilityCard*);
 
 private:
 	vector<AbilityCard> abilities;
+	map<AbilityCard*, int> usedBy;	// map kartu ability ke player yang sedang memiliki, -1 jika sedang tidak dimiliki (berada di deck)
 	int abilityCardTop;	// indeks top dari tumpukan ability card
 };
 
