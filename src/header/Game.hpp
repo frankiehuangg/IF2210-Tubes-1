@@ -76,9 +76,6 @@ public:
 
 	/* Starts a new shuffle */
 	virtual void newShuffle() = 0;
-
-	/* Starts a new round */
-	virtual void newRound() = 0;
 };
 
 #endif
