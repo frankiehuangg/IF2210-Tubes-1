@@ -64,7 +64,6 @@ void Player::doAction(Game& game) {
         invalidInput = false;
 		cout << "Masukkan input pengguna: ";
         getline(cin, input);
-        getchar(); // consume remaining \n in stream
         if (input == "NEXT") {
             cout << "Giliran dilanjut ke pemain selanjutnya.\n";
         }

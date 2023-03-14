@@ -42,7 +42,6 @@ void Deck::getDeckFromInput() {
     cout << "Input nama file: ";
     string filename;
     getline(cin, filename);
-    getchar(); // consume \n delimiter from getline
 
     ifstream fin(filename);
     if(!fin.is_open()) throw InvalidFileSyntax();
