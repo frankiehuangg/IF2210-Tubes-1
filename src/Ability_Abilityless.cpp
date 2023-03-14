@@ -2,6 +2,10 @@
 #include "header/Game.hpp"
 #include <iostream>
 
+Abilityless::Abilityless() {
+    type = "ABILITYLESS";
+}
+
 /**** Use ability, different for each card *****/
 // Ubah status abilityCard pemain lain menjadi false
 void Abilityless::useAbility(Game &game)

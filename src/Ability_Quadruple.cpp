@@ -2,6 +2,10 @@
 #include "header/Game.hpp"
 #include <iostream>
 
+Quadruple::Quadruple(){
+    type = "QUADRUPLE";
+}
+
 /**** Use ability, different for each card *****/
 // Ubah status abilityCard pemain lain menjadi false
 void Quadruple::useAbility(Game &game)

@@ -1,6 +1,10 @@
 #include "header/Ability_ReRoll.hpp"
 #include "header/Game.hpp"
 
+ReRoll::ReRoll(){
+	type = "REROLL";
+}
+
 // Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
 void ReRoll::useAbility(Game &game)
 {

@@ -5,6 +5,9 @@
 
 class ReRoll : public AbilityCard {
 public:
+
+	ReRoll();
+
 	/**** Use ability, different for each card *****/
 	// Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
 	void useAbility(Game&);

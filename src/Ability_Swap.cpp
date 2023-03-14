@@ -1,6 +1,10 @@
 #include "header/Ability_Swap.hpp"
 #include "header/Game.hpp"
 
+Swap::Swap(){
+    type = "SWAP";
+}
+
 void Swap::useAbility(Game& game) 
 {
     if (!this->getStatus()) 

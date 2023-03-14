@@ -5,6 +5,9 @@
 
 class Abilityless : public AbilityCard {
 public:
+
+	Abilityless();
+
 	/**** Use ability, different for each card *****/
 	// Ubah status abilityCard pemain lain menjadi false 
 	void useAbility(Game&);

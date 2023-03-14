@@ -15,6 +15,11 @@ void AbilityCard::setStatus(bool status)
 	this->status = status;
 }
 
+string AbilityCard::getType() const
+{
+	return this->type;
+}
+
 void AbilityCard::useAbility(Game&){}
 
 void AbilityCard::printCard(){}

@@ -2,6 +2,10 @@
 #include "header/Game.hpp"
 #include <iostream>
 
+Quarter::Quarter(){
+    type = "QUARTER";
+}
+
 /**** Use ability, different for each card *****/
 // Ubah status abilityCard pemain lain menjadi false
 void Quarter::useAbility(Game &game)

@@ -1,6 +1,10 @@
 #include "header/Ability_Switch.hpp"
 #include "header/Game.hpp"
 
+Switch::Switch(){
+    type = "SWITCH";
+}
+
 void Switch::useAbility(Game& game) 
 {
     if (!this->getStatus()) 

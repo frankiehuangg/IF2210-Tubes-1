@@ -6,6 +6,7 @@ class Game;
 class AbilityCard {
 protected:
 	bool status;
+	string type;
 
 public:
 	virtual ~AbilityCard();
@@ -13,6 +14,9 @@ public:
 	// If used, then status is true, else status is false;
 	bool getStatus() const;
 	void setStatus(bool);
+
+	// return card type
+	string getType() const;
 
 	/**** Use ability, different for each card *****/
 	virtual void useAbility(Game&);
@@ -23,6 +27,7 @@ public:
 
 	// dia aku ubah virtual karena kita ada make stl (deque) dengan class AbilityCard
 	// antara ini gajadi virtual ATO make stlnya sama reference/pointer
+
 };
 
 #endif

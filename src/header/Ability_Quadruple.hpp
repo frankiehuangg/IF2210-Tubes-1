@@ -5,6 +5,9 @@
 
 class Quadruple : public AbilityCard {
 public:
+
+	Quadruple();
+
 	/**** Use ability, different for each card *****/
 	// Ubah nilai pada game menjadi 4x lipat nilai semula
 	void useAbility(Game&);

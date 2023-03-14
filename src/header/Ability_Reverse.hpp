@@ -5,6 +5,9 @@
 
 class Reverse : public AbilityCard {
 public:
+
+	Reverse();
+
 	/**** Use ability, different for each card *****/
 	// Reverse player's turn RoundRobin (baca specc)
 	void useAbility(Game&);
