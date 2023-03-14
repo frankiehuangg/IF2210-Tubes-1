@@ -140,7 +140,7 @@ void Deck::shuffleAbilityCards() {
 
 // Cetak kartu
 void Deck::printCards() {
-    Inventory::printCards();
+
 }
 
 AbilityCard* Deck::takeAbilityFromDeck() {
