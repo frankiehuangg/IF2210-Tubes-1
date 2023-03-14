@@ -63,6 +63,7 @@ void Inventory::returnOneCardToDeck(Inventory& deck, int index)
 	vector<MainCard>::iterator it = this->cards.begin() + index;
 	deck = deck + temp;
 	this->cards.erase(it);
+	this->amount-=1;
 }
 
 void Inventory::takeCardFromDeck(Inventory& deck, int amount)

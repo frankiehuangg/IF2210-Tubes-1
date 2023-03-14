@@ -4,6 +4,7 @@ Player::Player(string _name, int _number) : Inventory(2) {
     name = _name;
     number = _number;
     point = 0;
+    status = true;
 
     ability = NULL;
 
@@ -28,6 +29,14 @@ string Player::getPlayerName() const {
 
 int Player::getPlayerPoint() const {
     return point;
+}
+
+bool Player::getPlayerStatus() const {
+    return status;
+}
+
+void Player::setPlayerStatus(bool status){
+    this->status=status;
 }
 
 Action& Player::getPlayerAction(){

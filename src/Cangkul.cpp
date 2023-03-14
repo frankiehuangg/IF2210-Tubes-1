@@ -1,14 +1,12 @@
 #include <iostream>
 #include "header/Cangkul.hpp"
 
-
 /*
 TO DO:
 - refresh table tiap round
 - game stop when theres winner
 - saat deck kosong ambil dari buangan
 - validasi input integer
-- kalo ada orang mw kabur dri permainan
 
 */
 
@@ -44,6 +42,34 @@ Cangkul::Cangkul() : Game(0, 64, 0, 2, 1 << 31), ROUND_AMOUNT(6)
 		if (!exception_caught)
 			i++;
 	}
+}
+
+/* Determines the next round position */
+void Cangkul::roundManage()
+{
+	int size=this->table.getAmount();
+	int iterator=size-1;
+	map<int,int> rank;
+
+	for(int i=players.size()-1; i>=0; i--)
+	{
+		MainCard curCard=table.getCard(iterator);
+		if(players[i].getPlayerStatus())
+		{
+			rank[curCard.getNumber()*-1]=players[i].getPlayerNumber();
+			iterator--;
+		}
+	}
+	vector<Player> temp;
+	for(auto it:rank)
+	{
+		this->players.push_back(this->getPlayer(it.second));
+	}
+
+	this->players.clear();
+	this->players=temp;
+
+
 }
 
 
@@ -90,7 +116,7 @@ void Cangkul::newRound()
 	int curColor=table.getCard(0).getColor();
 
 	// Giliran sebanyak pemain
-	while (this->turn < this->PLAYER_AMOUNT)
+	while (this->turn < this->players.size())
 	{
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
 
@@ -103,23 +129,23 @@ void Cangkul::newRound()
 		else
 		{
 			this->players[turn].getPlayerAction().cangkul((*this),curColor);
-			this->players[turn].getPlayerAction().choose((*this));
+			if(this->players[turn].getPlayerStatus())
+				this->players[turn].getPlayerAction().choose((*this));
 		}
-		
-		
-
-		
 
 		this->turn++;
 	}
+	this->roundManage();
 }
 
 bool Cangkul::gameOver()
 {
+	if (this->players.size()<=1) return true;
+
 	int count=0;
 	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i].getPlayerPoint() > 0)
+		if (this->players[i].getInventoryCards().size() == 0)
 			count++;
 
-	return count>1;
+	return count>=1;
 }

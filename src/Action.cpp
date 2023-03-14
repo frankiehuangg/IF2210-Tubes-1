@@ -58,7 +58,7 @@ void Action::cangkul(Game& game, int color)
    curPlayer.printCards();
    cout<<"Anda tidak punya kartu yang sesuai :("<<endl;
 
-   while(!curPlayer.isColorExists(color))
+   while(!curPlayer.isColorExists(color) && curPlayer.getPlayerStatus())
    {
       cout<<"Ingin mencangkul?"<<endl;
       string input;
@@ -75,6 +75,7 @@ void Action::cangkul(Game& game, int color)
          else if(input=="TIDAK")
          {
             cout<<"Yah, sayang sekali :<< Anda keluar dari permainan."<<endl;
+            curPlayer.setPlayerStatus(false);
          }
          else 
          {
