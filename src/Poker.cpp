@@ -131,7 +131,7 @@ void Poker::newRound()
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-		system("clear");
+		//system("clear");
 		
 		cout << "Round: " << getRound()+1 << endl;
 

@@ -43,7 +43,7 @@ ostream& operator<<(ostream& os, Table table)
 
 	for (int i = 0; i < min(table.getOpened(),numCard); i++)
 	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
+		FILE *fin = fopen("src/ascii/cards2.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 
@@ -67,7 +67,7 @@ ostream& operator<<(ostream& os, Table table)
 
 	for (int i = table.getOpened(); i < numCard; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
+		FILE *fin = fopen("src/ascii/cards2.txt", "r");
 
 		int line_num = 143;
 
