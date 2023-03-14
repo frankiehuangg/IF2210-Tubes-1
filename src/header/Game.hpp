@@ -38,12 +38,15 @@ public:
 	/* Returns the value of turn */
 	int getTurn() const;
 
+	/* Returns the value of round */
+	int getRound() const;
+
 	/* Returns the current point in game */
-	int getPoint() const;
+	long long getPoint() const;
 
 	/* Set the current point in game 
 	 * @int point		New point value */
-	void setPoint(int);
+	void setPoint(long long);
 
 	/* Returns the amount of player */
 	int getPlayerCount() const;

@@ -19,12 +19,17 @@ int Game::getTurn() const
 	return this->turn;
 }
 
-int Game::getPoint() const
+int Game::getRound() const
+{
+	return this->round;
+}
+
+long long Game::getPoint() const
 {
 	return this->point;
 }
 
-void Game::setPoint(int point)
+void Game::setPoint(long long point)
 {
 	this->point = point;
 }
