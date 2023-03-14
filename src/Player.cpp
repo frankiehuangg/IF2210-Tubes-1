@@ -57,11 +57,12 @@ void Player::setAbilityCardStatus(bool status) {
 }
 
 void Player::returnAbilityToDeck() {
+    ability->setStatus(true);
     ability = NULL;
 }
 
-void Player::takeAbilityFromDeck(AbilityCard* _ability) {
-    ability = _ability;
+void Player::takeAbilityFromDeck(Deck& deck) {
+    ability = deck.takeAbilityFromDeck();
 }
 
 void Player::doAction(Game& game) {
@@ -70,7 +71,8 @@ void Player::doAction(Game& game) {
     do {
         invalidInput = false;
 		cout << "Masukkan input pengguna: ";
-        cin >> input;
+        getline(cin, input);
+        getchar(); // consume remaining \n in stream
         if (input == "NEXT") {
             cout << "Giliran dilanjut ke pemain selanjutnya.\n";
         }
@@ -82,7 +84,14 @@ void Player::doAction(Game& game) {
                 cout << err.what();
             }
         }
+        else if (input == "DOUBLE") {
+            playerAction.actionDoDouble(game);
+        }
+        else if (input == "HALF") {
+            playerAction.actionDoHalf(game);
+        }
         else {
+            cout << "Sintaks input tidak valid, mohon ulangi!\n";
             invalidInput = true;
         }
 

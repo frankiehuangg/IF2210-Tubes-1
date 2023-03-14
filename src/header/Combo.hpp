@@ -38,6 +38,15 @@ private:
 	static const map<int, float> combo_list;
 	vector<MainCard> cards;
 	float value;
+	bool checkHighCard(vector<MainCard>& cardSublist);
+	bool checkPair(vector<MainCard>& cardSublist);
+	bool checkTwoPair(vector<MainCard>& cardSublist);
+	bool checkThreeOfaKind(vector<MainCard>& cardSublist);
+	bool checkStraight(vector<MainCard>& cardSublist); 
+	bool checkFlush(vector<MainCard>& cardSublist);
+	bool checkFullHouse(vector<MainCard>& cardSublist);
+	bool checkFourOfaKind(vector<MainCard>& cardSublist);
+	bool checkStraightFlush(vector<MainCard>& cardSublist);
 };
 
 #endif

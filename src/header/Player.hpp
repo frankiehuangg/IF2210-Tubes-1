@@ -8,6 +8,7 @@
 #include "Table.hpp"
 #include "AbilityCard.hpp"
 #include "Action.hpp"
+#include "Deck.hpp"
 #include "Exception.hpp"
 
 #define C00 "\x1B[0m"
@@ -60,7 +61,7 @@ public:
 
 	void returnAbilityToDeck();
 
-	void takeAbilityFromDeck(AbilityCard*);
+	void takeAbilityFromDeck(Deck&);
 
 	void doAction(Game&);
 

@@ -1,5 +1,4 @@
 #include "header/Deck.hpp"
-#include "header/AbilityCard.hpp" //this?
 
 Deck::Deck() : Inventory(52) {
     for (int i = 1; i <= 13; i++) {
@@ -7,8 +6,17 @@ Deck::Deck() : Inventory(52) {
             cards.push_back(MainCard(i, j));
         }
     }
+
     // initiate ability cards
-    // abilities = vector<AbilityCard>(7);
+    abilities.push_back(ReRoll());
+    abilities.push_back(Quadruple());
+    abilities.push_back(Quarter());
+    abilities.push_back(Reverse());
+    abilities.push_back(Swap());
+    abilities.push_back(Switch());
+    abilities.push_back(Abilityless());
+
+    abilityCardTop = 6;  // 0..6, -1 means empty
 }
 
 // Acak MainCard
@@ -59,7 +67,7 @@ void Deck::getDeckFromInput() {
                     continue;
                 }
                 else if (isdigit(*it)) {
-                    int temp = (int) *it;
+                    int temp = *it - '0';
                     if(temp == 0) {
                         continue;
                     }
@@ -70,9 +78,9 @@ void Deck::getDeckFromInput() {
                     throw InputInvalid(n+1);
                 }
             }
-            else if (num == 1 && (int) *it <= 3) {
+            else if (num == 1 && (*it - '0')<= 3) {
                 num *= 10;
-                num += (int) *it;
+                num += *it - '0';
             }
             else throw InputInvalid(n+1);
         }
@@ -83,7 +91,7 @@ void Deck::getDeckFromInput() {
                 continue;
             }
             else if (isdigit(*it) && !colorRead) {
-                int temp = (int) *it;
+                int temp = *it - '0';
                 if(temp == 0) {
                     continue;
                 }
@@ -131,4 +139,12 @@ void Deck::shuffleAbilityCards() {
 }
 
 // Cetak kartu
-void Deck::printCards() {}
+void Deck::printCards() {
+    Inventory::printCards();
+}
+
+AbilityCard* Deck::takeAbilityFromDeck() {
+    AbilityCard* ability = &abilities[abilityCardTop];
+    abilityCardTop--;
+    return ability;
+}

@@ -8,42 +8,102 @@ Combo::Combo(const Player& player, const Table& table) {
     vector<MainCard> handCard = player.getInventoryCards();
     vector<MainCard> tableCard = table.getInventoryCards();
 
-    for (int i = 0; i < (1 << handCard.size()); i++) {
-        for(int j = 0; j < (1 << tableCard.size()); j++) {
-            vector<MainCard> temp;
+    vector<vector<MainCard>> perm;
+    vector<MainCard> temp;
 
+    // handCard must be of size 2
+    // insert handCard permutations
+    // insert {hand_0}
+    temp.push_back(handCard[0]);
+    perm.push_back(temp);
+    
+    // insert {hand_0, hand_1}
+    temp.push_back(handCard[1]);
+    perm.push_back(temp);
+    temp.clear();
+    
+    // insert {hand_1}
+    temp.push_back(handCard[1]);
+    perm.push_back(temp);
+    temp.clear();
+
+    // insert tableCard permutations
+    for (int i = 0; i < tableCard.size(); i++){
+        int n = perm.size();
+        for(int j = 0; j < n; j++){
+            if(perm[j].size() < 5){
+                temp = perm[j];
+                temp.push_back(tableCard[i]);
+                perm.push_back(temp);
+                temp.clear();
+            }
         }
     }
 
-    // vector<vector<MainCard>> perm;
-    // vector<MainCard> temp;
-
-    // // handCard must be of size 2
-    // // insert handCard permutations
-    // temp.push_back(handCard[0]);
-    // perm.push_back(temp);
-    // temp.clear();
-    
-    // temp.push_back(handCard[1]);
-    // perm.push_back(temp);
-    
-    // temp.push_back(handCard[0]);
-    // perm.push_back(temp);
-    // temp.clear();
-
-    // // insert tableCard permutations
-    // for (int i = 0; i < tableCard.size(); i++){
-    //     int n = perm.size();
-    //     for(int j = 0; j < n; j++){
-    //         if(perm[j].size() < 5){
-    //             temp = perm[j];
-    //             temp.push_back(tableCard[i]);
-    //         }
-    //     }
-    // }
-
-    // for(int i = 0; i < perm.size(); i++)
-    //     sort(perm.begin(), perm.end());
+    // check for combos
+    for(int i = 0; i < perm.size(); i++){
+        sort(perm[i].begin(), perm[i].end());
+        if(checkStraightFlush(perm[i])){
+            float card[5];
+            for(int j = 0; j < 5; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 302929;
+        }
+        else if(checkFourOfaKind(perm[i])){
+            float card[4];
+            for(int j = 0; j < 4; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 296864.75;
+        }
+        else if(checkFullHouse(perm[i])){
+            float card[5];
+            for(int j = 0; j < 5; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 199836.75;
+        }
+        else if(checkFlush(perm[i])){
+            float card[5];
+            for(int j = 0; j < 5; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 103152.125;
+        }
+        else if(checkStraight(perm[i])){
+            float card[5];
+            for(int j = 0; j < 5; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 6467.5;
+        }
+        else if(checkThreeOfaKind(perm[i])){
+            float card[3];
+            for(int j = 0; j < 3; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2] + 256*card[3]) + 6088.5;
+        }
+        else if(checkTwoPair(perm[i])){
+            float card[4];
+            for(int j = 0; j < 4; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 25;
+        }
+        else if(checkPair(perm[i])){
+            float card[2];
+            for(int j = 0; j < 2; j++) {
+                card[j] = perm[i][j].getValue();
+            }
+            value = (card[1] + 16*card[2]) + 1.39;
+        }
+        else if(checkHighCard(perm[i])) {
+            value = perm[i][0].getValue();
+        }
+        else throw ("combo error, ini hanya untuk testing");
+    }
         
 }
 
@@ -70,4 +130,86 @@ bool Combo::operator< (Comparable& other) {
 // Cek apakah nilai kombo == kombo lain
 bool Combo::operator== (Comparable& other) {
     return value == other.getValue();
+}
+
+/*
+Methods untuk melakukan pengecekan combo pada suatu subset/sublist kartu.
+Prekondisi: ukuran subset/sublist kartu minimal 1 dan subset kartu terurut menaik berdasarkan nomor kartu dan warna
+*/
+
+bool Combo::checkHighCard(vector<MainCard>& cardSublist) 
+{
+    return cardSublist.size() == 1;
+}
+
+bool Combo::checkPair(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 2) return false;
+    return cardSublist[0].getNumber() == cardSublist[1].getNumber();
+}
+
+bool Combo::checkTwoPair(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 4) return false;
+    return cardSublist[0].getNumber() == cardSublist[1].getNumber() && 
+    cardSublist[2].getNumber() == cardSublist[3].getNumber();
+}
+
+bool Combo::checkThreeOfaKind(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 3) return false;
+    return cardSublist[0].getNumber() == cardSublist[1].getNumber() &&
+    cardSublist[1].getNumber() == cardSublist[2].getNumber();
+}
+
+bool Combo::checkStraight(vector<MainCard>& cardSublist)
+{
+    if (cardSublist.size() != 5) return false;
+    for (int i = 0; i < 4; i++) 
+    {
+        if (cardSublist[i].getNumber() + 1 != cardSublist[i + 1].getNumber()) return false;
+    }
+    return true;
+}
+
+bool Combo::checkFlush(vector<MainCard>& cardSublist) 
+{
+    if (cardSublist.size() != 5) return false;
+    int color = cardSublist[0].getColor();
+    for (int i = 1; i < 5; i++) 
+    {
+        if (cardSublist[i].getColor() != color) return false;
+    }
+    return true;
+}
+
+bool Combo::checkFullHouse(vector<MainCard>& cardSublist)
+{
+    if (cardSublist.size() != 5) return false;
+    int cardNum1 = cardSublist[0].getNumber();
+    int cardNum2 = cardSublist[cardSublist.size() - 1].getNumber();
+    int count1 = 0, count2 = 0;
+    for (MainCard card: cardSublist) 
+    {
+        if (card.getNumber() == cardNum1) ++count1;
+        else if (card.getNumber() == cardNum2) ++count2;
+        else return false;
+    }
+    return (count1 == 2 && count2 == 3) || (count1 == 3 && count2 == 2);
+}
+
+bool Combo::checkFourOfaKind(vector<MainCard>& cardSublist)
+{
+    if (cardSublist.size() != 5) return false;
+    int cardNum = cardSublist[0].getNumber();
+    for (int i = 1; i < 5; i++) 
+    {
+        if (cardSublist[i].getNumber() != cardNum) return false;
+    }
+    return true;
+}
+
+bool Combo::checkStraightFlush(vector<MainCard>& cardSublist) 
+{
+    return checkStraight(cardSublist) && checkFlush(cardSublist);
 }
