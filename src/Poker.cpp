@@ -1,7 +1,7 @@
 #include <iostream>
 #include "header/Poker.hpp"
 
-Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
+Poker::Poker() : Game(0, 64, 0, 7, 1 << 31), ROUND_AMOUNT(6)
 {
 	this->shuffle = 0;
 
@@ -13,12 +13,13 @@ Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
 
 		try
 		{
-			cout << "Masukkan nama pemain ke-" << i+1 << ": ";
-			string name; cin >> name;
+			cout << "Masukkan nama pemain ke-" << i + 1 << ": ";
+			string name;
+			cin >> name;
 
 			checkPlayerNameExist(name);
 
-			Player p(name, i+1);
+			Player p(name, i + 1);
 
 			this->players.push_back(p);
 
@@ -93,14 +94,14 @@ void Poker::newShuffle()
 		// Buka 1 kartu di table
 		if (this->round > 1)
 			this->table.openCard();
-		
+
 		newRound();
 		roundRobin();
-		
+
 		this->round++;
 	}
 
-	Player& winner = this->players[0];
+	Player &winner = this->players[0];
 	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
 		if (this->players[i] > winner)
 			winner = this->players[i];

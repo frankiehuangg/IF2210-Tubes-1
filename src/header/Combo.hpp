@@ -37,7 +37,7 @@ private:
 	// 3 = three of a kind dst.
 	static const map<int, float> combo_list;
 	vector<MainCard> cards;
-	float value;
+	
 	bool checkHighCard(vector<MainCard>& cardSublist);
 	bool checkPair(vector<MainCard>& cardSublist);
 	bool checkTwoPair(vector<MainCard>& cardSublist);
