@@ -22,7 +22,8 @@ void Action::actionDoHalf(Game& game)
 void Action::choose(Game& game)
 {
    int pilihan;
-   Player& curPlayer=game.getPlayer(game.getTurn()+1);
+   
+   Player& curPlayer=game.getPlayerInTurn();
    vector<MainCard> hand=curPlayer.getInventoryCards();
    MainCard cur=game.getTable().getCard(0);
    int curColor=cur.getColor();
@@ -52,7 +53,7 @@ void Action::choose(Game& game)
 void Action::cangkul(Game& game, int color)
 {
    bool found=false;
-   Player& curPlayer=game.getPlayer(game.getTurn()+1);
+   Player& curPlayer=game.getPlayerInTurn();
 
    curPlayer.printCards();
    cout<<"Anda tidak punya kartu yang sesuai :("<<endl;

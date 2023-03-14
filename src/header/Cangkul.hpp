@@ -24,6 +24,9 @@ public:
 	/* Poker constructor */
 	Cangkul();
 
+	/* Determines the next round position */
+	void roundManage();
+
 	/* Check whether the game is over */
 	bool gameOver();
 

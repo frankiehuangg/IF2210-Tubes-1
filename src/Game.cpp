@@ -44,6 +44,11 @@ Player& Game::getPlayer()
 	return this->players[0];
 }
 
+Player& Game::getPlayerInTurn()
+{
+	return this->players[this->turn];
+}
+
 Player& Game::getPlayer(int number)
 {
 	for (int i = 0; i < this->PLAYER_AMOUNT; i++)

@@ -54,6 +54,9 @@ public:
 	/* Returns the first player in the vector */
 	Player& getPlayer();
 
+	/* Returns the player in turn */
+	Player& getPlayerInTurn();
+
 	/* Returns a player with the corresponding name
 	 * @param string name	Player name */
 	Player& getPlayer(string);
