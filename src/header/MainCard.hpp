@@ -12,36 +12,49 @@ private:
 
 public:
 	/* Constructor & destructor */
+	/* MainCard constructor
+	 * @param int number	Card number (1...13)
+	 * @param int Color		Card color  ENUM(RED, YELLOW, GREEN, BLUE) */
 	MainCard(int, int);
 
 	/***** Getter & Setter *****/
-	// Value
+	/* Returns the current card value */
 	float getValue() const;
+	
+	/* Set the current card value
+	 * @param float value	New card value */
 	void setValue(float);
 
-	// Number
+	/* Returns the card number */
 	int getNumber() const;
+
+	/* Set the current card value
+	 * @param int number	New card number */
 	void setNumber(int);
 
-	// Color
+	/* Returns the card color */
 	int getColor() const;
+
+	/* Set the current card color
+	 * @param int color		New card color */
 	void setColor(int);
 
 	/***** Print *****/
-	// Print card number and color, ends with endl
+	/* Prints the card number and color */
 	void printCard();
 
 	/***** Comparison *****/
-	// Cek apakah nilai kartu > kartu lain
+	/* Checks whether the current card value > the other card value
+	 * @param Comparable& other		The other card */
 	bool operator< (Comparable&);
 
-	// Cek apakah nilai kartu < kartu lain
+	/* Checks whether the current card value < the other card value
+	 * @param Comparable& other		The other card */
 	bool operator> (Comparable&);
 	
-	// Cek apakah nilai kartu = kartu lain
+	/* Checks whether the current card value == the other card value
+	 * @param Comparable& other		The other card */
 	bool operator== (Comparable&);
-
-	friend bool operator<(const MainCard,const MainCard);
 };
 
 #endif

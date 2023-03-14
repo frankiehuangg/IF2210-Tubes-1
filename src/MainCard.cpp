@@ -66,7 +66,3 @@ bool MainCard::operator==(Comparable &other)
     // Not sure yet
     return this->value == other.getValue();
 }
-
-bool operator<(const MainCard m, const MainCard m2){
-    return m.getValue()<m2.getValue();
-}
