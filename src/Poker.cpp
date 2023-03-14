@@ -1,7 +1,7 @@
 #include <iostream>
 #include "header/Poker.hpp"
 
-Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
+Poker::Poker() : Game(0, 64, 0, 7, 1 << 31), ROUND_AMOUNT(6)
 {
 	this->shuffle = 0;
 
@@ -13,12 +13,13 @@ Poker::Poker() : Game(0, 64, 0, 7, 1<<31), ROUND_AMOUNT(6)
 
 		try
 		{
-			cout << "Masukkan nama pemain ke-" << i+1 << ": ";
-			string name; cin >> name;
+			cout << "Masukkan nama pemain ke-" << i + 1 << ": ";
+			string name;
+			cin >> name;
 
 			checkPlayerNameExist(name);
 
-			Player p(name, i+1);
+			Player p(name, i + 1);
 
 			this->players.push_back(p);
 
@@ -48,14 +49,14 @@ void Poker::newShuffle()
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 	{
 		table.setOpened(0);
-		
+
 		newRound();
 		roundRobin();
-		
+
 		this->round++;
 	}
 
-	Player& winner = this->players[0];
+	Player &winner = this->players[0];
 	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
 		if (this->players[i] > winner)
 			winner = this->players[i];
@@ -79,7 +80,7 @@ void Poker::newRound()
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
 		cout << this->turn << endl;
-		system("clear");
+		// system("clear");
 		// Ronde 1, pemain mendapatkan 2 MainCard dari Deck
 		if (this->turn == 0)
 		{
@@ -99,13 +100,13 @@ void Poker::newRound()
 			this->deck.shuffleMainCards();
 
 			// Ambil 2 kartu dari deck ke pemain
-			for (int i = 0; i < this->PLAYER_AMOUNT*2; i++)
+			for (int i = 0; i < this->PLAYER_AMOUNT * 2; i++)
 				this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
 
 			// Taruh 5 kartu dari deck ke table
 			this->table.takeCardFromDeck(this->deck, 5);
 		}
-			
+
 		// Ronde 2, pemain dapat menggunakan abilityCard
 		if (this->turn == 1)
 		{
@@ -122,12 +123,13 @@ void Poker::newRound()
 			// Ambil ability card dari pemain
 			for (int i = 0; i < this->PLAYER_AMOUNT; i++)
 				this->players[i].takeAbilityFromDeck();
-			
+
 			*/
-			
 		}
 
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
+
+		cout << "Poin game sekarang: " << this->point << endl;
 
 		this->table.printCards();
 
@@ -139,7 +141,7 @@ void Poker::newRound()
 		// Buka 1 kartu di table
 		if (turn > 0)
 			this->table.openCard();
-		
+
 		this->turn++;
 	}
 }
