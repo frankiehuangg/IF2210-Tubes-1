@@ -8,16 +8,6 @@ MainCard::MainCard(int val1, int val2)
 }
 
 /***** Getter & Setter *****/
-// Value
-float MainCard::getValue() const
-{
-    return this->value;
-}
-void MainCard::setValue(float value)
-{
-    this->value = value;
-}
-
 // Number - Assumption: First element of the pair
 int MainCard::getNumber() const
 {
@@ -46,6 +36,11 @@ void MainCard::printCard()
 }
 
 /***** Comparison *****/
+bool operator< (const MainCard m1, const MainCard m2)
+{
+	return m1.getValue() < m2.getValue();
+}
+
 // Cek apakah nilai kartu < kartu lain
 bool MainCard::operator<(Comparable &other)
 {
