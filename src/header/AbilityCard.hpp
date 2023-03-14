@@ -21,7 +21,7 @@ public:
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
 	virtual void printCard();
 
-	// dia aku ubah virtual karena kita ada make stl (deque) dengan class AbilityCard
+	// dia aku ubah non pure virtual karena kita ada make stl (deque) dengan class AbilityCard
 	// antara ini gajadi virtual ATO make stlnya sama reference/pointer
 };
 

@@ -39,6 +39,8 @@ ostream& operator<<(ostream& os, Table table)
 
 	vector<MainCard> cards = table.getInventoryCards();
 
+	int numCard = cards.size();
+
 	for (int i = 0; i < table.getOpened(); i++)
 	{
 		FILE *fin = fopen("src/ascii/cards.txt", "r");
@@ -63,7 +65,7 @@ ostream& operator<<(ostream& os, Table table)
 		}
 	}
 
-	for (int i = table.getOpened(); i < 5; i++)
+	for (int i = table.getOpened(); i < numCard; i++)
 	{
 		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
