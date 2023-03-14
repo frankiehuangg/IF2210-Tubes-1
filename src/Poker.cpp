@@ -129,6 +129,8 @@ void Poker::newRound()
 
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
 
+		cout << "Poin game sekarang: " << this->point << endl;
+
 		this->table.printCards();
 
 		this->players[turn].printCards();
