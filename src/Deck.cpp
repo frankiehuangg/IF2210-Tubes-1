@@ -6,7 +6,7 @@ Deck::Deck() : Inventory(52) {
             cards.push_back(MainCard(i, j));
         }
     }
-
+    
     // initiate ability cards
     abilities.push_back(ReRoll());
     abilities.push_back(Quadruple());
@@ -27,6 +27,7 @@ Deck::Deck() : Inventory(52) {
 // Acak MainCard
 void Deck::shuffleMainCards() {
     int size = cards.size();
+    
     srand(time(NULL));
     for(int i = 0; i < size; i++) {
         int idx = rand() % size;  // generate random index from 0..size

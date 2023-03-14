@@ -8,10 +8,11 @@ Player::Player(string _name, int _number) : Inventory(2) {
     ability = NULL;
 
     // Push dummmy elements for vector to allocate size beforehand
+    // /*
     MainCard dummy(-1, -1);
     cards.push_back(dummy);
     cards.push_back(dummy);
-
+    // */
     // initialize Action;
 }
 
@@ -87,6 +88,13 @@ void Player::doAction(Game& game) {
         else if (input == "HALF") {
             playerAction.actionDoHalf(game);
         }
+
+        // KEBUTUHAN CANGKUL (duh gimana yak, mungkin bikin class baru?)
+        else if (input == "PILIH"){
+            playerAction.choose(game);
+
+        }
+
         else {
             cout << "Sintaks input tidak valid, mohon ulangi!\n";
             invalidInput = true;
@@ -114,7 +122,7 @@ ostream& operator<< (ostream& os, Player player)
 
 	for (int i = 0; i < length; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
+		FILE *fin = fopen("src/ascii/cards2.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 

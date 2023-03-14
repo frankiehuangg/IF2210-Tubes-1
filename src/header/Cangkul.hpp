@@ -1,7 +1,7 @@
-#ifndef _POKER_HPP_
-#define _POKER_HPP_
+#ifndef _CANGKUL_HPP_
+#define _CANGKUL_HPP_
 
-class BlackJack;
+class Cangkul;
 
 #include <vector>
 #include <stdlib.h>

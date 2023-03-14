@@ -14,6 +14,8 @@ public:
 	/* Half the current point value in Game
 	 * @param Game& game	Current game */
 	void actionDoHalf(Game&);
+	
+	void choose(Game&);
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include <ostream>
 #include "header/Poker.hpp"
+#include "header/Cangkul.hpp"
 
 int main()
 {
@@ -8,7 +9,7 @@ int main()
 	cout << "Selamat datang di Kerajaan Permen!" << endl;
 	cout << "Silahkan memilih permainan: " << endl;
 	cout << "1. Poker" << endl;
-	cout << "2. UNO" << endl;
+	cout << "2. Cangkul" << endl;
 	cout << "Pilihan: "; cin >> input;
 
 	if (input == 1)
@@ -18,8 +19,8 @@ int main()
 	}
 	else if (input == 2)
 	{
-		// UNO u;
-		// u.startGame();
+		Cangkul c;
+		c.startGame();
 	}
 	else
 	{

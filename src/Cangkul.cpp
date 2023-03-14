@@ -41,16 +41,16 @@ void Cangkul::newShuffle()
 	this->table.setOpened(4);
 	this->buangan.setOpened(1);
 	// bagikan kartu ke pemain
+	
+	this->deck.shuffleMainCards();
+
 	for (int i = 0; i < this->PLAYER_AMOUNT*7; i++)
 			this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
 
 	while(!gameOver()){
 		if (this->round == 0)
-		{
-			//kita hanya bisa lihat kartu teratas
-			
-
-			//ambil satu card dari deck untuk pertama kali
+		{	
+			//ambil satu card dari deck untuk ronde pertama
 			this->table.takeCardFromDeck(this->deck, 1);
 		}
 		
@@ -70,16 +70,20 @@ void Cangkul::newRound()
 		cout<< "Pilih kartu yang ingin anda keluarkan: "<<endl;
 		
 		this->players[turn].printCards();	
+
+		this->players[turn].doAction(*this);
+
+		this->turn++;
 	}
+
 	// Giliran sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
 
-		cout << "Poin game sekarang: " << this->point << endl;
-
 		this->table.printCards();
+
+		cout<< "Pilih kartu yang ingin anda keluarkan: "<<endl;
 
 		this->players[turn].printCards();
 

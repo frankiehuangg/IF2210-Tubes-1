@@ -45,6 +45,15 @@ void Inventory::returnCardToDeck(Inventory& deck)
 	deck = deck + temp;
 }
 
+void Inventory::returnOneCardToDeck(Inventory& deck, int index)
+{
+	vector<MainCard> temp;
+	temp.push_back((*this).cards[index]);
+	vector<MainCard>::iterator it = this->cards.begin() + index;
+	deck = deck + temp;
+	this->cards.erase(it);
+}
+
 void Inventory::takeCardFromDeck(Inventory& deck, int amount)
 {
 	vector<MainCard> temp = deck - amount;
