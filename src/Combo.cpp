@@ -45,66 +45,72 @@ Combo::Combo(const Player& player, const Table& table) {
 	int perm_length = perm.size();
     for(int i = 0; i < perm_length; i++){
         sort(perm[i].begin(), perm[i].end());
+        float tempval;
         if(checkStraightFlush(perm[i])){
             float card[5];
             for(int j = 0; j < 5; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 302929;
+            tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 302929;
         }
         else if(checkFourOfaKind(perm[i])){
             float card[4];
             for(int j = 0; j < 4; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 296864.75;
+            tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 296864.75;
         }
         else if(checkFullHouse(perm[i])){
             float card[5];
             for(int j = 0; j < 5; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 199836.75;
+            tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 199836.75;
         }
         else if(checkFlush(perm[i])){
             float card[5];
             for(int j = 0; j < 5; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 103152.125;
+            tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 103152.125;
         }
         else if(checkStraight(perm[i])){
             float card[5];
             for(int j = 0; j < 5; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 6467.5;
+            tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 6467.5;
         }
         else if(checkThreeOfaKind(perm[i])){
             float card[3];
             for(int j = 0; j < 3; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2] + 256*card[3]) + 6088.5;
+            tempval = (card[1] + 16*card[2] + 256*card[3]) + 6088.5;
         }
         else if(checkTwoPair(perm[i])){
             float card[4];
             for(int j = 0; j < 4; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 25;
+            tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 25;
         }
         else if(checkPair(perm[i])){
             float card[2];
             for(int j = 0; j < 2; j++) {
                 card[j] = perm[i][j].getValue();
             }
-            value = (card[1] + 16*card[2]) + 1.39;
+            tempval = (card[1] + 16*card[2]) + 1.39;
         }
         else if(checkHighCard(perm[i])) {
-            value = perm[i][0].getValue();
+            tempval = perm[i][0].getValue();
         }
         else throw ("combo error, ini hanya untuk testing");
+
+        if(value < tempval) {
+            value = tempval;
+            cards = perm[i];
+        }
     }
         
 }
