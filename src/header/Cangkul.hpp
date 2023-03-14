@@ -14,7 +14,7 @@ using namespace std;
 class Cangkul : public Game {
 private:
 	int shuffle;
-	Table buangan;
+	Table dump;
 	const int ROUND_AMOUNT;
 
 public:

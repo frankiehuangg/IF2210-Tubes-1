@@ -65,6 +65,9 @@ public:
 	 * @param int number	Player number */ 
 	Player& getPlayer(int);
 
+	/* Prints current player turns */
+	void printPlayerTurn();
+
 	/* Returns the table */
 	Table& getTable();
 

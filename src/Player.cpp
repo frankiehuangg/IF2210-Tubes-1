@@ -9,11 +9,11 @@ Player::Player(string _name, int _number) : Inventory(2) {
     ability = NULL;
 
     // Push dummmy elements for vector to allocate size beforehand
-    // /*
+    /*
     MainCard dummy(-1, -1);
     cards.push_back(dummy);
     cards.push_back(dummy);
-    // */
+     */
     // initialize Action;
 }
 

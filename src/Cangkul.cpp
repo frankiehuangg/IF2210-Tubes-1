@@ -4,13 +4,12 @@
 /*
 TO DO:
 - refresh table tiap round
-- game stop when theres winner
 - saat deck kosong ambil dari buangan
 - validasi input integer
 
 */
 
-Cangkul::Cangkul() : Game(0, 64, 0, 2, 1 << 31), ROUND_AMOUNT(6)
+Cangkul::Cangkul() : Game(0, 64, 0, 4, 1 << 31), ROUND_AMOUNT(6)
 {
 	this->shuffle = 0;
 
@@ -47,7 +46,7 @@ Cangkul::Cangkul() : Game(0, 64, 0, 2, 1 << 31), ROUND_AMOUNT(6)
 /* Determines the next round position */
 void Cangkul::roundManage()
 {
-	int size=this->table.getAmount();
+	int size=this->table.getInventoryCards().size();
 	int iterator=size-1;
 	map<int,int> rank;
 
@@ -63,25 +62,26 @@ void Cangkul::roundManage()
 	vector<Player> temp;
 	for(auto it:rank)
 	{
-		this->players.push_back(this->getPlayer(it.second));
+		temp.push_back(this->getPlayer(it.second));
+		cout<<"TEST :"<<it.first<<" "<<this->getPlayer(it.second).getPlayerNumber()<<endl;
 	}
 
 	this->players.clear();
-	this->players=temp;
-
+	for(int i=0; i<temp.size(); i++)
+		this->players.push_back(temp[i]);
+	this->table.returnCardToDeck(dump);
 
 }
 
 
 void Cangkul::newShuffle()
 {
-	this->table.setOpened(4);
-	this->buangan.setOpened(1);
-	// bagikan kartu ke pemain
-
+	this->table.setOpened(10);
+	this->dump.setOpened(1);
 	this->deck.shuffleMainCards();
 
-	for (int i = 0; i < this->PLAYER_AMOUNT*2; i++)
+	// bagikan kartu ke pemain
+	for (int i = 0; i < this->PLAYER_AMOUNT*4; i++)
 			this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
 
 	while(!gameOver()){
@@ -100,13 +100,10 @@ void Cangkul::newShuffle()
 
 void Cangkul::newRound()
 {
+	this->printPlayerTurn();
 	this->turn = 0;
 	if(this->table.isInventoryEmpty()){
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
-
-		cout<< "Pilih kartu yang ingin anda keluarkan: "<<endl;
-		
-		this->players[turn].printCards();	
 
 		this->players[turn].getPlayerAction().choose((*this));
 
@@ -136,6 +133,13 @@ void Cangkul::newRound()
 		this->turn++;
 	}
 	this->roundManage();
+
+	cout<<"DEBUGFROMHERE"<<endl;
+	this->table.printCards();
+	cout<<"DEBUGFROMHERE2"<<endl;
+	for(int i=0;i<players.size();i++){
+		cout<<players[i].getPlayerNumber()<<endl;
+	}
 }
 
 bool Cangkul::gameOver()

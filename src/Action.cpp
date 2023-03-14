@@ -28,6 +28,7 @@ void Action::choose(Game& game)
    MainCard cur=game.getTable().getCard(0);
    int curColor=cur.getColor();
    int punya=hand.size();
+   int tableSize=game.getTable().getInventoryCards().size();
 
    bool submitted=false;
 
@@ -39,7 +40,7 @@ void Action::choose(Game& game)
       cout<<"Pilih kartu yang anda ingin berikan: ";
       cin>>pilihan;
       
-      if(pilihan<punya && pilihan>=0 && hand[pilihan].getColor()==curColor) {
+      if(pilihan<punya && pilihan>=0 && (hand[pilihan].getColor()==curColor||tableSize==0)) {
          curPlayer.returnOneCardToDeck(game.getTable(),pilihan);
          submitted=true;
       }
