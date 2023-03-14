@@ -25,16 +25,10 @@ void Quadruple::useAbility(Game &game)
 }
 
 /***** Print card *****/
-// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
+// Print card info and status
 void Quadruple::printCard()
 {
-    /*
-    if (game.round = 1) {
-        cout << "NOT AVAILABLE"
-    } else {
-        cout << "NAME     : QUADRUPLE" << endl;
-        cout << "STATUS   : " << this->status << endl;
-        cout << "ABILITY  : Menaikkan total poin hadiah menjadi 4x lipat" << endl;
-    }
-    */
+    std::cout << "NAME     : QUADRUPLE" << std::endl;
+    std::cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
+    std::cout << "ABILITY  : Menaikkan total poin hadiah menjadi 4x lipat" << std::endl;
 }
