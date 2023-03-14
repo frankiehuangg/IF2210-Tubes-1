@@ -15,9 +15,7 @@ Player::Player(string _name, int _number) : Inventory(2) {
     // initialize Action;
 }
 
-Player::~Player() {
-	delete ability;
-}
+Player::~Player() {}
 
 int Player::getPlayerNumber() const {
     return number;
