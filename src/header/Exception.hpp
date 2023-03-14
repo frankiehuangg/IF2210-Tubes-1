@@ -39,34 +39,18 @@ struct NoAbilityAvailable: public exception
 
 struct InputInvalid: public exception
 {
-	InputInvalid(int _line) {
-		line = _line;
-	}
-
 	const char* printError() const throw()
 	{
-		string msg = "Input format invalid at line " + to_string(line);
-		return msg.c_str();
+		return "Input format invalid at line ";
 	}
-
-	private:
-		int line;
 };
 
 struct DuplicateCardExist: public exception
 {
-	DuplicateCardExist(int _line) {
-		line = _line;
-	}
-
 	const char* printError() const throw()
 	{
-		string msg = "Duplicate card exist at line " + to_string(line);
-		return msg.c_str();
+		return "Duplicate card exist at line ";
 	}
-
-	private:
-		int line;
 };
 
 #endif
