@@ -1,6 +1,6 @@
 #include "header/Combo.hpp"
 
-const map<int, float> Combo::combo_list = {make_pair(0,0.0), make_pair(1,1.0), make_pair(2,2.0), make_pair(3,4.0), make_pair(4,8.0), make_pair(5,16.0), make_pair(6,32.0), make_pair(7,64.0), make_pair(8,128.0)};
+// const map<int, float> Combo::combo_list = {make_pair(0,0.0), make_pair(1,1.0), make_pair(2,2.0), make_pair(3,4.0), make_pair(4,8.0), make_pair(5,16.0), make_pair(6,32.0), make_pair(7,64.0), make_pair(8,128.0)};
 
 
 Combo::Combo(const Player& player, const Table& table) {
