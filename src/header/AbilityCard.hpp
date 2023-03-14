@@ -1,6 +1,10 @@
 #ifndef _ABILITY_HPP_
 #define _ABILITY_HPP_
 
+#include <string>
+
+using std::string;
+
 class Game;
 
 class AbilityCard {
