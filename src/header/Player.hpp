@@ -67,7 +67,7 @@ public:
 	void setAbilityCardStatus(bool);
 
 	/* Returns the AbilityCard back to Deck */
-	void returnAbilityToDeck(AbilityCard* ability);
+	void returnAbilityToDeck(Deck&);
 
 	/* Takes one abilityCard from deck
 	 * @param Deck& deck	Deck */
