@@ -58,19 +58,27 @@ void Player::takeAbilityFromDeck(Deck& deck) {
 void Player::doAction(Game& game) {
     string input;
     bool invalidInput;
+    const string abilityInvalidMsg = "Ets, tidak bisa. Kamu tidak punya kartu Ability ";
     do {
         invalidInput = false;
 		cout << "Masukkan input pengguna: ";
-        getline(cin, input);
+        cin >> input;
         if (input == "NEXT") {
             cout << "Giliran dilanjut ke pemain selanjutnya.\n";
         }
-        else if (input == "USE ABILITY") {
-            try {
-                useAbility(game);
+        else if (input == "RE-ROLL" || input == "QUADRUPLE" || input == "QUARTER" || input == "REVERSE" || input == "SWAPCARD" || input == "SWITCH" || input == "ABILITYLESS") {
+            if(ability == NULL) {
+                cout << abilityInvalidMsg << input << ".\n";
+                invalidInput = true;
             }
-            catch (NoAbilityAvailable& err) {
-                cout << err.what();
+            else {
+                if (ability->getType() == input && !ability->getStatus()) {
+                    ability->useAbility(game);
+                }
+                else {
+                    cout << abilityInvalidMsg << input << ".\n";
+                    invalidInput = true;
+                }
             }
         }
         else if (input == "DOUBLE") {
