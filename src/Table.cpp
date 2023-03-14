@@ -40,10 +40,12 @@ ostream& operator<<(ostream& os, Table table)
 	vector<MainCard> cards = table.getInventoryCards();
 
 	int numCard = cards.size();
+	int openThen=table.getOpened();
+	if(numCard<openThen) openThen=numCard;
 
-	for (int i = 0; i < min(table.getOpened(),numCard); i++)
+	for (int i = 0; i <openThen; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards2.txt", "r");
+		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 
@@ -67,7 +69,7 @@ ostream& operator<<(ostream& os, Table table)
 
 	for (int i = table.getOpened(); i < numCard; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards2.txt", "r");
+		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
 		int line_num = 143;
 
