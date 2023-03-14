@@ -16,6 +16,11 @@ Deck::Deck() : Inventory(52) {
     abilities.push_back(Switch());
     abilities.push_back(Abilityless());
 
+    for(int i = 0; i < 7; i++) {
+        AbilityCard* card = &abilities[i];
+        usedBy.emplace(card, -1);
+    }
+
     abilityCardTop = 6;  // 0..6, -1 means empty
 }
 
@@ -143,8 +148,15 @@ void Deck::printCards() {
     Inventory::printCards();
 }
 
-AbilityCard* Deck::takeAbilityFromDeck() {
+AbilityCard* Deck::takeAbilityFromDeck(int n) {
     AbilityCard* ability = &abilities[abilityCardTop];
     abilityCardTop--;
+    usedBy[ability] = n;
     return ability;
+}
+
+void Deck::returnAbilityToDeck(AbilityCard * ability) {
+    ability->setStatus(true);
+    usedBy[ability] = -1;
+    abilityCardTop++;
 }
