@@ -112,7 +112,7 @@ void Poker::newRound()
 			// Cek apakah pemain sudah mempunyai ability card, jika iya pindahkan ke deck
 			if (this->players[turn].doesAbilityCardExist())
 				for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-					this->players[i].returnAbilityToDeck();
+					this->players[i].returnAbilityToDeck(this->deck);
 
 			// Acak kartu ability
 			this->deck.shuffleAbilityCards();
