@@ -7,8 +7,11 @@ protected:
 
 public:
 	/***** Getter & Setter *****/
-	virtual float getValue() const = 0;
-	virtual void setValue(float) = 0;
+	/* Returns the current card value */
+	float getValue() const;
+	/* Set the current card value
+	 * @param float value	New card value */
+	void setValue(float);
 
 	/***** Comparison operator *****/
 	virtual bool operator< (Comparable&) = 0;
