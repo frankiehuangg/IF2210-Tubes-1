@@ -3,9 +3,9 @@
 
 /*
 TO DO:
-- refresh table tiap round
 - saat deck kosong ambil dari buangan
 - validasi input integer
+- winning condition kalo draw
 
 */
 
@@ -133,13 +133,6 @@ void Cangkul::newRound()
 		this->turn++;
 	}
 	this->roundManage();
-
-	cout<<"DEBUGFROMHERE"<<endl;
-	this->table.printCards();
-	cout<<"DEBUGFROMHERE2"<<endl;
-	for(int i=0;i<players.size();i++){
-		cout<<players[i].getPlayerNumber()<<endl;
-	}
 }
 
 bool Cangkul::gameOver()
