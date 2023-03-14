@@ -12,19 +12,27 @@ private:
 
 public:
 
-	/***** Constructor and destructor *****/
-	// Construct sebuah table dengan amount = 5, opened = 0, serta inisialisasikan atribut cards dengan panjang amount 
+	/***** Constructor *****/
+	/* Table constructor */
 	Table();
 
+	/***** Getter & Setter *****/
+	/* Returns the amount of cards opened */
 	int getOpened() const;
+
+	/* Set the amount of cards opened
+	 * @param int opened	New opened value */
 	void setOpened(int);
 
-	// Tambahkan nilai opened dengan 1
+	/* Adds the amount of cards opened by 1 */
 	void openCard();
 
-	// Print semua kartu yang terdapat pada table (yang sudah terbuka), panggil fungsi printCard dari kelas MainCard untuk masing-masing card.
+	/* Prints the table cards */
 	void printCards();
 
+	/* Ostream operator used for cout
+	 * @param ostream& os	ostream
+	 * @param Player player Player */
 	friend ostream& operator<< (ostream&, Table);
 };
 
