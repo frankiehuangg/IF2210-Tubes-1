@@ -18,13 +18,6 @@ public:
 	MainCard(int, int);
 
 	/***** Getter & Setter *****/
-	/* Returns the current card value */
-	float getValue() const;
-	
-	/* Set the current card value
-	 * @param float value	New card value */
-	void setValue(float);
-
 	/* Returns the card number */
 	int getNumber() const;
 
@@ -44,6 +37,11 @@ public:
 	void printCard();
 
 	/***** Comparison *****/
+	/* Checks whether the current card value < the other card value
+	 * @param const MainCard m1		The first card
+	 * @param const MainCard m2		The second card */
+	friend bool operator< (const MainCard, const MainCard);
+
 	/* Checks whether the current card value > the other card value
 	 * @param Comparable& other		The other card */
 	bool operator< (Comparable&);
