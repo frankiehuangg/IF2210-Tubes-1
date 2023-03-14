@@ -56,13 +56,13 @@ void Player::setAbilityCardStatus(bool status) {
     ability->setStatus(status);
 }
 
-void Player::returnAbilityToDeck() {
-    ability->setStatus(true);
+void Player::returnAbilityToDeck(Deck& deck) {
+    deck.returnAbilityToDeck(ability);
     ability = NULL;
 }
 
 void Player::takeAbilityFromDeck(Deck& deck) {
-    ability = deck.takeAbilityFromDeck();
+    ability = deck.takeAbilityFromDeck(number);
 }
 
 void Player::doAction(Game& game) {

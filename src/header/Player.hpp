@@ -59,7 +59,7 @@ public:
 
 	void setAbilityCardStatus(bool);
 
-	void returnAbilityToDeck();
+	void returnAbilityToDeck(Deck&);
 
 	void takeAbilityFromDeck(Deck&);
 
