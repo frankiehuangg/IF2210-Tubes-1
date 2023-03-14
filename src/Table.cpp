@@ -41,7 +41,7 @@ ostream& operator<<(ostream& os, Table table)
 
 	int numCard = cards.size();
 
-	for (int i = 0; i < table.getOpened(); i++)
+	for (int i = 0; i < min(table.getOpened(),numCard); i++)
 	{
 		FILE *fin = fopen("src/ascii/cards.txt", "r");
 

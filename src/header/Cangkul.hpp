@@ -15,6 +15,7 @@ class Cangkul : public Game {
 private:
 	int shuffle;
 
+	Table buangan;
 	const int ROUND_AMOUNT;
 
 public:

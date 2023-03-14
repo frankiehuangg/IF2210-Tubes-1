@@ -38,14 +38,26 @@ Cangkul::Cangkul() : Game(0, 64, 0, 2, 1 << 31), ROUND_AMOUNT(6)
 
 void Cangkul::newShuffle()
 {
-	//kita hanya bisa lihat kartu teratas
-	this->table.setOpened(1);
-	//ambil satu card dari deck untuk pertama kali
-	this->table.takeCardFromDeck(this->deck, 1);
-
+	this->table.setOpened(4);
 	// bagikan kartu ke pemain
 	for (int i = 0; i < this->PLAYER_AMOUNT*7; i++)
 			this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
+
+	while(!gameOver()){
+		if (this->round == 0)
+		{
+			//kita hanya bisa lihat kartu teratas
+			
+
+			//ambil satu card dari deck untuk pertama kali
+			this->table.takeCardFromDeck(this->deck, 1);
+		}
+		
+		newRound();
+
+		this->round++;
+
+	}
 	
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 	{
