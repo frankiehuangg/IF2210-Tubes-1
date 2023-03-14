@@ -8,8 +8,8 @@
 class Game {
 protected:
 	int round;
-	long long point;
 	int turn;
+	long long point;
 
 	const int PLAYER_AMOUNT;
 	const int WIN_POINT;
@@ -19,36 +19,62 @@ protected:
 	Deck deck;
 
 public:
-	Game(int, int, int, int, int);
+	/***** Constructor *****/
+	/* Game constructor
+	 * @param int round				The amount of round in a shuffle
+	 * @param int turn				The starting player turn
+	 * @param long long point		Current point in game
+	 * @param int PLAYER_AMOUNT		The amount of player in the game
+	 * @param long long WIN_POINT	The amount of point needed to win the game */
+	Game(int, int, long long, int, long long);
 
+	
+	/***** Exception Handling *****/
+	/* Check whether player name already exist in vector of players
+	 * @param string name		The string to be checked */
 	void checkPlayerNameExist(string);
 
 	/***** Getter & Setter *****/
-	// Dipanggil pada akhir ronde ke-6 melalui metode givePoint, kembalikan nilai point
+	/* Returns the value of turn */
 	int getTurn() const;
 
+	/* Returns the current point in game */
 	int getPoint() const;
-	// Dipanggil pada awal ronde ke-1, buat point menjadi 64
+
+	/* Set the current point in game 
+	 * @int point		New point value */
 	void setPoint(int);
 
+	/* Returns the amount of player */
 	int getPlayerCount() const;
 
+	/* Returns the first player in the vector */
 	Player& getPlayer();
 
+	/* Returns a player with the corresponding name
+	 * @param string name	Player name */
 	Player& getPlayer(string);
 
+	/* Returns a player with the corresponding ID
+	 * @param int number	Player number */ 
 	Player& getPlayer(int);
 
+	/* Returns the table */
 	Table& getTable();
 
+	/* Returns the deck */
 	Deck& getDeck();
 
+	/* Check whether the game is over */
 	bool gameOver();
 
+	/* Starts the game */
 	void startGame();
 
+	/* Starts a new shuffle */
 	virtual void newShuffle() = 0;
 
+	/* Starts a new round */
 	virtual void newRound() = 0;
 };
 

@@ -4,13 +4,15 @@
 class Game;
 class Action {
 public:
-	// End player turn (No implementation)
+	/* End current player's turn, no implementation */
 	void actionDoNext();
 
-	// Double the value point in Game
+	/* Double the current point value in Game
+	 * @param Game& game	Current game */
 	void actionDoDouble(Game&);
 
-	// Half the value point in Game
+	/* Half the current point value in Game
+	 * @param Game& game	Current game */
 	void actionDoHalf(Game&);
 };
 
