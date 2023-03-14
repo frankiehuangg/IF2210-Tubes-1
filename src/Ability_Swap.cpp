@@ -2,7 +2,7 @@
 #include "header/Game.hpp"
 
 Swap::Swap(){
-    type = "SWAP";
+    type = "SWAPCARD";
 }
 
 void Swap::useAbility(Game& game) 
