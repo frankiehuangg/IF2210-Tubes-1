@@ -30,6 +30,10 @@ int Player::getPlayerPoint() const {
     return point;
 }
 
+Action& Player::getPlayerAction(){
+    return playerAction;
+}
+
 void Player::addPlayerPoint(long long additionalPoint) {
     point += additionalPoint;
 }
@@ -88,13 +92,6 @@ void Player::doAction(Game& game) {
         else if (input == "HALF") {
             playerAction.actionDoHalf(game);
         }
-
-        // KEBUTUHAN CANGKUL (duh gimana yak, mungkin bikin class baru?)
-        else if (input == "PILIH"){
-            playerAction.choose(game);
-
-        }
-
         else {
             cout << "Sintaks input tidak valid, mohon ulangi!\n";
             invalidInput = true;

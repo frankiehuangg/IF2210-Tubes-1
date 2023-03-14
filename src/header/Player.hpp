@@ -52,6 +52,9 @@ public:
 	/* Returns the current player point */
 	int getPlayerPoint() const;
 
+	/* Returns the current player Action */
+	Action& getPlayerAction();
+
 	/* Add the current player point
 	 * @param long long point		Added player point*/
 	void addPlayerPoint(long long);

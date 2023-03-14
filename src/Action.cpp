@@ -30,18 +30,56 @@ void Action::choose(Game& game)
 
    bool submitted=false;
 
-   while (!submitted){
+   cout<< "Pilih kartu yang ingin anda keluarkan: "<<endl;
+	curPlayer.printCards();
+
+   while (!submitted)
+   {
       cout<<"Pilih kartu yang anda ingin berikan: ";
       cin>>pilihan;
       
       if(pilihan<punya && pilihan>=0 && hand[pilihan].getColor()==curColor) {
          curPlayer.returnOneCardToDeck(game.getTable(),pilihan);
          submitted=true;
-         cout<<"test";
       }
       else{
          cout<<"Kartu tidak valid. Mohon ulangi."<<endl;
       }
                 
+   }
+}
+
+void Action::cangkul(Game& game, int color)
+{
+   bool found=false;
+   Player& curPlayer=game.getPlayer(game.getTurn()+1);
+
+   curPlayer.printCards();
+   cout<<"Anda tidak punya kartu yang sesuai :("<<endl;
+
+   while(!curPlayer.isColorExists(color))
+   {
+      cout<<"Ingin mencangkul?"<<endl;
+      string input;
+      bool invalidInput;
+      do 
+      {
+         invalidInput = false;
+         cin >> input;
+         if(input=="YA")
+         {
+            curPlayer.takeCardFromDeck(game.getDeck(),1);
+            curPlayer.printCards();
+         }
+         else if(input=="TIDAK")
+         {
+            cout<<"Yah, sayang sekali :<< Anda keluar dari permainan."<<endl;
+         }
+         else 
+         {
+            cout << "Sintaks input tidak valid, mohon ulangi!\n";
+            invalidInput = true;
+         }
+      } while (invalidInput);
    }
 }
