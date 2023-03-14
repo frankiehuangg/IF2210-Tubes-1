@@ -34,54 +34,73 @@ private:
 
 public:
 	/***** Constructor dan destructor *****/
-	// Buat sebuah player dengan parameter name dan point awal 0. Lalu inisialisasikan cards dan ability
+	/* Player constructor
+	 * @param string name	Player name
+	 * @param int number	Player number */
 	Player(string, int);	
 
-	// Destruct cards dan ability ke memori
+	/* Player destructor */
 	~Player();
 
-	// Kembalikan nilai number pemain
+	/***** Getter & Setter *****/
+	/* Returns the player's number */
 	int getPlayerNumber() const;
-	// Kembalikan nama player
+
+	/* Returns the player's name */
 	string getPlayerName() const;
 
-	float getValue() const;
-	void setValue(float);
-	
-	// Kembalikan nilai point pemain
+	/* Returns the current player point */
 	int getPlayerPoint() const;
-	// tambah point pemain
-	void addPlayerPoint(int);
 
+	/* Add the current player point
+	 * @param long long point		Added player point*/
+	void addPlayerPoint(long long);
+
+	/* Check whether player has AbilityCard */
 	bool doesAbilityCardExist() const;
 
+	/* Returns the status of player's AbilityCard */
 	bool getAbilityCardStatus() const;
 
+	/* Set the new AbilityCard status
+	 * @param bool status		New card status */
 	void setAbilityCardStatus(bool);
 
+	/* Returns the AbilityCard back to Deck */
 	void returnAbilityToDeck();
 
+	/* Takes one abilityCard from deck
+	 * @param Deck& deck	Deck */
 	void takeAbilityFromDeck(Deck&);
 
+	/* Starts player's action
+	 * @param Game& game	Game */
 	void doAction(Game&);
 
-	/**** Use ability, different for each card *****/
+	/* Use AbilityCard's ability
+	 * @param Game& game	Game */
 	void useAbility(Game&);
 
 	/***** Print *****/
-	// Cetak cards dan ability; cards dicetak dengan memanggil fungsi printCard dari kelas MainCard
+	/* Prints the player's current card */
 	void printCards();
 
-	friend ostream& operator<<(ostream&, Player);
-
-	// Cek apakah poin player > player lain
+	/* Checks whether the current player value > the other player value
+	 * @param Comparable& other		The other player */
 	bool operator< (Comparable&);
 
-	// Cek apakah poin player < player lain
+	/* Checks whether the current player value < the other player value
+	 * @param Comparable& other		The other player */
 	bool operator> (Comparable&);
 
-	// Cek apakah poin player = player lain
+	/* Checks whether the current player value == the other player value
+	 * @param Comparable& other		The other player */
 	bool operator== (Comparable&);
+
+	/* Ostream operator used for cout
+	 * @param ostream& os	ostream
+	 * @param Player Player	player */
+	friend ostream& operator<<(ostream&, Player);
 };
 
 #endif

@@ -27,19 +27,11 @@ string Player::getPlayerName() const {
     return name;
 }
 
-float Player::getValue() const {
-    return point;
-}
-
-void Player::setValue(float _point) {
-    point = _point;
-}
-
 int Player::getPlayerPoint() const {
     return point;
 }
 
-void Player::addPlayerPoint(int additionalPoint) {
+void Player::addPlayerPoint(long long additionalPoint) {
     point += additionalPoint;
 }
 
