@@ -2,9 +2,9 @@
 
 Game::Game(int round, int turn, long long point, int PLAYER_AMOUNT, long long WIN_POINT) : PLAYER_AMOUNT(PLAYER_AMOUNT), WIN_POINT(WIN_POINT)
 {
-	this->round = turn;
-	this->point = point;
+	this->round = round;
 	this->turn = turn;
+	this->point = point;
 }
 
 void Game::checkPlayerNameExist(string name)
