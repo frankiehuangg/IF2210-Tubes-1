@@ -28,7 +28,8 @@ Combo::Combo(const Player& player, const Table& table) {
     temp.clear();
 
     // insert tableCard permutations
-    for (int i = 0; i < tableCard.size(); i++){
+	int table_length = tableCard.size();
+    for (int i = 0; i < table_length; i++){
         int n = perm.size();
         for(int j = 0; j < n; j++){
             if(perm[j].size() < 5){
@@ -41,7 +42,8 @@ Combo::Combo(const Player& player, const Table& table) {
     }
 
     // check for combos
-    for(int i = 0; i < perm.size(); i++){
+	int perm_length = perm.size();
+    for(int i = 0; i < perm_length; i++){
         sort(perm[i].begin(), perm[i].end());
         if(checkStraightFlush(perm[i])){
             float card[5];
