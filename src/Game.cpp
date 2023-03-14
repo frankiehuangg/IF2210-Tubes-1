@@ -1,6 +1,6 @@
 #include "header/Game.hpp"
 
-Game::Game(int round, int point, int turn, int PLAYER_AMOUNT, int WIN_POINT) : PLAYER_AMOUNT(PLAYER_AMOUNT), WIN_POINT(WIN_POINT)
+Game::Game(int round, int turn, long long point, int PLAYER_AMOUNT, long long WIN_POINT) : PLAYER_AMOUNT(PLAYER_AMOUNT), WIN_POINT(WIN_POINT)
 {
 	this->round = turn;
 	this->point = point;
