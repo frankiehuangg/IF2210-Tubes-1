@@ -42,6 +42,10 @@ void Cangkul::newShuffle()
 	this->table.setOpened(1);
 	//ambil satu card dari deck untuk pertama kali
 	this->table.takeCardFromDeck(this->deck, 1);
+
+	// bagikan kartu ke pemain
+	for (int i = 0; i < this->PLAYER_AMOUNT*7; i++)
+			this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
 	
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 	{
@@ -133,4 +137,14 @@ void Cangkul::newRound()
 
 		this->turn++;
 	}
+}
+
+bool Cangkul::gameOver()
+{
+	int count=0;
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+		if (this->players[i].getPlayerPoint() > 0)
+			count++;
+
+	return count>1;
 }

@@ -26,6 +26,9 @@ public:
 	/* Shuffles the vector of players using RoundRobin */
 	void roundRobin();
 
+	/* Check whether the game is over */
+	bool gameOver();
+
 	/* Starts a new shuffle instance */
 	void newShuffle();
 

@@ -69,7 +69,7 @@ public:
 	Deck& getDeck();
 
 	/* Check whether the game is over */
-	bool gameOver();
+	virtual bool gameOver()=0;
 
 	/* Starts the game */
 	void startGame();
