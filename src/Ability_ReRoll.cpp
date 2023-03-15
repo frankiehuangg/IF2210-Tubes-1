@@ -1,7 +1,8 @@
 #include "header/Ability_ReRoll.hpp"
 #include "header/Game.hpp"
 
-ReRoll::ReRoll(){
+ReRoll::ReRoll()
+{
 	type = "RE-ROLL";
 }
 
