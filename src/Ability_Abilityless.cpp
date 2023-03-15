@@ -12,16 +12,16 @@ void Abilityless::useAbility(Game &game)
 {
     if (this->status && !this->isdisabled)
     {
-        bool isAllAbilityCardUsed = true;
+        bool isAllAbilityCardUsedOrDisabled = true;
         for (int i = 1; i <= 7; i++)
         {
-            if (game.getPlayerInTurn().getPlayerNumber() != i && game.getPlayer(i).getAbilityCardStatus())
+            if (game.getPlayerInTurn().getPlayerNumber() != i && game.getPlayer(i).getAbilityCardStatus() && !game.getPlayer(i).abilityDisabled())
             {
-                isAllAbilityCardUsed = false;
+                isAllAbilityCardUsedOrDisabled = false;
             }
         }
 
-        if (isAllAbilityCardUsed)
+        if (isAllAbilityCardUsedOrDisabled)
         {
             std::cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan." << std::endl;
             std::cout << "Yah kamu kena sendiri deh, kartumu dinonaktifkan oleh dirimu sendiri.🤣" << std::endl;
@@ -29,8 +29,8 @@ void Abilityless::useAbility(Game &game)
         }
         else
         {
-            std::cout << game.getPlayerInTurn().getPlayerName() << " akan mematikan kartu ability lawan!" << std ::endl;
-            std::cout << "Silakan pilih pemain yang kartu abilitynya ingin dimatikan:" << std::endl;
+            std::cout << game.getPlayerInTurn().getPlayerName() << " akan menonaktifkan kartu ability lawan!" << std ::endl;
+            std::cout << "Silakan pilih pemain yang kartu abilitynya ingin dinonaktifkan:" << std::endl;
 
             int index = 1;
             std::map<int, int> index_id;
@@ -45,34 +45,38 @@ void Abilityless::useAbility(Game &game)
             }
 
             string choicesRaw;
-            bool isValidInputNumber = true;
             int choices;
-            do
+            bool isValidInputNumber = false;
+            std::cin.ignore();
+            while (!isValidInputNumber || choices < 1 || choices > 6)
             {
                 std::cout << "Mohon masukkan angka 1-6!" << std::endl;
                 std::cout << "> ";
-                getline(std::cin, choicesRaw);
+                std::getline(std::cin, choicesRaw);
                 if (choicesRaw.length() == 1 && isdigit(choicesRaw[0]))
                 {
                     choices = stoi(choicesRaw);
+                    isValidInputNumber = true;
                 }
-                else
-                {
-                    isValidInputNumber = false;
-                }
-            } while (!isValidInputNumber || choices < 1 || choices > 6);
+            }
 
+            bool isOtherDisabled = game.getPlayer(index_id[choices]).abilityDisabled();
             bool statusOther = game.getPlayer(index_id[choices]).getAbilityCardStatus();
-            if (statusOther)
+            if (statusOther && !isOtherDisabled)
             {
-                game.getPlayer(index_id[choices]).setAbilityCardStatus(false);
-                std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dimatikan!" << std::endl;
+                game.getPlayer(index_id[choices]).disableAbilityCard();
+                std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dinonaktifkan!" << std::endl;
                 this->status = false;
+            }
+            else if (!statusOther)
+            {
+                std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dipakai sebelumnya." << std::endl;
+                std::cout << "Yah, nyerangnya gagal deh..🤣" << std::endl;
             }
             else
             {
-                std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dipakai sebelumnya." << std::endl;
-                std::cout << "Yah, sayang penggunaan kartu ini sia-sia🤣" << std::endl;
+                std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dinonaktifkan." << std::endl;
+                std::cout << "Yah, nyerangnya gagal deh..🤣" << std::endl;
             }
         }
     }
