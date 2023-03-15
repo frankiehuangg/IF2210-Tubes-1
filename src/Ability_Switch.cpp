@@ -22,28 +22,39 @@ void Switch::useAbility(Game& game)
         cout << currentPlayer.getPlayerName() << " melakukan SWITCH!" << endl;
 
         /*** Ini mungkin dijadiin satu method aja biar modular ***/
-        cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: " << endl;
-        for (int i = 1, num = 1; i <= playerCount; i++, num++)
+        bool valid = false;
+        while (!valid) 
         {
-            Player playerLoop = game.getPlayer(i);
-
-            if (playerLoop.getPlayerNumber() != currentPlayer.getPlayerNumber())
+            try 
             {
-                cout << num << ". " << playerLoop.getPlayerName() << endl;
+                cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: " << endl;
+                for (int i = 1, num = 1; i <= playerCount; i++, num++)
+                {
+                    Player playerLoop = game.getPlayer(i);
+
+                    if (playerLoop.getPlayerNumber() != currentPlayer.getPlayerNumber())
+                    {
+                        cout << num << ". " << playerLoop.getPlayerName() << endl;
+                    }
+                }
+                cout << "< " << endl;
+                cin >> playerOption;
+                if (playerOption >= currentPlayer.getPlayerNumber()) 
+                {
+                    ++playerOption;
+                }
+                game.getPlayer(playerOption); // Kalo ga berhasil akan throw PlayerNotExist
+                valid = true;
+            }
+            catch (PlayerNotExist &e)
+            {
+                cout << "Masukan pemain tidak valid. Ulangi!" << endl;
             }
         }
 
-        cout << "< " << endl;
-        cin >> playerOption;
+        Player &switchedPlayer = game.getPlayer(playerOption);
         /*********************************************************/
-
-        if (playerOption < 1 || playerOption > playerCount - 1)
-        {
-            throw PlayerNotExist();
-        }
-
-        int switchedPlayerNumber = playerOption < currentPlayer.getPlayerNumber() ? playerOption : playerOption - 1;
-        Player &switchedPlayer = game.getPlayer(switchedPlayerNumber);
+        
 
         /*** Ini mungkin dijadiin satu method aja biar modular ***/
         MainCard temp1 = currentPlayer.getCard(0);
