@@ -1,12 +1,5 @@
 #include "header/Io_Handler.hpp"
 
-struct bebas:exception
-{
-    const char * printError() const throw(){
-        throw "salah";
-    }
-};
-
 template<class T>
 IOHandler<T>::IOHandler(vector<T> acc) 
 {
