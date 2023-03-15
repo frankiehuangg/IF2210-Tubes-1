@@ -82,10 +82,10 @@ public:
 	/* Returns the status of ability card's disabled state */
 	bool abilityDisabled() const;
 
-	/* Enable the ability card owned by the player */
+	/* Disable the ability card owned by the player */
 	void disableAbilityCard();
 
-	/* Disable the ability card owned by the player */
+	/* Enable the ability card owned by the player */
 	void enableAbilityCard();
 
 	/* Returns the AbilityCard back to Deck */
