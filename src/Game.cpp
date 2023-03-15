@@ -54,6 +54,11 @@ Player& Game::getPlayerInTurn()
 	return this->players[this->turn];
 }
 
+Player& Game::getPlayerInTurn(int index)
+{
+	return this->players[index];
+}
+
 Player& Game::getPlayer(int number)
 {
 	for (int i = 0; i < this->players.size(); i++)
@@ -77,6 +82,15 @@ void Game::printPlayerTurn()
 	for (int i = 0; i < this->players.size(); i++)
 		cout<<this->players[i].getPlayerNumber()<<" ";
 	cout<<endl;
+}
+
+void Game::setPlayerTurn(vector<Player> curTurn)
+{
+	this->players.clear();
+	for(unsigned i=0; i<curTurn.size(); i++)
+	{
+		this->players.push_back(curTurn[i]);
+	}
 }
 
 
