@@ -79,6 +79,15 @@ public:
 	 * @param bool status		New card status */
 	void setAbilityCardStatus(bool);
 
+	/* Returns the status of ability card's disabled state */
+	bool abilityDisabled() const;
+
+	/* Enable the ability card owned by the player */
+	void disableAbilityCard();
+
+	/* Disable the ability card owned by the player */
+	void enableAbilityCard();
+
 	/* Returns the AbilityCard back to Deck */
 	void returnAbilityToDeck(Deck&);
 
@@ -97,6 +106,9 @@ public:
 	/***** Print *****/
 	/* Prints the player's current card */
 	void printCards();
+
+	/* Prints the player's info : ID (number), Name, Point, Ability (if available) */
+	void printInfo();
 
 	/* Prints the player's card specifier */
 	void printCardsSpecifier();

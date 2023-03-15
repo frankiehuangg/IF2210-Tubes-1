@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 #include "header/Game.hpp"
+#include "header/Cangkul.hpp"
 
 // End player turn (No implementation)
 void Action::actionDoNext(){}
@@ -22,6 +23,7 @@ void Action::actionDoHalf(Game& game)
 void Action::choose(Game& game)
 {
    int pilihan;
+   IOHandler<int> intIO;
    
    Player& curPlayer=game.getPlayerInTurn();
    vector<MainCard> hand=curPlayer.getInventoryCards();
@@ -38,8 +40,7 @@ void Action::choose(Game& game)
 
    while (!submitted)
    {
-      cout<<"Pilih kartu yang anda ingin berikan: ";
-      cin>>pilihan;
+      pilihan=intIO.getInput();
       pilihan--;
       
       if(pilihan<punya && pilihan>=0 && (hand[pilihan].getColor()==curColor||tableSize==0)) {
@@ -49,42 +50,43 @@ void Action::choose(Game& game)
       else{
          cout<<"Kartu tidak valid. Mohon ulangi."<<endl;
       }
-                
    }
 }
 
-void Action::cangkul(Game& game, int color)
+void Action::cangkul(Cangkul& game, int color, Inventory& dump)
 {
-   bool found=false;
-   Player& curPlayer=game.getPlayerInTurn();
+   IOHandler<string> stringIO;
+   stringIO.addAccepted("YA");
+   stringIO.addAccepted("TIDAK");
 
+   Player& curPlayer=game.getPlayerInTurn();
    curPlayer.printCards();
    cout<<"Anda tidak punya kartu yang sesuai :("<<endl;
 
    while(!curPlayer.isColorExists(color) && curPlayer.getPlayerStatus())
    {
-      cout<<"Ingin mencangkul?"<<endl;
-      string input;
-      bool invalidInput;
-      do 
+      if(!game.dumpManage()) 
       {
-         invalidInput = false;
-         cin >> input;
-         if(input=="YA")
-         {
-            curPlayer.takeCardFromDeck(game.getDeck(),1);
+         cout<<"Tidak ada lagi yang bisa dicangkul :<<";
+         curPlayer.setPlayerStatus(false);
+         curPlayer.returnCardToDeck(dump);
+         break;
+      }
+      
+      cout<<"Ingin mencangkul? (YA/TIDAK)"<<endl;
+      string input;
+      input = stringIO.getInputInAccepted();
+      if(input=="YA")
+      {
+         curPlayer.takeCardFromDeck(game.getDeck(),1);
+         if(!curPlayer.isColorExists(color))
             curPlayer.printCards();
-         }
-         else if(input=="TIDAK")
-         {
-            cout<<"Yah, sayang sekali :<< Anda keluar dari permainan."<<endl;
-            curPlayer.setPlayerStatus(false);
-         }
-         else 
-         {
-            cout << "Sintaks input tidak valid, mohon ulangi!\n";
-            invalidInput = true;
-         }
-      } while (invalidInput);
+      }
+      else if(input=="TIDAK")
+      {
+         cout<<"Yah, sayang sekali :<< Anda keluar dari permainan."<<endl;
+         curPlayer.setPlayerStatus(false);
+         curPlayer.returnCardToDeck(dump);
+      }
    }
 }
