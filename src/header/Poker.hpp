@@ -8,6 +8,7 @@ class Poker;
 #include "Exception.hpp"
 #include "Table.hpp"
 #include "Game.hpp"
+#include "Combo.hpp"
 
 using namespace std;
 
@@ -16,6 +17,8 @@ private:
 	int shuffle;
 
 	const int ROUND_AMOUNT;
+	
+	vector<Combo> combos;
 
 public:
 

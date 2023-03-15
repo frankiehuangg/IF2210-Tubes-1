@@ -2,7 +2,7 @@
 #include <limits>
 #include "header/Poker.hpp"
 
-Poker::Poker() : Game(0, 64, 0, 7, 1LL << 31), ROUND_AMOUNT(6)
+Poker::Poker() : Game(0, 64, 0, 7, 1LL << 31), ROUND_AMOUNT(6), combos(PLAYER_AMOUNT)
 {
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -107,12 +107,26 @@ void Poker::newShuffle()
 		this->round++;
 	}
 
-	Player &winner = this->players[0];
-	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i] > winner)
-			winner = this->players[i];
+	// Calculate winning combo
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++){
+		Player& player = this->players[i];
+		this->combos[i] = Combo(player, this->table);
+		player.printInfo();
+		cout << this->combos[i];
+		cout << this->combos[i].what() << '\n';
+	}
 
-	winner.addPlayerPoint(this->point);
+	// int winnerID = maxElmtidx(this->combos);
+	int winnerID = 0;
+	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
+	{
+		if (this->combos[i] > this->combos[winnerID])
+		{
+			winnerID = i;
+		}
+	}
+
+	this->players[winnerID].addPlayerPoint(this->point);
 
 	if (!gameOver())
 	{
@@ -121,7 +135,7 @@ void Poker::newShuffle()
 	}
 	else
 	{
-		cout << "Pemain " << winner.getPlayerName() << " memenangkan permainan!" << endl;
+		cout << "Pemain " << this->players[winnerID].getPlayerName() << " memenangkan permainan!" << endl;
 	}
 }
 
