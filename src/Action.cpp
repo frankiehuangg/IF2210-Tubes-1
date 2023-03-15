@@ -15,5 +15,6 @@ void Action::actionDoDouble(Game& game)
 // Half the value point in Game
 void Action::actionDoHalf(Game& game)
 {
-   game.setPoint(game.getPoint() / 2);
+	if (game.getPoint() > 1)
+		game.setPoint(game.getPoint() / 2);
 }
