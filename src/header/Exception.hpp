@@ -21,11 +21,19 @@ struct PlayerNotExist : public exception
 	}
 };
 
+struct PlayerNameInvalid : public exception
+{
+	const char* printError() const throw()
+	{
+		return "Name not allowed. Please choose another name.";
+	}
+};
+
 struct CreatePlayerFailed : public exception
 {
 	const char* printError() const throw()
 	{
-		return "Name not allowed. Please choose another name";
+		return "Name is chosen by another player. Please choose another name";
 	}
 };
 
