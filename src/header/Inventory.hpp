@@ -38,9 +38,19 @@ public:
 	/* Check whether the inventory is empty */
 	bool isInventoryEmpty();
 
+	/* Check whether a certain color exists 
+	 * @ param int color	Color searched		*/
+	bool isColorExists(int);
+
 	/* Returns all cards to deck
 	 * @param Inventory& deck	Deck */
 	void returnCardToDeck(Inventory&);
+
+	/* Returns one card to deck
+	 * @param Inventory& deck	Deck 
+	 * @param index				The index of card returned */
+	
+	void returnOneCardToDeck(Inventory&, int);
 
 	/* Takes an amount of card from deck
 	 * @param Inventory& deck	Deck

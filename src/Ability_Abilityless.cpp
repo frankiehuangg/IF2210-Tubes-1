@@ -1,6 +1,9 @@
 #include "header/Ability_Abilityless.hpp"
 #include "header/Game.hpp"
-#include <iostream>
+
+Abilityless::Abilityless() {
+    type = "ABILITYLESS";
+}
 
 /**** Use ability, different for each card *****/
 // Ubah status abilityCard pemain lain menjadi false
@@ -22,10 +25,11 @@ void Abilityless::useAbility(Game &game)
             std::cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan." << std::endl;
             std::cout << "Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless." << std::endl;
             std::cout << "Yah, penggunaan kartu ini sia-sia." << std::endl;
+            this->status = false;
         }
         else
         {
-            std::cout << game.getPlayer().getPlayerName() << " akan mematikan kartu ability lawan!" << std :: endl;
+            std::cout << game.getPlayer().getPlayerName() << " akan mematikan kartu ability lawan!" << std ::endl;
             std::cout << "Silakan pilih pemain yang kartu abilitynya ingin dimatikan:" << std::endl;
 
             for (int i = 1; i < 7; i++)
@@ -46,6 +50,7 @@ void Abilityless::useAbility(Game &game)
             {
                 game.getPlayer(choices).setAbilityCardStatus(false);
                 std::cout << "Kartu ability " << game.getPlayer(choices).getPlayerName() << " telah dimatikan!" << std::endl;
+                this->status = false;
             }
             else
             {
@@ -53,7 +58,6 @@ void Abilityless::useAbility(Game &game)
                 std::cout << "Yah, sayang penggunaan kartu ini sia-sia🤣" << std::endl;
             }
         }
-        this->status = false;
     }
     else
     {
@@ -62,16 +66,10 @@ void Abilityless::useAbility(Game &game)
 }
 
 /***** Print card *****/
-// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
+// Print card info and status
 void Abilityless::printCard()
 {
-    /*
-    if (game.round = 1) {
-        cout << "NOT AVAILABLE"
-    } else {
-        cout << "NAME     : ABILITYLESS" << endl;
-        cout << "STATUS   : " << this->status << endl;
-        cout << "ABILITY  : Mematikan kemampuan kartu lawan" << endl;
-    }
-    */
+    std::cout << "NAME     : ABILITYLESS" << std::endl;
+    std::cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
+    std::cout << "ABILITY  : Mematikan kemampuan kartu lawan" << std::endl;
 }

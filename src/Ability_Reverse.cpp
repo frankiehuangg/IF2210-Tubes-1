@@ -1,6 +1,10 @@
 #include "header/Ability_Reverse.hpp"
 #include "header/Game.hpp"
 
+Reverse::Reverse(){
+	type = "REVERSE";
+}
+
 // Reverse player's turn RoundRobin 
 void Reverse::useAbility(Game &game)
 {

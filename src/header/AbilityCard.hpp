@@ -1,11 +1,16 @@
 #ifndef _ABILITY_HPP_
 #define _ABILITY_HPP_
 
+#include <string>
+
+using std::string;
+
 class Game;
 
 class AbilityCard {
 protected:
 	bool status;
+	string type;
 
 public:
 	virtual ~AbilityCard();
@@ -14,6 +19,9 @@ public:
 	bool getStatus() const;
 	void setStatus(bool);
 
+	// return card type
+	string getType() const;
+
 	/**** Use ability, different for each card *****/
 	virtual void useAbility(Game&);
 
@@ -21,8 +29,9 @@ public:
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
 	virtual void printCard();
 
-	// dia aku ubah virtual karena kita ada make stl (deque) dengan class AbilityCard
+	// dia aku ubah non pure virtual karena kita ada make stl (deque) dengan class AbilityCard
 	// antara ini gajadi virtual ATO make stlnya sama reference/pointer
+
 };
 
 #endif

@@ -54,6 +54,9 @@ public:
 	/* Returns the first player in the vector */
 	Player& getPlayer();
 
+	/* Returns the player in turn */
+	Player& getPlayerInTurn();
+
 	/* Returns a player with the corresponding name
 	 * @param string name	Player name */
 	Player& getPlayer(string);
@@ -62,6 +65,9 @@ public:
 	 * @param int number	Player number */ 
 	Player& getPlayer(int);
 
+	/* Prints current player turns */
+	void printPlayerTurn();
+
 	/* Returns the table */
 	Table& getTable();
 
@@ -69,16 +75,13 @@ public:
 	Deck& getDeck();
 
 	/* Check whether the game is over */
-	bool gameOver();
+	virtual bool gameOver()=0;
 
 	/* Starts the game */
 	void startGame();
 
 	/* Starts a new shuffle */
 	virtual void newShuffle() = 0;
-
-	/* Starts a new round */
-	virtual void newRound() = 0;
 };
 
 #endif

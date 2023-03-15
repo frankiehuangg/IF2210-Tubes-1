@@ -119,6 +119,15 @@ void Poker::newShuffle()
 	}
 }
 
+bool Poker::gameOver()
+{
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+		if (this->players[i].getPlayerPoint() > (1 << 31))
+			return true;
+
+	return false;
+}
+
 void Poker::newRound()
 {
 	this->turn = 0;
@@ -126,7 +135,7 @@ void Poker::newRound()
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-		system("clear");
+		//system("clear");
 		
 		cout << "Round: " << getRound()+1 << endl;
 

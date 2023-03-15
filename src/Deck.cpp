@@ -6,7 +6,7 @@ Deck::Deck() : Inventory(52) {
             cards.push_back(MainCard(i, j));
         }
     }
-
+    
     // initiate ability cards
     abilities.push_back(ReRoll());
     abilities.push_back(Quadruple());
@@ -27,6 +27,7 @@ Deck::Deck() : Inventory(52) {
 // Acak MainCard
 void Deck::shuffleMainCards() {
     int size = cards.size();
+    
     srand(time(NULL));
     for(int i = 0; i < size; i++) {
         int idx = rand() % size;  // generate random index from 0..size
@@ -57,66 +58,71 @@ void Deck::getDeckFromInput() {
     // parse input
     string line;
     int n = 0;
-    while(getline(fin, line)) {
-        bool numRead = false, colorRead = true;
-        int num, color;
-        num = 1;
-        color = 0;
+    try {
+        while(getline(fin, line)) {
+            bool numRead = false, colorRead = true;
+            int num, color;
+            num = 1;
+            color = 0;
+            
+            string::iterator it;
+            // read card number
+            for(it = line.begin(); it != line.end(); ++it) {
+                if(!numRead) {
+                    if (*it == ' ') {
+                        continue;
+                    }
+                    else if (isdigit(*it)) {
+                        int temp = *it - '0';
+                        if(temp == 0) {
+                            continue;
+                        }
+                        num = temp;
+                        numRead = true;
+                    }
+                    else {
+                        throw InputInvalid();
+                    }
+                }
+                else if (num == 1 && (*it - '0')<= 3) {
+                    num *= 10;
+                    num += *it - '0';
+                }
+                else throw InputInvalid();
+            }
 
-        string::iterator it;
-        // read card number
-        for(it = line.begin(); it != line.end(); ++it) {
-            if(!numRead) {
+            // read card color
+            for(/* it = it */; it != line.end(); ++it) {
                 if (*it == ' ') {
                     continue;
                 }
-                else if (isdigit(*it)) {
+                else if (isdigit(*it) && !colorRead) {
                     int temp = *it - '0';
                     if(temp == 0) {
                         continue;
                     }
-                    num = temp;
-                    numRead = true;
+                    else if (0 <= temp && temp <= 3){
+                        color = temp;
+                        colorRead = true;
+                    }
+                    else throw InputInvalid();
                 }
                 else {
-                    throw InputInvalid(n+1);
+                    throw InputInvalid();
                 }
             }
-            else if (num == 1 && (*it - '0')<= 3) {
-                num *= 10;
-                num += *it - '0';
-            }
-            else throw InputInvalid(n+1);
+
+            if (!(numRead && colorRead)) throw InputInvalid();
+
+            MainCard inCard(num, color);
+            if(cardTable[inCard]) throw DuplicateCardExist();
+            
+            cards[n] = MainCard(num, color);
+            n++;
         }
-
-        // read card color
-        for(/* it = it */; it != line.end(); ++it) {
-            if (*it == ' ') {
-                continue;
-            }
-            else if (isdigit(*it) && !colorRead) {
-                int temp = *it - '0';
-                if(temp == 0) {
-                    continue;
-                }
-                else if (0 <= temp && temp <= 3){
-                    color = temp;
-                    colorRead = true;
-                }
-                else throw InputInvalid(n+1);
-            }
-            else {
-                throw InputInvalid(n+1);
-            }
-        }
-
-        if (!(numRead && colorRead)) throw InputInvalid(n+1);
-
-        MainCard inCard(num, color);
-        if(cardTable[inCard]) throw DuplicateCardExist(n+1);
-        
-        cards[n] = MainCard(num, color);
-        n++;
+    } catch (exception& err) {
+        cout << err.what() << n+1 << '\n';
+        throw InvalidFileSyntax();
     }
 }
 

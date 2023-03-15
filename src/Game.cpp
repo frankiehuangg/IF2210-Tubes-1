@@ -44,9 +44,14 @@ Player& Game::getPlayer()
 	return this->players[0];
 }
 
+Player& Game::getPlayerInTurn()
+{
+	return this->players[this->turn];
+}
+
 Player& Game::getPlayer(int number)
 {
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+	for (int i = 0; i < this->players.size(); i++)
 		if (this->players[i].getPlayerNumber() == number)
 			return this->players[i];
 
@@ -55,12 +60,20 @@ Player& Game::getPlayer(int number)
 
 Player& Game::getPlayer(string name)
 {
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+	for (int i = 0; i < this->players.size(); i++)
 		if (this->players[i].getPlayerName() == name)
 			return this->players[i];
 
 	throw PlayerNotExist();
 }
+void Game::printPlayerTurn()
+{
+	cout<<"Current round's turn : ";
+	for (int i = 0; i < this->players.size(); i++)
+		cout<<this->players[i].getPlayerNumber()<<" ";
+	cout<<endl;
+}
+
 
 Table& Game::getTable()
 {
@@ -70,15 +83,6 @@ Table& Game::getTable()
 Deck& Game::getDeck()
 {
 	return this->deck;
-}
-
-bool Game::gameOver()
-{
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i].getPlayerPoint() > (1 << 31))
-			return true;
-
-	return false;
 }
 
 void Game::startGame()
