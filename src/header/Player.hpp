@@ -53,7 +53,7 @@ public:
 	string getPlayerName() const;
 
 	/* Returns the current player point */
-	int getPlayerPoint() const;
+	long long getPlayerPoint() const;
 
 	/* Returns the current player status */
 	bool getPlayerStatus() const;

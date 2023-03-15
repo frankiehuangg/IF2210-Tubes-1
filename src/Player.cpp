@@ -27,7 +27,7 @@ string Player::getPlayerName() const {
     return name;
 }
 
-int Player::getPlayerPoint() const {
+long long Player::getPlayerPoint() const {
     return point;
 }
 
@@ -128,7 +128,7 @@ ostream& operator<< (ostream& os, Player player)
 
 	for (int i = 0; i < length; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards2.txt", "r");
+		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 
