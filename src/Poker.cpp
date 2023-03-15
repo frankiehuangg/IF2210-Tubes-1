@@ -93,9 +93,9 @@ void Poker::newShuffle()
 			// Acak kartu ability
 			this->deck.shuffleAbilityCards();
 
-			// // Ambil ability card dari pemain
-			// for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-			// 	this->players[i].takeAbilityFromDeck(this->deck);
+			// Ambil ability card dari pemain
+			for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+				this->players[i].takeAbilityFromDeck(this->deck);
 		}
 		// Buka 1 kartu di table
 		if (this->round > 0)
@@ -142,7 +142,7 @@ void Poker::newRound()
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-		system("clear");
+		// system("clear");
 		
 		cout << "Round: " << getRound()+1 << endl;
 
