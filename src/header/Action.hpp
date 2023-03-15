@@ -3,6 +3,7 @@
 
 #include "Io_Handler.hpp"
 
+class Inventory;
 class Game;
 class Action {
 public:
