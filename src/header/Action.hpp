@@ -22,9 +22,10 @@ public:
 	void choose(Game&);
 
 	/* Do cangkul until found or gives up
-	 * @param Game& game	Current game 
-	 * @param int color		Color to search */
-	void cangkul(Game&,int);
+	 * @param Game& game		Current game 
+	 * @param int color		 	Color to search 
+	 * @param Inventory& dump	Dump place */
+	void cangkul(Game&,int,Inventory&);
 };
 
 #endif

@@ -1,15 +1,6 @@
 #include <iostream>
 #include "header/Cangkul.hpp"
 
-/*
-TO DO:
-- saat deck kosong ambil dari dump
-- saat surrender pindahkan ke dump
-- validasi input integer ??
-- (kalo bisa) bikin lebih oopeh
-
-*/
-
 Cangkul::Cangkul() : Game(0, 64, 0, 4, 1 << 31), ROUND_AMOUNT(6)
 {
 	this->shuffle = 0;
@@ -126,7 +117,7 @@ void Cangkul::newRound()
 		}
 		else
 		{
-			this->players[turn].getPlayerAction().cangkul((*this),curColor);
+			this->players[turn].getPlayerAction().cangkul((*this),curColor,this->dump);
 			if(this->players[turn].getPlayerStatus())
 				this->players[turn].getPlayerAction().choose((*this));
 		}

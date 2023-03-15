@@ -55,7 +55,7 @@ void Action::choose(Game& game)
    }
 }
 
-void Action::cangkul(Game& game, int color)
+void Action::cangkul(Game& game, int color, Inventory& dump)
 {
    IOHandler<string> stringIO;
    stringIO.addAccepted("YA");
@@ -67,6 +67,8 @@ void Action::cangkul(Game& game, int color)
 
    while(!curPlayer.isColorExists(color) && curPlayer.getPlayerStatus())
    {
+      if(game.getDeck().isInventoryEmpty()) 
+         dump.returnCardToDeck(game.getDeck());
       cout<<"Ingin mencangkul? (YA/TIDAK)"<<endl;
       string input;
       input = stringIO.getInputInAccepted();
@@ -79,6 +81,7 @@ void Action::cangkul(Game& game, int color)
       {
          cout<<"Yah, sayang sekali :<< Anda keluar dari permainan."<<endl;
          curPlayer.setPlayerStatus(false);
+         curPlayer.returnCardToDeck(dump);
       }
    }
 }
