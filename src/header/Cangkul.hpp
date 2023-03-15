@@ -29,6 +29,9 @@ public:
 	/* Check whether the game is over */
 	bool gameOver();
 
+	/* Announce who won the game  */
+	void gameWinner();
+
 	/* Starts a new shuffle instance */
 	void newShuffle();
 
