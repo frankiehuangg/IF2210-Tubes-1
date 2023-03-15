@@ -26,10 +26,10 @@ public:
 
 /* Return maximum element of a Comparable vector, must contain at least one element */
 template <class T>
-T &maxElmt(vector<T> &);
+T &maxElmt(const vector<T> &);
 
 /* Return index of maximum element of a Comparable vector, must contain at least one element */
 template <class T>
-int maxElmtidx(vector<T> &);
+int maxElmtidx(const vector<T> &);
 
 #endif

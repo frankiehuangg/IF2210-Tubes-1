@@ -11,7 +11,7 @@ void Comparable::setValue(float value)
 }
 
 template <class T>
-T &maxElmt(vector<T> &container)
+T &maxElmt(const vector<T> &container)
 {
 	T maxs = container[0];
 
@@ -26,7 +26,7 @@ T &maxElmt(vector<T> &container)
 }
 
 template <class T>
-int maxElmtidx(vector<T> &container)
+int maxElmtidx(const vector<T> &container)
 {
 	int maxidx = 0;
 
