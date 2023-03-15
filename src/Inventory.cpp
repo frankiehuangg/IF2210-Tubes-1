@@ -37,12 +37,33 @@ bool Inventory::isInventoryEmpty()
 	return false;
 }
 
+bool Inventory::isColorExists(int color)
+{
+	int size = this->cards.size();
+	for(unsigned i=0; i<size; i++)
+	{
+		if(this->cards[i].getColor()==color)
+			return true;
+	}	
+	return false;
+}
+
 void Inventory::returnCardToDeck(Inventory& deck)
 {
 	int size = this->cards.size();
 
 	vector<MainCard> temp = *this - size;
 	deck = deck + temp;
+}
+
+void Inventory::returnOneCardToDeck(Inventory& deck, int index)
+{
+	vector<MainCard> temp;
+	temp.push_back((*this).cards[index]);
+	vector<MainCard>::iterator it = this->cards.begin() + index;
+	deck = deck + temp;
+	this->cards.erase(it);
+	this->amount-=1;
 }
 
 void Inventory::takeCardFromDeck(Inventory& deck, int amount)

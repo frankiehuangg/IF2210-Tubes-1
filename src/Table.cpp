@@ -45,7 +45,7 @@ ostream& operator<<(ostream& os, Table table)
 
 	for (int i = 0; i <openThen; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
+		FILE *fin = fopen("src/ascii/cards2.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 
@@ -69,7 +69,7 @@ ostream& operator<<(ostream& os, Table table)
 
 	for (int i = table.getOpened(); i < numCard; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
+		FILE *fin = fopen("src/ascii/cards2.txt", "r");
 
 		int line_num = 143;
 
@@ -93,7 +93,7 @@ ostream& operator<<(ostream& os, Table table)
 
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < table.getOpened(); j++)
+		for (int j = 0; j < openThen; j++)
 		{
 			if (cards[j].getColor() == 0)
 				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";
@@ -104,7 +104,7 @@ ostream& operator<<(ostream& os, Table table)
 			else
 				os << C04 << print[i][j].erase(print[i][j].length()-1) << " ";
 		}
-		for (int j = table.getOpened(); j < 5; j++)
+		for (int j = table.getOpened(); j < numCard; j++)
 		{
 			os << C05 << print[i][j].erase(print[i][j].length() - 1) << " ";
 		}

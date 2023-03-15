@@ -4,14 +4,16 @@ Player::Player(string _name, int _number) : Inventory(2) {
     name = _name;
     number = _number;
     point = 0;
+    status = true;
 
     ability = NULL;
 
     // Push dummmy elements for vector to allocate size beforehand
+    /*
     MainCard dummy(-1, -1);
     cards.push_back(dummy);
     cards.push_back(dummy);
-
+     */
     // initialize Action;
 }
 
@@ -27,6 +29,18 @@ string Player::getPlayerName() const {
 
 int Player::getPlayerPoint() const {
     return point;
+}
+
+bool Player::getPlayerStatus() const {
+    return status;
+}
+
+void Player::setPlayerStatus(bool status){
+    this->status=status;
+}
+
+Action& Player::getPlayerAction(){
+    return playerAction;
 }
 
 void Player::addPlayerPoint(long long additionalPoint) {
@@ -114,7 +128,7 @@ ostream& operator<< (ostream& os, Player player)
 
 	for (int i = 0; i < length; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
+		FILE *fin = fopen("src/ascii/cards2.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 

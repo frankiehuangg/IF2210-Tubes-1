@@ -1,7 +1,7 @@
-#ifndef _POKER_HPP_
-#define _POKER_HPP_
+#ifndef _CANGKUL_HPP_
+#define _CANGKUL_HPP_
 
-class BlackJack;
+class Cangkul;
 
 #include <vector>
 #include <stdlib.h>
@@ -14,8 +14,7 @@ using namespace std;
 class Cangkul : public Game {
 private:
 	int shuffle;
-
-	Table buangan;
+	Table dump;
 	const int ROUND_AMOUNT;
 
 public:
@@ -23,6 +22,9 @@ public:
 	/***** Constructor dan destructor *****/
 	/* Poker constructor */
 	Cangkul();
+
+	/* Determines the next round position */
+	void roundManage();
 
 	/* Check whether the game is over */
 	bool gameOver();

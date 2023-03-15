@@ -14,6 +14,15 @@ public:
 	/* Half the current point value in Game
 	 * @param Game& game	Current game */
 	void actionDoHalf(Game&);
+	
+	/* Choose card to submit to table
+	 * @param Game& game	Current game */
+	void choose(Game&);
+
+	/* Do cangkul until found or gives up
+	 * @param Game& game	Current game 
+	 * @param int color		Color to search */
+	void cangkul(Game&,int);
 };
 
 #endif

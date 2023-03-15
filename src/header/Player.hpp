@@ -29,6 +29,9 @@ private:
 	int number;
 	long long point;
 
+	/* attribute to tell if player is still in the game*/
+	bool status;
+
 	AbilityCard* ability;
 	Action playerAction;
 
@@ -51,6 +54,16 @@ public:
 
 	/* Returns the current player point */
 	int getPlayerPoint() const;
+
+	/* Returns the current player status */
+	bool getPlayerStatus() const;
+
+	/* Set the current player point 
+	 * @param bool status		Changed status*/
+	void setPlayerStatus(bool);
+
+	/* Returns the current player Action */
+	Action& getPlayerAction();
 
 	/* Add the current player point
 	 * @param long long point		Added player point*/
