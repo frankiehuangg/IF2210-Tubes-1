@@ -53,6 +53,11 @@ public:
 	/* Checks whether the current card value == the other card value
 	 * @param Comparable& other		The other card */
 	bool operator== (Comparable&);
+
+	/* Ostream operator used for cout
+	 * @param ostream& os	ostream
+	 * @param const vector<MainCard>& cards	container */
+	friend ostream& operator<<(ostream&, const vector<MainCard>&);
 };
 
 #endif
