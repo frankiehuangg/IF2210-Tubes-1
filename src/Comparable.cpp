@@ -26,9 +26,9 @@ T &maxElmt(vector<T> &container)
 }
 
 template <class T>
-T &maxElmtidx(vector<T> &container)
+int maxElmtidx(vector<T> &container)
 {
-	T maxidx = 0;
+	int maxidx = 0;
 
 	for (int i = 1; i < container.size(); i++)
 	{

@@ -2,7 +2,6 @@
 #define _COMPARABLE_HPP_
 
 #include <vector>
-#include <iterator>
 
 using namespace std;
 
@@ -31,6 +30,6 @@ T &maxElmt(vector<T> &);
 
 /* Return index of maximum element of a Comparable vector, must contain at least one element */
 template <class T>
-T &maxElmtidx(vector<T> &);
+int maxElmtidx(vector<T> &);
 
 #endif
