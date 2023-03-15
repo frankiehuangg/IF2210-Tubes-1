@@ -173,6 +173,15 @@ void Player::printCards() {
 	cout << (*this);
 }
 
+void Player::printInfo() {
+    cout << "ID: " << number << '\n';
+    cout << "Name: " << name << '\n';
+    cout << "Point: " << point << '\n';
+    if(ability != NULL) {
+        ability->printCard();
+    }
+}
+
 void Player::printCardsSpecifier() {
     vector<MainCard> cards = this->getInventoryCards();
 

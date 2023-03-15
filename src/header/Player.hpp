@@ -98,6 +98,9 @@ public:
 	/* Prints the player's current card */
 	void printCards();
 
+	/* Prints the player's info : ID (number), Name, Point, Ability (if available) */
+	void printInfo();
+
 	/* Prints the player's card specifier */
 	void printCardsSpecifier();
 
