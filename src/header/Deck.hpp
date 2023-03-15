@@ -33,6 +33,9 @@ public:
 	// Construct sebuah deck dengan nilai amount = 52 serta inisialisasikan attribute cards dengan panjang 52 dan abilities dengan panjang 7
 	Deck();
 
+	// Destruct deck with its dynamically allocated AbilityCards
+	~Deck();
+
 	// Acak MainCard
 	void shuffleMainCards();
 
@@ -52,7 +55,7 @@ public:
 	void returnAbilityToDeck(AbilityCard*);
 
 private:
-	vector<AbilityCard> abilities;
+	vector<AbilityCard*> abilities;
 	map<AbilityCard*, int> usedBy;	// map kartu ability ke player yang sedang memiliki, -1 jika sedang tidak dimiliki (berada di deck)
 	int abilityCardTop;	// indeks top dari tumpukan ability card
 };

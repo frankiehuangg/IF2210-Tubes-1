@@ -8,20 +8,43 @@ Deck::Deck() : Inventory(52) {
     }
     
     // initiate ability cards
-    abilities.push_back(ReRoll());
-    abilities.push_back(Quadruple());
-    abilities.push_back(Quarter());
-    abilities.push_back(Reverse());
-    abilities.push_back(Swap());
-    abilities.push_back(Switch());
-    abilities.push_back(Abilityless());
+    AbilityCard* card;
+    
+    card = new ReRoll;
+    abilities.push_back(card);
+    usedBy.emplace(card, -1);
 
-    for(int i = 0; i < 7; i++) {
-        AbilityCard* card = &abilities[i];
-        usedBy.emplace(card, -1);
-    }
+    card = new Quadruple;
+    abilities.push_back(card);
+    usedBy.emplace(card, -1);
+    
+    card = new Quarter;
+    abilities.push_back(card);
+    usedBy.emplace(card, -1);
+    
+    card = new Reverse;
+    abilities.push_back(card);
+    usedBy.emplace(card, -1);
+    
+    card = new Swap;
+    abilities.push_back(card);
+    usedBy.emplace(card, -1);
+    
+    card = new Switch;
+    abilities.push_back(card);
+    usedBy.emplace(card, -1);
+
+    card = new Abilityless;
+    abilities.push_back(card);
+    usedBy.emplace(card, -1);
 
     abilityCardTop = 6;  // 0..6, -1 means empty
+}
+
+Deck::~Deck() {
+    for(AbilityCard* card : abilities) {
+        delete card;
+    }
 }
 
 // Acak MainCard
@@ -128,23 +151,15 @@ void Deck::getDeckFromInput() {
 
 // Acak AbilityCard
 void Deck::shuffleAbilityCards() {
-    deque<AbilityCard> shuffledDeck;
-
     int size = abilities.size();
+    
     srand(time(NULL));
     for(int i = 0; i < size; i++) {
-        int idx = rand() % 2;  // generate random index to push from front or back
-        if(idx == 1){
-            shuffledDeck.push_back(abilities[i]);
-        }
-        else {
-            shuffledDeck.push_front(abilities[i]);
-        }
-    }
-    abilities.clear();
-    while(!shuffledDeck.empty()) {
-        abilities.push_back(shuffledDeck.front());
-        shuffledDeck.pop_front();
+        int idx = rand() % size;  // generate random index from 0..size
+        // swap
+        AbilityCard* temp = abilities[i];
+        abilities[i] = abilities[idx];
+        abilities[idx] = temp;
     }
 }
 
@@ -154,7 +169,7 @@ void Deck::printCards() {
 }
 
 AbilityCard* Deck::takeAbilityFromDeck(int n) {
-    AbilityCard* ability = &abilities[abilityCardTop];
+    AbilityCard* ability = abilities[abilityCardTop];
     abilityCardTop--;
     usedBy[ability] = n;
     return ability;
