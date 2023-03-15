@@ -113,6 +113,10 @@ void Poker::newShuffle()
 		this->shuffle++;
 		newShuffle();
 	}
+	else
+	{
+		cout << "Pemain " << winner.getPlayerName() << " memenangkan permainan!" << endl;
+	}
 }
 
 bool Poker::gameOver()
@@ -136,6 +140,8 @@ void Poker::newRound()
 		cout << "Round: " << getRound()+1 << endl;
 
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
+
+		cout << "Poin pemain: " << this->players[turn].getPlayerPoint() << endl;
 
 		cout << "Poin game sekarang: " << this->point << endl;
 
