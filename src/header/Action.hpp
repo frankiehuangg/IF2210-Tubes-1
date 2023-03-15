@@ -5,6 +5,7 @@
 
 class Inventory;
 class Game;
+class Cangkul;
 class Action {
 public:
 	/* End current player's turn, no implementation */
@@ -26,7 +27,7 @@ public:
 	 * @param Game& game		Current game 
 	 * @param int color		 	Color to search 
 	 * @param Inventory& dump	Dump place */
-	void cangkul(Game&,int,Inventory&);
+	void cangkul(Cangkul&,int,Inventory&);
 };
 
 #endif

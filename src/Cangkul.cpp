@@ -65,6 +65,18 @@ void Cangkul::roundManage()
 
 }
 
+bool Cangkul::dumpManage()
+{
+	if(this->deck.isInventoryEmpty()) 
+    {
+    	if(this->dump.isInventoryEmpty())
+         {
+			return false;
+         }
+         dump.returnCardToDeck(this->deck);
+    }
+	return true;
+}
 
 void Cangkul::newShuffle()
 {
@@ -133,7 +145,7 @@ bool Cangkul::gameOver()
 
 	int count=0;
 	for (int i = 0; i < this->players.size(); i++)
-		if (this->players[i].getInventoryCards().size() == 0)
+		if (this->players[i].getInventoryCards().size() == 0 && this->players[i].getPlayerStatus())
 			count++;
 
 	return count>=1;
@@ -149,7 +161,7 @@ void Cangkul::gameWinner()
 	}
 
 	for (int i = 0; i < this->players.size(); i++)
-		if (this->players[i].getInventoryCards().size() == 0)
+		if (this->players[i].getInventoryCards().size() == 0 && this->players[i].getPlayerStatus())
 		{
 			Player win= players[i];
 			cout<<"Player "<<win.getPlayerName()<<" dengan ID "<<win.getPlayerNumber()<<" memenangkan permainan!"<<endl;
