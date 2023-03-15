@@ -24,3 +24,18 @@ T &maxElmt(vector<T> &container)
 	}
 	return maxs;
 }
+
+template <class T>
+T &maxElmtidx(vector<T> &container)
+{
+	T maxidx = 0;
+
+	for (int i = 1; i < container.size(); i++)
+	{
+		if (container[i] > container[maxidx])
+		{
+			maxidx = i;
+		}
+	}
+	return maxidx;
+}

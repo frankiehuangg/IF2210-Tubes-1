@@ -2,8 +2,9 @@
 #define _COMPARABLE_HPP_
 
 #include <vector>
+#include <iterator>
 
-using std::vector;
+using namespace std;
 
 class Comparable
 {
@@ -25,6 +26,10 @@ public:
 };
 
 /* Return maximum element of a Comparable vector, must contain at least one element, else return default constructed object of elmt type */
+template <class T>
+T &maxElmt(vector<T> &);
+
+/* Return index of maximum element of a Comparable vector, must contain at least one element, else return default constructed object of elmt type */
 template <class T>
 T &maxElmt(vector<T> &);
 
