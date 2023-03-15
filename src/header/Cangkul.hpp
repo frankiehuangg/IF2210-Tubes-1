@@ -20,7 +20,7 @@ private:
 public:
 
 	/***** Constructor dan destructor *****/
-	/* Poker constructor */
+	/* Cangkul constructor */
 	Cangkul();
 
 	/* Determines the next round position */

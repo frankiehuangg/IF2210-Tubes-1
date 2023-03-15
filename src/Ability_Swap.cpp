@@ -130,7 +130,7 @@ void Swap::useAbility(Game& game)
 void Swap::printCard()
 {
     cout << "NAME     : Swap" << endl;
-    cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << endl;
+    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
     cout << "ABILITY  : Jika kamu memakai Ability Card ini, kamu bisa memilih dua pemain" << endl
          << "yang akan menukarkan masing-masing satu kartu secara acak" << endl;
 }

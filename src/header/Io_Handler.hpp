@@ -67,7 +67,7 @@ T IOHandler<T>::getInput()
         }
         catch (exception &e) 
         {
-            cout << "Masukan tidak valid. Mohon ulangi." << endl;
+            cout << "Input type masukan tidak valid. Mohon ulangi." << endl;
             cin.clear();
             getline(cin,tmp);
         }   
@@ -78,15 +78,12 @@ T IOHandler<T>::getInput()
 template<class T>
 T IOHandler<T>::getInputInAccepted(){
     T input;
-    string tmp;
     bool valid = false;
-    cin.exceptions(std::istream::failbit);
     while (!valid) 
     {
         try
         {
-            cout<< "Masukan input: ";
-            cin >> input;
+            input = getInput();
             for(T it: acceptedInput)
             {
                 if(input==it)
@@ -94,11 +91,9 @@ T IOHandler<T>::getInputInAccepted(){
             }
             if(!valid) throw InputInvalid();
         }
-        catch (exception &e) 
+        catch (InputInvalid &e) 
         {
-            cout << "Masukan tidak valid. Mohon ulangi." << endl;
-            cin.clear();
-            getline(cin,tmp);
+            cout << e.printError() << endl;
         }   
     }
     return input;

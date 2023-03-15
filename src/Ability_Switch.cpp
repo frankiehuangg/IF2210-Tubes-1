@@ -71,7 +71,7 @@ void Switch::useAbility(Game& game)
 void Switch::printCard()
 {
     cout << "NAME     : Switch" << endl;
-    cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << endl;
+    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
     cout << "ABILITY  : Jika kamu memakai Ability Card ini, kamu dapat" << endl
          << "menukar kartu main card milikmu dengan kartu main card milik pemain lain" << endl;
 }

@@ -54,9 +54,6 @@ public:
 	/* Returns the first player in the vector */
 	Player& getPlayer();
 
-	/* Returns the player in turn */
-	Player& getPlayerInTurn();
-
 	/* Returns a player with the corresponding name
 	 * @param string name	Player name */
 	Player& getPlayer(string);
@@ -65,8 +62,19 @@ public:
 	 * @param int number	Player number */ 
 	Player& getPlayer(int);
 
+	/* Returns the player in turn */
+	Player& getPlayerInTurn();
+
+	/* Returns the player in turn index
+	 * @int index			Index of player */
+	Player& getPlayerInTurn(int);
+
 	/* Prints current player turns */
 	void printPlayerTurn();
+
+	/* Set the player turns 
+	 * @param vector of Player 	 New player turns */ 
+	void setPlayerTurn(vector<Player>);
 
 	/* Returns the table */
 	Table& getTable();

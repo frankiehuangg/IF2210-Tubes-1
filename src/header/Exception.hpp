@@ -5,56 +5,63 @@
 
 using namespace std;
 
-struct InvalidFileSyntax: public exception 
+class InvalidFileSyntax: public exception 
 {
+	public:
 	const char* printError() const throw()
 	{
 		return "File input invalid!";
 	}
 };
 
-struct PlayerNotExist : public exception
+class PlayerNotExist : public exception
 {
+	public:
 	const char* printError() const throw()
 	{
 		return "Player does not exist!";
 	}
 };
 
-struct PlayerNameInvalid : public exception
+class PlayerNameInvalid : public exception
 {
+	public:
 	const char* printError() const throw()
 	{
 		return "Name not allowed. Please choose another name.";
 	}
 };
 
-struct CreatePlayerFailed : public exception
+class CreatePlayerFailed : public exception
 {
+	public:
 	const char* printError() const throw()
 	{
 		return "Name is chosen by another player. Please choose another name";
 	}
 };
 
-struct NoAbilityAvailable: public exception
+class NoAbilityAvailable: public exception
 {
+	public:
 	const char* printError() const throw()
 	{
 		return "Player has no ability available";
 	}
 };
 
-struct InputInvalid: public exception
+class InputInvalid: public exception
 {
+	public:
 	const char* printError() const throw()
 	{
 		return "Input format invalid at line ";
 	}
 };
 
-struct DuplicateCardExist: public exception
+class DuplicateCardExist: public exception
 {
+	public:
 	const char* printError() const throw()
 	{
 		return "Duplicate card exist at line ";
