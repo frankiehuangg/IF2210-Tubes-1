@@ -142,15 +142,14 @@ void Poker::newRound()
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-		// system("clear");
 		
 		cout << "Round: " << getRound()+1 << endl;
 
-		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
-
-		cout << "Poin pemain: " << this->players[turn].getPlayerPoint() << endl;
-
 		cout << "Poin game sekarang: " << this->point << endl;
+
+		cout << "Giliran pemain ke-" << this->turn << endl << endl;
+
+		players[turn].printInfo();
 
 		this->table.printCards();
 
@@ -161,4 +160,6 @@ void Poker::newRound()
 
 		this->turn++;
 	}
+	
+	// system("clear");
 }
