@@ -1,8 +1,11 @@
 #include <iostream>
+#include <limits>
 #include "header/Poker.hpp"
 
-Poker::Poker() : Game(0, 64, 0, 7, 1 << 31), ROUND_AMOUNT(6)
+Poker::Poker() : Game(0, 64, 0, 7, 1LL << 31), ROUND_AMOUNT(6)
 {
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 	this->shuffle = 0;
 
 	// Create player
@@ -14,8 +17,7 @@ Poker::Poker() : Game(0, 64, 0, 7, 1 << 31), ROUND_AMOUNT(6)
 		try
 		{
 			cout << "Masukkan nama pemain ke-" << i + 1 << ": ";
-			string name;
-			cin >> name;
+			string name; getline(cin, name);
 
 			checkPlayerNameExist(name);
 
@@ -26,6 +28,10 @@ Poker::Poker() : Game(0, 64, 0, 7, 1 << 31), ROUND_AMOUNT(6)
 			exception_caught = false;
 		}
 		catch (CreatePlayerFailed &e)
+		{
+			cout << e.printError() << endl;
+		}
+		catch (PlayerNameInvalid &e)
 		{
 			cout << e.printError() << endl;
 		}
@@ -122,7 +128,7 @@ void Poker::newShuffle()
 bool Poker::gameOver()
 {
 	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
-		if (this->players[i].getPlayerPoint() > (1 << 31))
+		if (this->players[i].getPlayerPoint() > this->WIN_POINT)
 			return true;
 
 	return false;
@@ -132,10 +138,11 @@ void Poker::newRound()
 {
 	this->turn = 0;
 
+
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-		//system("clear");
+		system("clear");
 		
 		cout << "Round: " << getRound()+1 << endl;
 
