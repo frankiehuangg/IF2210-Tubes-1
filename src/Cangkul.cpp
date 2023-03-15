@@ -3,9 +3,11 @@
 
 /*
 TO DO:
-- saat deck kosong ambil dari buangan
-- validasi input integer
-- winning condition kalo draw
+- saat deck kosong ambil dari dump
+- saat surrender pindahkan ke dump
+- validasi input integer ??
+- announce winner
+- (kalo bisa) bikin lebih oopeh
 
 */
 
@@ -63,7 +65,7 @@ void Cangkul::roundManage()
 	for(auto it:rank)
 	{
 		temp.push_back(this->getPlayer(it.second));
-		cout<<"TEST :"<<it.first<<" "<<this->getPlayer(it.second).getPlayerNumber()<<endl;
+
 	}
 
 	this->players.clear();
@@ -94,8 +96,8 @@ void Cangkul::newShuffle()
 		newRound();
 
 		this->round++;
-
 	}
+	gameWinner();
 }
 
 void Cangkul::newRound()
@@ -113,7 +115,7 @@ void Cangkul::newRound()
 	int curColor=table.getCard(0).getColor();
 
 	// Giliran sebanyak pemain
-	while (this->turn < this->players.size())
+	while (this->turn < this->players.size() && !gameOver())
 	{
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
 
@@ -140,9 +142,26 @@ bool Cangkul::gameOver()
 	if (this->players.size()<=1) return true;
 
 	int count=0;
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+	for (int i = 0; i < this->players.size(); i++)
 		if (this->players[i].getInventoryCards().size() == 0)
 			count++;
 
 	return count>=1;
+}
+
+/* Check who won the game  */
+void Cangkul::gameWinner()
+{
+	if (this->players.size()==1)
+	{
+		Player win= players[0];
+		cout<<"Player "<<win.getPlayerName()<<" dengan ID "<<win.getPlayerNumber()<<" memenangkan permainan!"<<endl;
+	}
+
+	for (int i = 0; i < this->players.size(); i++)
+		if (this->players[i].getInventoryCards().size() == 0)
+		{
+			Player win= players[i];
+			cout<<"Player "<<win.getPlayerName()<<" dengan ID "<<win.getPlayerNumber()<<" memenangkan permainan!"<<endl;
+		}
 }
