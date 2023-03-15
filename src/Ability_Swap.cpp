@@ -117,46 +117,16 @@ void Swap::useAbility(Game& game)
         /*********************************************************/
 
 
-        
-
-        /*** Ini mungkin dijadiin satu method aja biar modular ***/
-        string inputOption1, inputOption2;
+        IOHandler<int> optionIO;
         int option1, option2;
-        valid = false;
 
-        do
-        {
-            cout << "Silakan pilih kartu kanan/kiri " << player1.getPlayerName() << endl;
-            cout << "1. Kanan \n2. Kiri" << endl;
-            cin >> inputOption1;
-            if (inputOption1.length() == 1 && isdigit(inputOption1[0])) 
-            {
-                option1 = inputOption1[0] - '0';
-                if (option1 == 1 || option1 == 2) valid = true;
-            }
-            else 
-            {
-                cout << "Masukan tidak valid" << endl;
-            }
-        } while(!valid);
+        cout << "Silakan pilih kartu kanan/kiri " << player1.getPlayerName() << endl;
+        cout << "1. Kanan \n2. Kiri" << endl;
+        option1=optionIO.getInputInAccepted(1,2);
 
-        do
-        {
-            cout << "Silakan pilih kartu kanan/kiri " << player2.getPlayerName() << endl;
-            cout << "1. Kanan \n2. Kiri" << endl;
-            cin >> inputOption2;
-            if (inputOption2.length() == 1 && isdigit(inputOption2[0])) 
-            {
-                option2 = inputOption2[0] - '0';
-                if (option2 == 1 || option2 == 2) valid = true;
-            }
-            else 
-            {
-                cout << "Masukan tidak valid" << endl;
-            }
-        } while(!valid);
-       
-
+        cout << "Silakan pilih kartu kanan/kiri " << player2.getPlayerName() << endl;
+        cout << "1. Kanan \n2. Kiri" << endl;
+        option2=optionIO.getInputInAccepted(1,2);
         /*********************************************************/
 
         // Swap kartu pemain_1 dengan pemain_2 (Mungkin juga bisa dibikin satu method)
