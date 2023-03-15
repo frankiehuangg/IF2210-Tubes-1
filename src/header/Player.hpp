@@ -11,13 +11,6 @@
 #include "Deck.hpp"
 #include "Exception.hpp"
 
-#define C00 "\x1B[0m"
-#define C01 "\x1B[31m"
-#define C02 "\033[0;33m"
-#define C03 "\x1B[32m"
-#define C04 "\x1B[34m"
-#define C05 "\x1b[38;5;238m"
-
 using namespace std;
 
 // Forward declaration
@@ -125,10 +118,6 @@ public:
 	 * @param Comparable& other		The other player */
 	bool operator== (Comparable&);
 
-	/* Ostream operator used for cout
-	 * @param ostream& os	ostream
-	 * @param Player Player	player */
-	friend ostream& operator<<(ostream&, Player);
 };
 
 #endif

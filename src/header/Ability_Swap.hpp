@@ -5,7 +5,6 @@
 
 class Swap : public AbilityCard {
 public:
-
 	Swap();
 
 	/**** Use ability, different for each card *****/
@@ -16,6 +15,11 @@ public:
 	/***** Print card *****/
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
 	void printCard();
+
+private: 
+	/**** Some utility methods to help useaAbility() ****/
+	int inputPlayerToSwap(Game&, int);
+	int inputPlayerToSwap(Game&, int, int);
 };
 
 #endif

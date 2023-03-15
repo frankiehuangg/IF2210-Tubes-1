@@ -95,3 +95,12 @@ vector<MainCard> Inventory::operator-(int num)
 	this->amount-=num;
 	return vec;
 }
+
+ostream& operator<< (ostream& os, const Inventory& inventory)
+{
+	const vector<MainCard>& cards = inventory.getInventoryCards();
+
+	os << cards;
+
+	return os;
+}

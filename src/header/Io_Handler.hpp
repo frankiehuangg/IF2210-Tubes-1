@@ -10,6 +10,7 @@ template<class T>
 class IOHandler{
     private:
     vector<T> acceptedInput;
+    vector<T> declinedInput;
     
     public:
     /* IOHandler default constructor
@@ -24,12 +25,25 @@ class IOHandler{
 	 * @param T acc 	            new accepted inputs */
     void addAccepted(T);
 
+    /* declined adder
+	 * @param T acc 	            new declined inputs */
+    void addDeclined(T);
+
     /***** Input *****/
 	/* Input a value of type T */
     T getInput();
 
     /* Input a value of type T that exists in acceptedInput*/
     T getInputInAccepted();
+
+    /* Input a value of type T that exists in a certain range 
+     * @param int l                 left of range(inclusive)
+     * @param int r                 right of range(inclusive) */
+    T getInputInAccepted(int,int);
+
+    /* Input a value of type T that does not exists in declinedInput*/
+    T getInputNotInDeclined();
+
 };
 
 template<class T>
@@ -67,7 +81,7 @@ T IOHandler<T>::getInput()
         }
         catch (exception &e) 
         {
-            cout << "Masukan tidak valid. Mohon ulangi." << endl;
+            cout << "Input type masukan tidak valid. Mohon ulangi." << endl;
             cin.clear();
             getline(cin,tmp);
         }   
@@ -78,27 +92,67 @@ T IOHandler<T>::getInput()
 template<class T>
 T IOHandler<T>::getInputInAccepted(){
     T input;
-    string tmp;
     bool valid = false;
-    cin.exceptions(std::istream::failbit);
     while (!valid) 
     {
         try
         {
-            cout<< "Masukan input: ";
-            cin >> input;
+            input = getInput();
             for(T it: acceptedInput)
             {
                 if(input==it)
                 valid = true;
             }
-            if(!valid) throw InputInvalid();
+            if(!valid) throw NotExpected();
         }
-        catch (exception &e) 
+        catch (NotExpected &e) 
         {
-            cout << "Masukan tidak valid. Mohon ulangi." << endl;
-            cin.clear();
-            getline(cin,tmp);
+            cout << e.printError() << endl;
+        }   
+    }
+    return input;
+}
+
+template<class T>
+T IOHandler<T>::getInputInAccepted(int l, int r){
+    T input;
+    bool valid = false;
+    while (!valid) 
+    {
+        try
+        {
+            input = getInput();
+            if(input>=l && input<=r)
+                valid=true;
+            if(!valid) throw NotExpected();
+        }
+        catch (NotExpected &e) 
+        {
+            cout << e.printError() << endl;
+        }   
+    }
+    return input;
+}
+
+template<class T>
+T IOHandler<T>::getInputNotInDeclined(){
+    T input;
+    bool valid = false;
+    while (!valid) 
+    {
+        try
+        {
+            input = getInput();
+            for(T it: declinedInput)
+            {
+                if(input==it)
+                valid = false;
+            }
+            if(!valid) throw NotExpected();
+        }
+        catch (NotExpected &e) 
+        {
+            cout << e.printError() << endl;
         }   
     }
     return input;

@@ -69,6 +69,11 @@ public:
 	/* Removes an amount of cards from inventory
 	 * @param int num	The amount of cards taken */
 	vector<MainCard> operator-(int);
+
+	/* Ostream operator used for cout
+	 * @param ostream& os	ostream
+	 * @param const Inventory& Inventory	Inventory */
+	friend ostream& operator<<(ostream&, const Inventory&);
 };
 
 #endif
