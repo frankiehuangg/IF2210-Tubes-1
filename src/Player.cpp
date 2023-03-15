@@ -60,6 +60,18 @@ void Player::setAbilityCardStatus(bool status) {
     ability->setStatus(status);
 }
 
+bool Player::abilityDisabled() const {
+    return ability->disabled();
+}
+
+void Player::disableAbilityCard() {
+    ability->disable();
+}
+
+void Player::enableAbilityCard() {
+    ability->enable();
+}
+
 void Player::returnAbilityToDeck(Deck& deck) {
     deck.returnAbilityToDeck(ability);
     ability = NULL;
