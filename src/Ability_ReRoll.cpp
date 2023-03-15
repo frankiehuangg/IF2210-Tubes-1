@@ -1,7 +1,8 @@
 #include "header/Ability_ReRoll.hpp"
 #include "header/Game.hpp"
 
-ReRoll::ReRoll(){
+ReRoll::ReRoll()
+{
 	type = "RE-ROLL";
 }
 
@@ -32,6 +33,6 @@ void ReRoll::useAbility(Game &game)
 void ReRoll::printCard()
 {
 	std::cout << "NAME     : Re-Roll" << std::endl;
-	std::cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
+	std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
 	std::cout << "ABILITY  : Membuang kedua kartu yang ada di tangannya dan mengambil ulang dua kartu baru dari deck" << std::endl;
 }

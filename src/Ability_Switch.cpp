@@ -1,11 +1,12 @@
 #include "header/Ability_Switch.hpp"
 #include "header/Game.hpp"
 
-Switch::Switch(){
+Switch::Switch()
+{
     type = "SWITCH";
 }
 
-void Switch::useAbility(Game& game) 
+void Switch::useAbility(Game &game)
 {
     if (!this->getStatus())
     {
@@ -23,9 +24,9 @@ void Switch::useAbility(Game& game)
 
         /*** Ini mungkin dijadiin satu method aja biar modular ***/
         bool valid = false;
-        while (!valid) 
+        while (!valid)
         {
-            try 
+            try
             {
                 cout << "Silahkan pilih pemain yang kartunya ingin anda tukar: " << endl;
                 for (int i = 1, num = 1; i <= playerCount; i++, num++)
@@ -39,7 +40,7 @@ void Switch::useAbility(Game& game)
                 }
                 cout << "< " << endl;
                 cin >> playerOption;
-                if (playerOption >= currentPlayer.getPlayerNumber()) 
+                if (playerOption >= currentPlayer.getPlayerNumber())
                 {
                     ++playerOption;
                 }
@@ -54,7 +55,6 @@ void Switch::useAbility(Game& game)
 
         Player &switchedPlayer = game.getPlayer(playerOption);
         /*********************************************************/
-        
 
         /*** Ini mungkin dijadiin satu method aja biar modular ***/
         MainCard temp1 = currentPlayer.getCard(0);
@@ -71,7 +71,7 @@ void Switch::useAbility(Game& game)
 void Switch::printCard()
 {
     cout << "NAME     : Switch" << endl;
-    cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << endl;
+    cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << endl;
     cout << "ABILITY  : Jika kamu memakai Ability Card ini, kamu dapat" << endl
          << "menukar kartu main card milikmu dengan kartu main card milik pemain lain" << endl;
 }
