@@ -1,5 +1,9 @@
 #include "header/AbilityCard.hpp"
 
+AbilityCard::AbilityCard() {
+	status = false;
+}
+
 AbilityCard::~AbilityCard()
 {
 

@@ -13,6 +13,7 @@ protected:
 	string type;
 
 public:
+	AbilityCard();
 	virtual ~AbilityCard();
 	/***** Getter & Setter *****/
 	// If used, then status is true, else status is false;
