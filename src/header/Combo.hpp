@@ -12,6 +12,7 @@
 class Combo : public Comparable {
 public:
 	/***** Constructor *****/
+	Combo();
 	// Inisialisasi map berisi combo-combo yang ada
 	Combo(const Player&, const Table&);
 
@@ -32,6 +33,11 @@ public:
 
 	// Return tipe combo yang dihasilkan
 	string what();
+	
+	/* Ostream operator used for cout
+	 * @param ostream& os	ostream
+	 * @param const Combo& combo	combo */
+	friend ostream& operator<<(ostream&, const Combo&);
 
 private:
 	// Combo list:

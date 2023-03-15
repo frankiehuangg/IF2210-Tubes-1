@@ -2,6 +2,7 @@
 
 // const map<int, float> Combo::combo_list = {make_pair(0,0.0), make_pair(1,1.0), make_pair(2,2.0), make_pair(3,4.0), make_pair(4,8.0), make_pair(5,16.0), make_pair(6,32.0), make_pair(7,64.0), make_pair(8,128.0)};
 
+Combo::Combo() {}
 
 Combo::Combo(const Player& player, const Table& table) {
     value = 0;
@@ -155,6 +156,16 @@ bool Combo::operator== (Comparable& other) {
 string Combo::what() {
     return combotype;
 }
+
+ostream& operator<< (ostream& os, const Combo& combo)
+{
+	const vector<MainCard>& cards = combo.cards;
+
+	os << cards;
+
+	return os;
+}
+
 
 /*
 Methods untuk melakukan pengecekan combo pada suatu subset/sublist kartu.
