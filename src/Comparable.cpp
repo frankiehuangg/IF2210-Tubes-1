@@ -1,6 +1,6 @@
 #include "header/Comparable.hpp"
 
-float Comparable::getValue() const 
+float Comparable::getValue() const
 {
 	return this->value;
 }
@@ -11,18 +11,16 @@ void Comparable::setValue(float value)
 }
 
 template <class T>
-T& maxElmt (vector<T>& container) {
-	T maxx;
-	if(!container.empty()){
-		vector<T>::iterator it = container.begin();
-		maxx = *it;
-		++it;
+T &maxElmt(vector<T> &container)
+{
+	T maxs = container[0];
 
-		// start iteration from 2nd elmt
-		while(it != container.end()) {
-			if(maxx < *it) maxx = *it;
-			++it;
+	for (T element : container)
+	{
+		if (element > maxs)
+		{
+			maxs = element;
 		}
 	}
-	return maxx;
+	return maxs;
 }

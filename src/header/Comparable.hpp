@@ -4,9 +4,9 @@
 #include <vector>
 
 using std::vector;
-using std::iterator;
 
-class Comparable {
+class Comparable
+{
 protected:
 	float value;
 
@@ -19,13 +19,13 @@ public:
 	void setValue(float);
 
 	/***** Comparison operator *****/
-	virtual bool operator< (Comparable&) = 0;
-	virtual bool operator> (Comparable&) = 0;
-	virtual bool operator== (Comparable&) = 0;
+	virtual bool operator<(Comparable &) = 0;
+	virtual bool operator>(Comparable &) = 0;
+	virtual bool operator==(Comparable &) = 0;
 };
 
 /* Return maximum element of a Comparable vector, must contain at least one element, else return default constructed object of elmt type */
 template <class T>
-T& maxElmt (vector<T>&);
+T &maxElmt(vector<T> &);
 
 #endif
