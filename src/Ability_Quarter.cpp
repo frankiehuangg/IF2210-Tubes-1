@@ -10,7 +10,7 @@ Quarter::Quarter()
 // Ubah status abilityCard pemain lain menjadi false
 void Quarter::useAbility(Game &game)
 {
-    if (!this->status)
+    if (this->status && !this->isdisabled)
     {
         int initialPoint = game.getPoint();
         if (initialPoint > 3)
@@ -21,13 +21,17 @@ void Quarter::useAbility(Game &game)
         {
             game.setPoint(1);
         }
-        this->status = true;
-        std::cout << game.getPlayer().getPlayerName() << " melakukan QUARTER!" << std::endl;
+        this->status = false;
+        std::cout << game.getPlayerInTurn().getPlayerName() << " melakukan QUARTER!" << std::endl;
         std::cout << "Point hadiah turun dari " << initialPoint << " menjadi " << game.getPoint() << "!" << std::endl;
+    }
+    else if (this->isdisabled)
+    {
+        std::cout << "Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭" << std::endl;
     }
     else
     {
-        std::cout << "Anda tidak dapat menggunakan ability QUARTER. Ability sudah digunakan" << std::endl;
+        std::cout << "Kamu sudah menggunakan kartu ini sebelumnya. Gabisa pakai lagi, jangan maruk!😠" << std::endl;
     }
 }
 
@@ -35,7 +39,7 @@ void Quarter::useAbility(Game &game)
 // Print card info and status
 void Quarter::printCard()
 {
-    std::cout << "NAME     : QUARTER" << std::endl;
-    std::cout << "STATUS   : " << (!this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
+    std::cout << "NAME     : " << this->type << std::endl;
+    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
     std::cout << "ABILITY  : Menurunkan total poin hadiah menjadi 0.25x nilai saat ini" << std::endl;
 }

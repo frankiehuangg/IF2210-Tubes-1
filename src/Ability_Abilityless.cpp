@@ -10,12 +10,12 @@ Abilityless::Abilityless()
 // Ubah status abilityCard pemain lain menjadi false
 void Abilityless::useAbility(Game &game)
 {
-    if (!this->status)
+    if (this->status && !this->isdisabled)
     {
         bool isAllAbilityCardUsed = true;
-        for (int i = 1; i < 7; i++)
+        for (int i = 1; i <= 7; i++)
         {
-            if (game.getPlayer(i).getAbilityCardStatus())
+            if (game.getPlayerInTurn().getPlayerNumber() != i && game.getPlayer(i).getAbilityCardStatus())
             {
                 isAllAbilityCardUsed = false;
             }
@@ -24,45 +24,65 @@ void Abilityless::useAbility(Game &game)
         if (isAllAbilityCardUsed)
         {
             std::cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan." << std::endl;
-            std::cout << "Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless." << std::endl;
-            std::cout << "Yah, penggunaan kartu ini sia-sia." << std::endl;
-            this->status = true;
+            std::cout << "Yah kamu kena sendiri deh, kartumu dinonaktifkan oleh dirimu sendiri.🤣" << std::endl;
+            this->disable();
         }
         else
         {
-            std::cout << game.getPlayer().getPlayerName() << " akan mematikan kartu ability lawan!" << std ::endl;
+            std::cout << game.getPlayerInTurn().getPlayerName() << " akan mematikan kartu ability lawan!" << std ::endl;
             std::cout << "Silakan pilih pemain yang kartu abilitynya ingin dimatikan:" << std::endl;
 
-            for (int i = 1; i < 7; i++)
+            int index = 1;
+            std::map<int, int> index_id;
+            for (int i = 1; i <= 7; i++)
             {
-                std::cout << i << ". " << game.getPlayer(i).getPlayerName() << std::endl;
+                if (i != game.getPlayerInTurn().getPlayerNumber())
+                {
+                    std::cout << index << ". " << game.getPlayer(i).getPlayerName() << std::endl;
+                    index_id[index] = i;
+                    index++;
+                }
             }
 
+            string choicesRaw;
+            bool isValidInputNumber = true;
             int choices;
             do
             {
-                std::cout << "Mohon masukkan angka 1-7!" << std::endl;
+                std::cout << "Mohon masukkan angka 1-6!" << std::endl;
                 std::cout << "> ";
-                std::cin >> choices;
-            } while (choices < 1 || choices > 6);
+                getline(std::cin, choicesRaw);
+                if (choicesRaw.length() == 1 && isdigit(choicesRaw[0]))
+                {
+                    choices = stoi(choicesRaw);
+                }
+                else
+                {
+                    isValidInputNumber = false;
+                }
+            } while (!isValidInputNumber || choices < 1 || choices > 6);
 
-            bool statusOther = game.getPlayer(choices).getAbilityCardStatus();
+            bool statusOther = game.getPlayer(index_id[choices]).getAbilityCardStatus();
             if (statusOther)
             {
-                game.getPlayer(choices).setAbilityCardStatus(false);
-                std::cout << "Kartu ability " << game.getPlayer(choices).getPlayerName() << " telah dimatikan!" << std::endl;
-                this->status = true;
+                game.getPlayer(index_id[choices]).setAbilityCardStatus(false);
+                std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dimatikan!" << std::endl;
+                this->status = false;
             }
             else
             {
-                std::cout << "Kartu ability " << game.getPlayer(choices).getPlayerName() << " telah dipakai sebelumnya." << std::endl;
+                std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dipakai sebelumnya." << std::endl;
                 std::cout << "Yah, sayang penggunaan kartu ini sia-sia🤣" << std::endl;
             }
         }
     }
+    else if (this->isdisabled)
+    {
+        std::cout << "Yah.., sayang sekali kamu sudah menonaktifkan kartumu sendiri.😭🤣" << std::endl;
+    }
     else
     {
-        std::cout << "Anda tidak dapat menggunakan ability ABILITYLESS. Ability sudah digunakan" << std::endl;
+        std::cout << "Kamu sudah menggunakan kartu ini sebelumnya. Gabisa pakai lagi, jangan maruk!😠" << std::endl;
     }
 }
 
@@ -70,7 +90,7 @@ void Abilityless::useAbility(Game &game)
 // Print card info and status
 void Abilityless::printCard()
 {
-    std::cout << "NAME     : ABILITYLESS" << std::endl;
-    std::cout << "STATUS   : " << (!this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
+    std::cout << "NAME     : " << this->type << std::endl;
+    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
     std::cout << "ABILITY  : Mematikan kemampuan kartu lawan" << std::endl;
 }
