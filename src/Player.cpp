@@ -86,7 +86,7 @@ void Player::doAction(Game& game) {
                 invalidInput = true;
             }
             else {
-                if (ability->getType() == input && !ability->getStatus()) {
+                if (ability->getType() == input) {
                     ability->useAbility(game);
                 }
                 else {
