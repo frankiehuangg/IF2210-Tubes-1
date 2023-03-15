@@ -6,6 +6,7 @@
 class Inventory;
 class Game;
 class Cangkul;
+
 class Action {
 public:
 	/* End current player's turn, no implementation */

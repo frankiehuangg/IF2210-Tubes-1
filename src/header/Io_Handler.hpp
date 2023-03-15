@@ -30,6 +30,12 @@ class IOHandler{
 
     /* Input a value of type T that exists in acceptedInput*/
     T getInputInAccepted();
+
+    /* Input a value of type T that exists in a certain range 
+     * @param int l                 left of range(inclusive)
+     * @param int r                 right of range(inclusive) */
+    T getInputInAccepted(int,int);
+
 };
 
 template<class T>
@@ -89,6 +95,27 @@ T IOHandler<T>::getInputInAccepted(){
                 if(input==it)
                 valid = true;
             }
+            if(!valid) throw InputInvalid();
+        }
+        catch (InputInvalid &e) 
+        {
+            cout << e.printError() << endl;
+        }   
+    }
+    return input;
+}
+
+template<class T>
+T IOHandler<T>::getInputInAccepted(int l, int r){
+    T input;
+    bool valid = false;
+    while (!valid) 
+    {
+        try
+        {
+            input = getInput();
+            if(input>=l && input<=r)
+                valid=true;
             if(!valid) throw InputInvalid();
         }
         catch (InputInvalid &e) 

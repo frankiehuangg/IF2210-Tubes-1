@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 class InvalidFileSyntax: public exception 
 {
 	public:
