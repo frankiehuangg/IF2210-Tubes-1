@@ -43,15 +43,17 @@ Combo::Combo(const Player& player, const Table& table) {
 
     // check for combos
 	int perm_length = perm.size();
-    for(int i = 0; i < perm_length; i++){
+    for(int i = 0; i < perm_length; i++) {
         sort(perm[i].begin(), perm[i].end());
         float tempval;
+        string name;
         if(checkStraightFlush(perm[i])){
             float card[5];
             for(int j = 0; j < 5; j++) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 302929;
+            name = "Straight Flush";
         }
         else if(checkFourOfaKind(perm[i])){
             float card[4];
@@ -59,6 +61,7 @@ Combo::Combo(const Player& player, const Table& table) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 296864.75;
+            name = "Four of a Kind";
         }
         else if(checkFullHouse(perm[i])){
             float card[5];
@@ -66,6 +69,7 @@ Combo::Combo(const Player& player, const Table& table) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 199836.75;
+            name = "Full House";
         }
         else if(checkFlush(perm[i])){
             float card[5];
@@ -73,6 +77,7 @@ Combo::Combo(const Player& player, const Table& table) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 103152.125;
+            name = "Flush";
         }
         else if(checkStraight(perm[i])){
             float card[5];
@@ -80,6 +85,7 @@ Combo::Combo(const Player& player, const Table& table) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4] + 65536*card[5]) + 6467.5;
+            name = "Straight";
         }
         else if(checkThreeOfaKind(perm[i])){
             float card[3];
@@ -87,6 +93,7 @@ Combo::Combo(const Player& player, const Table& table) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2] + 256*card[3]) + 6088.5;
+            name = "Three of a Kind";
         }
         else if(checkTwoPair(perm[i])){
             float card[4];
@@ -94,6 +101,7 @@ Combo::Combo(const Player& player, const Table& table) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2] + 256*card[3] + 4096*card[4]) + 25;
+            name = "Two Pair";
         }
         else if(checkPair(perm[i])){
             float card[2];
@@ -101,15 +109,18 @@ Combo::Combo(const Player& player, const Table& table) {
                 card[j] = perm[i][j].getValue();
             }
             tempval = (card[1] + 16*card[2]) + 1.39;
+            name = "Pair";
         }
         else if(checkHighCard(perm[i])) {
             tempval = perm[i][0].getValue();
+            name = "High Card";
         }
-        else throw ("combo error, ini hanya untuk testing");
+        else throw ("combo error");
 
         if(value < tempval) {
             value = tempval;
             cards = perm[i];
+            combotype = name;
         }
     }
         
@@ -138,6 +149,11 @@ bool Combo::operator< (Comparable& other) {
 // Cek apakah nilai kombo == kombo lain
 bool Combo::operator== (Comparable& other) {
     return value == other.getValue();
+}
+
+
+string Combo::what() {
+    return combotype;
 }
 
 /*

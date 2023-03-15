@@ -3,6 +3,7 @@
 
 #include <map>
 #include <algorithm>	// sort
+#include <string>
 #include "Comparable.hpp"
 #include "MainCard.hpp"
 #include "Player.hpp"
@@ -29,6 +30,9 @@ public:
 	// Cek apakah nilai kombo == kombo lain
 	bool operator== (Comparable&);
 
+	// Return tipe combo yang dihasilkan
+	string what();
+
 private:
 	// Combo list:
 	// 0 = no combo
@@ -37,6 +41,8 @@ private:
 	// 3 = three of a kind dst.
 	// static const map<int, float> combo_list;
 	vector<MainCard> cards;
+
+	string combotype;
 	
 	bool checkHighCard(vector<MainCard>& cardSublist);
 	bool checkPair(vector<MainCard>& cardSublist);
