@@ -12,7 +12,7 @@ protected:
 	long long point;
 
 	const int PLAYER_AMOUNT;
-	const int WIN_POINT;
+	const long long WIN_POINT;
 
 	vector<Player> players;
 	Table table;

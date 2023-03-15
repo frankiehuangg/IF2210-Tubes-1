@@ -9,9 +9,14 @@ Game::Game(int round, int turn, long long point, int PLAYER_AMOUNT, long long WI
 
 void Game::checkPlayerNameExist(string name)
 {
+	if (name == "")
+		throw PlayerNameInvalid();
+	
 	for (unsigned i = 0; i < this->players.size(); i++)
+	{
 		if (this->players[i].getPlayerName() == name)
 			throw CreatePlayerFailed();
+	}
 }
 
 int Game::getTurn() const
