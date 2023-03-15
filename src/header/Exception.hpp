@@ -69,4 +69,13 @@ class DuplicateCardExist: public exception
 	}
 };
 
+class NotExpected: public exception
+{
+	public:
+	const char* printError() const throw()
+	{
+		return "Input tidak sesuai kriteria. Mohon ulangi.";
+	}
+};
+
 #endif
