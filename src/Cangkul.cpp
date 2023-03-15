@@ -6,7 +6,6 @@ TO DO:
 - saat deck kosong ambil dari dump
 - saat surrender pindahkan ke dump
 - validasi input integer ??
-- announce winner
 - (kalo bisa) bikin lebih oopeh
 
 */

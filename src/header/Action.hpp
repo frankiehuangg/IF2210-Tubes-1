@@ -1,6 +1,8 @@
 #ifndef _ACTION_HPP_
 #define _ACTION_HPP_
 
+#include "Io_Handler.hpp"
+
 class Game;
 class Action {
 public:
