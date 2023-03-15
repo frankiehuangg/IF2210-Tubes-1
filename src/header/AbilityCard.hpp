@@ -10,15 +10,23 @@ class Game;
 class AbilityCard {
 protected:
 	bool status;
+	bool isdisabled;
 	string type;
 
 public:
 	AbilityCard();
 	virtual ~AbilityCard();
 	/***** Getter & Setter *****/
-	// If used, then status is true, else status is false;
+	// If available to use, then status is true, else status is false;
 	bool getStatus() const;
 	void setStatus(bool);
+
+	// if card is disabled, return true
+	bool disabled();
+	// set isdisabled to true
+	void disable();
+	// set isdisabled to false
+	void enable();
 
 	// return card type
 	string getType() const;

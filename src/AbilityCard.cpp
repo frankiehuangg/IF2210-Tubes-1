@@ -1,7 +1,8 @@
 #include "header/AbilityCard.hpp"
 
 AbilityCard::AbilityCard() {
-	status = false;
+	status = true;
+	isdisabled = false;
 }
 
 AbilityCard::~AbilityCard()
@@ -17,6 +18,18 @@ bool AbilityCard::getStatus() const
 void AbilityCard::setStatus(bool status)
 {
 	this->status = status;
+}
+
+bool AbilityCard::disabled() {
+	return this->isdisabled;
+}
+
+void AbilityCard::disable() {
+	this->isdisabled = true;
+}
+
+void AbilityCard::enable() {
+	this->isdisabled = false;
 }
 
 string AbilityCard::getType() const
