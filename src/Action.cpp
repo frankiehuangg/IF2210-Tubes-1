@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 #include "header/Game.hpp"
-
+#include "header/Cangkul.hpp"
 
 // End player turn (No implementation)
 void Action::actionDoNext(){}
@@ -40,7 +40,6 @@ void Action::choose(Game& game)
 
    while (!submitted)
    {
-      cout<<"Pilih kartu yang anda ingin berikan: ";
       pilihan=intIO.getInput();
       pilihan--;
       
@@ -51,11 +50,10 @@ void Action::choose(Game& game)
       else{
          cout<<"Kartu tidak valid. Mohon ulangi."<<endl;
       }
-                
    }
 }
 
-void Action::cangkul(Game& game, int color, Inventory& dump)
+void Action::cangkul(Cangkul& game, int color, Inventory& dump)
 {
    IOHandler<string> stringIO;
    stringIO.addAccepted("YA");
@@ -67,15 +65,22 @@ void Action::cangkul(Game& game, int color, Inventory& dump)
 
    while(!curPlayer.isColorExists(color) && curPlayer.getPlayerStatus())
    {
-      if(game.getDeck().isInventoryEmpty()) 
-         dump.returnCardToDeck(game.getDeck());
+      if(!game.dumpManage()) 
+      {
+         cout<<"Tidak ada lagi yang bisa dicangkul :<<";
+         curPlayer.setPlayerStatus(false);
+         curPlayer.returnCardToDeck(dump);
+         break;
+      }
+      
       cout<<"Ingin mencangkul? (YA/TIDAK)"<<endl;
       string input;
       input = stringIO.getInputInAccepted();
       if(input=="YA")
       {
          curPlayer.takeCardFromDeck(game.getDeck(),1);
-         curPlayer.printCards();
+         if(!curPlayer.isColorExists(color))
+            curPlayer.printCards();
       }
       else if(input=="TIDAK")
       {

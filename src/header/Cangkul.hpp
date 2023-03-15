@@ -26,6 +26,9 @@ public:
 	/* Determines the next round position */
 	void roundManage();
 
+	/* Manage the dump, return true if deck is cangkul-able */
+	bool dumpManage();
+
 	/* Check whether the game is over */
 	bool gameOver();
 
