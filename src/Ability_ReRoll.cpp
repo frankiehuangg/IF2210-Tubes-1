@@ -2,7 +2,7 @@
 #include "header/Game.hpp"
 
 ReRoll::ReRoll(){
-	type = "REROLL";
+	type = "RE-ROLL";
 }
 
 // Buang 2 kartu milik player sekarang, ambil ulang kartu dari deck
