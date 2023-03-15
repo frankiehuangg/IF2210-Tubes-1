@@ -2,7 +2,8 @@
 #include "header/Game.hpp"
 #include <iostream>
 
-Quadruple::Quadruple(){
+Quadruple::Quadruple()
+{
     type = "QUADRUPLE";
 }
 
@@ -10,11 +11,11 @@ Quadruple::Quadruple(){
 // Ubah status abilityCard pemain lain menjadi false
 void Quadruple::useAbility(Game &game)
 {
-    if (this->status)
+    if (!this->status)
     {
         int initialPoint = game.getPoint();
         game.setPoint(initialPoint * 4);
-        this->status = false;
+        this->status = true;
         std::cout << game.getPlayer().getPlayerName() << " melakukan QUADRUPLE!" << std::endl;
         std::cout << "Point hadiah naik dari " << initialPoint << " menjadi " << game.getPoint() << "!" << std::endl;
     }
@@ -29,6 +30,6 @@ void Quadruple::useAbility(Game &game)
 void Quadruple::printCard()
 {
     std::cout << "NAME     : QUADRUPLE" << std::endl;
-    std::cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
+    std::cout << "STATUS   : " << (!this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
     std::cout << "ABILITY  : Menaikkan total poin hadiah menjadi 4x lipat" << std::endl;
 }

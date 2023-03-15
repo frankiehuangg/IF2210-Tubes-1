@@ -34,11 +34,13 @@ void Action::choose(Game& game)
 
    cout<< "Pilih kartu yang ingin anda keluarkan: "<<endl;
 	curPlayer.printCards();
+   curPlayer.printCardsSpecifier();
 
    while (!submitted)
    {
       cout<<"Pilih kartu yang anda ingin berikan: ";
       cin>>pilihan;
+      pilihan--;
       
       if(pilihan<punya && pilihan>=0 && (hand[pilihan].getColor()==curColor||tableSize==0)) {
          curPlayer.returnOneCardToDeck(game.getTable(),pilihan);

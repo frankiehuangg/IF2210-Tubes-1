@@ -98,6 +98,9 @@ public:
 	/* Prints the player's current card */
 	void printCards();
 
+	/* Prints the player's card specifier */
+	void printCardsSpecifier();
+
 	/* Checks whether the current player value > the other player value
 	 * @param Comparable& other		The other player */
 	bool operator< (Comparable&);

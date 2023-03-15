@@ -173,6 +173,23 @@ void Player::printCards() {
 	cout << (*this);
 }
 
+void Player::printCardsSpecifier() {
+    vector<MainCard> cards = this->getInventoryCards();
+
+	int size=cards.size();
+
+    for(int i=0; i<size; i++)
+    {
+        for(int i=0; i<6; i++)
+            cout<<" ";
+        cout<<i+1;
+        for(int i=0; i<7; i++)
+            cout<<" ";
+        
+    }
+    cout<<endl;
+}
+
 bool Player::operator< (Comparable& other) {
     return point < other.getValue();
 }

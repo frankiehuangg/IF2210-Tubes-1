@@ -1,7 +1,8 @@
 #include "header/Ability_Abilityless.hpp"
 #include "header/Game.hpp"
 
-Abilityless::Abilityless() {
+Abilityless::Abilityless()
+{
     type = "ABILITYLESS";
 }
 
@@ -9,7 +10,7 @@ Abilityless::Abilityless() {
 // Ubah status abilityCard pemain lain menjadi false
 void Abilityless::useAbility(Game &game)
 {
-    if (this->status)
+    if (!this->status)
     {
         bool isAllAbilityCardUsed = true;
         for (int i = 1; i < 7; i++)
@@ -25,7 +26,7 @@ void Abilityless::useAbility(Game &game)
             std::cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan." << std::endl;
             std::cout << "Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless." << std::endl;
             std::cout << "Yah, penggunaan kartu ini sia-sia." << std::endl;
-            this->status = false;
+            this->status = true;
         }
         else
         {
@@ -50,7 +51,7 @@ void Abilityless::useAbility(Game &game)
             {
                 game.getPlayer(choices).setAbilityCardStatus(false);
                 std::cout << "Kartu ability " << game.getPlayer(choices).getPlayerName() << " telah dimatikan!" << std::endl;
-                this->status = false;
+                this->status = true;
             }
             else
             {
@@ -70,6 +71,6 @@ void Abilityless::useAbility(Game &game)
 void Abilityless::printCard()
 {
     std::cout << "NAME     : ABILITYLESS" << std::endl;
-    std::cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
+    std::cout << "STATUS   : " << (!this->status ? " Belum digunakan" : " Sudah diguankan") << std::endl;
     std::cout << "ABILITY  : Mematikan kemampuan kartu lawan" << std::endl;
 }

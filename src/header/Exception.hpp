@@ -61,4 +61,11 @@ struct DuplicateCardExist: public exception
 	}
 };
 
+struct bebas:exception
+{
+    const char * printError() const throw(){
+        throw "salah";
+    }
+};
+
 #endif
