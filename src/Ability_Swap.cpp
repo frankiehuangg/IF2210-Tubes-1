@@ -18,116 +18,30 @@ void Swap::useAbility(Game& game)
     }
     else
     {
-        int playerCount = game.getPlayerCount();
         Player &currentPlayer = game.getPlayerInTurn();
+        int currentPlayerNum = currentPlayer.getPlayerNumber();
         int playerNumber1, playerNumber2;
 
         cout << currentPlayer.getPlayerName() << " melakukan SWAPCARD!" << endl;
 
-        /*** Ini mungkin dijadiin satu method aja biar modular ***/
-        bool valid = false;
-        while (!valid) 
-        {
-            try
-            {
-                cout << "Silahkan pilih pemain yang kartunya ingin kamu tukar: " << endl;
-                int num = 1;
-                for (int i = 1; i <= playerCount; i++)
-                {
-                    Player &playerLoop = game.getPlayer(i);
-                    if (playerLoop.getPlayerNumber() != currentPlayer.getPlayerNumber())
-                    {
-                        cout << num << ". " << playerLoop.getPlayerName() << endl;
-                        ++num;
-                    }
-                }
-
-                cout << "> ";
-                string inputNumber1;
-                cin >> inputNumber1;
-                if (isdigit(inputNumber1[0]) && inputNumber1.length() == 1) 
-                {
-                    playerNumber1 = inputNumber1[0] - '0';
-                    if (playerNumber1 >= currentPlayer.getPlayerNumber()) 
-                    {
-                        ++playerNumber1;
-                    }
-                    game.getPlayer(playerNumber1); // Kalo ga berhasil akan throw PlayerNotExist
-                    valid = true;
-                }
-                else 
-                {
-                    cout << "Masukan tidak valid. Ulangi!" << endl;
-                }
-                
-            }
-            catch (PlayerNotExist &e) 
-            {
-                cout << "Pemain tidak ditemukan. Ulangi!" << endl;
-            }
-        }
-        
+        // Mendapatkan input player yang akan diswap
+        playerNumber1 = inputPlayerToSwap(game, currentPlayerNum);
         Player &player1 = game.getPlayer(playerNumber1);
-        /*********************************************************/
-
-
-
-        /*** Ini mungkin dijadiin satu method aja biar modular ***/
-        vector<int> playerNumsTemp;
-        valid = false;
-        while (!valid) 
-        {
-            try 
-            {
-                cout << "Silahkan pilih pemain lain yang kartunya ingin kamu tukar: " << endl;
-                int num = 1;
-                for (int i = 1; i <= playerCount; i++)
-                {
-                    Player &playerLoop = game.getPlayer(i);
-                    if (playerLoop.getPlayerNumber() != currentPlayer.getPlayerNumber() &&
-                    playerLoop.getPlayerNumber() != playerNumber1)
-                    {
-                        cout << num << ". " << playerLoop.getPlayerName() << endl;
-                        ++num;
-                        playerNumsTemp.push_back(playerLoop.getPlayerNumber());
-                    }
-                }
-                cout << "> ";
-                string inputNumber2;
-                cin >> inputNumber2;
-                if (isdigit(inputNumber2[0]) && inputNumber2.length() == 1) 
-                {
-                    playerNumber2 = inputNumber2[0] - '0';
-                    game.getPlayer(playerNumsTemp[playerNumber2 - 1]); // Kalo ga berhasil akan throw PlayerNotExist
-                    valid = true;
-                }
-                else 
-                {
-                    cout << "Masukan tidak valid. Ulangi!" << endl;
-                }
-            }
-            catch (PlayerNotExist &e) 
-            {
-                cout << "Pemain tidak ditemukan. Ulangi!" << endl;
-                playerNumsTemp.clear();
-            }
-        }
+    
+        playerNumber2 = inputPlayerToSwap(game, currentPlayerNum, playerNumber1);
+        Player &player2 = game.getPlayer(playerNumber2);
         
-        Player &player2 = game.getPlayer(playerNumsTemp[playerNumber2 - 1]);
-        /*********************************************************/
-
-
+        // Mendapatkan input kartu mana yang akan diswap (kiri/kanan)
         IOHandler<int> optionIO;
         int option1, option2;
 
-        cout << "Silakan pilih kartu kanan/kiri " << player1.getPlayerName() << endl;
-        cout << "1. Kanan \n2. Kiri" << endl;
+        cout << "Silakan pilih kartu kiri/kanan " << player1.getPlayerName() << endl;
+        cout << "1. Kiri \n2. Kanan" << endl;
         option1=optionIO.getInputInAccepted(1,2);
 
-        cout << "Silakan pilih kartu kanan/kiri " << player2.getPlayerName() << endl;
-        cout << "1. Kanan \n2. Kiri" << endl;
+        cout << "Silakan pilih kartu kiri/kanan " << player2.getPlayerName() << endl;
+        cout << "1. Kiri \n2. Kanan" << endl;
         option2=optionIO.getInputInAccepted(1,2);
-        /*********************************************************/
 
         // Swap kartu pemain_1 dengan pemain_2 (Mungkin juga bisa dibikin satu method)
         MainCard temp = player1.getCard(option1 - 1);
@@ -142,4 +56,98 @@ void Swap::printCard()
     cout << "NAME     : SWAP" << endl;
     cout << "STATUS   : " << (this->status ? " Belum digunakan" : " Sudah digunakan") << endl;
     cout << "ABILITY  : memilih dua pemain yang akan menukarkan masing-masing satu kartu secara acak" << endl;
+}
+
+int Swap::inputPlayerToSwap(Game& game, int currentPlayerNum) 
+{
+    int playerNumber;
+    int playerCount = game.getPlayerCount();
+    bool valid = false;
+    while (!valid) 
+    {
+        try
+        {
+            cout << "Silahkan pilih pemain yang kartunya ingin kamu tukar: " << endl;
+            int num = 1;
+            for (int i = 1; i <= playerCount; i++)
+            {
+                Player &playerLoop = game.getPlayer(i);
+                if (playerLoop.getPlayerNumber() != currentPlayerNum)
+                {
+                    cout << num << ". " << playerLoop.getPlayerName() << endl;
+                    ++num;
+                }
+            }
+
+            cout << "> ";
+            string inputNumber;
+            cin >> inputNumber;
+            if (isdigit(inputNumber[0]) && inputNumber.length() == 1) 
+            {
+                playerNumber = inputNumber[0] - '0';
+                if (playerNumber >= currentPlayerNum) ++playerNumber;
+                game.getPlayer(playerNumber); // Kalo ga berhasil akan throw PlayerNotExist
+                valid = true;
+            }
+            else 
+            {
+                cout << "Masukan tidak valid. Ulangi!" << endl;
+            }
+            
+        }
+        catch (PlayerNotExist &e) 
+        {
+            cout << "Pemain tidak ditemukan. Ulangi!" << endl;
+        }
+    }
+
+    return playerNumber;
+}
+
+int Swap::inputPlayerToSwap(Game& game, int currentPlayerNum, int alreadySelectedPlayerNum) 
+{
+    int playerOption, playerNumber;
+    vector<int> playerNumsTemp;
+    int playerCount = game.getPlayerCount();
+    bool valid = false;
+    while (!valid) 
+    {
+        try 
+        {
+            cout << "Silahkan pilih pemain lain yang kartunya ingin kamu tukar: " << endl;
+            int num = 1;
+            for (int i = 1; i <= playerCount; i++)
+            {
+                Player &playerLoop = game.getPlayer(i);
+                if (playerLoop.getPlayerNumber() != currentPlayerNum &&
+                playerLoop.getPlayerNumber() != alreadySelectedPlayerNum)
+                {
+                    cout << num << ". " << playerLoop.getPlayerName() << endl;
+                    ++num;
+                    playerNumsTemp.push_back(playerLoop.getPlayerNumber());
+                }
+            }
+            cout << "> ";
+            string inputNumber;
+            cin >> inputNumber;
+            if (isdigit(inputNumber[0]) && inputNumber.length() == 1) 
+            {
+                playerOption = inputNumber[0] - '0';
+                playerNumber = playerNumsTemp[playerOption - 1];
+                game.getPlayer(playerNumber); // Kalo ga berhasil akan throw PlayerNotExist
+                valid = true;
+            }
+            else 
+            {
+                cout << "Masukan tidak valid. Ulangi!" << endl;
+            }
+        }
+        catch (PlayerNotExist &e) 
+        {
+            cout << "Pemain tidak ditemukan. Ulangi!" << endl;
+            playerNumsTemp.clear();
+        }
+    }
+
+    return playerNumber;
 }
