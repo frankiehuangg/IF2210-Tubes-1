@@ -46,7 +46,7 @@ void Abilityless::useAbility(Game &game)
 
             int choices;
             IOHandler<int> intIO;
-            choices=intIO.getInputInAccepted(1,6);
+            choices = intIO.getInputInAccepted(1, 6);
 
             bool isOtherDisabled = game.getPlayer(index_id[choices]).abilityDisabled();
             bool statusOther = game.getPlayer(index_id[choices]).getAbilityCardStatus();
@@ -83,6 +83,6 @@ void Abilityless::useAbility(Game &game)
 void Abilityless::printCard()
 {
     std::cout << "NAME     : " << this->type << std::endl;
-    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
+    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
     std::cout << "ABILITY  : Menonaktifkan kemampuan kartu lawan" << std::endl;
 }

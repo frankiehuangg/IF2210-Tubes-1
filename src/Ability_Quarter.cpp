@@ -40,6 +40,6 @@ void Quarter::useAbility(Game &game)
 void Quarter::printCard()
 {
     std::cout << "NAME     : " << this->type << std::endl;
-    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
+    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
     std::cout << "ABILITY  : Menurunkan total poin hadiah menjadi 0.25x nilai saat ini" << std::endl;
 }

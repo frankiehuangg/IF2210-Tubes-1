@@ -1,6 +1,7 @@
 #include "header/Player.hpp"
 
-Player::Player(string _name, int _number) : Inventory(2) {
+Player::Player(string _name, int _number) : Inventory(2)
+{
     name = _name;
     number = _number;
     point = 0;
@@ -19,101 +20,128 @@ Player::Player(string _name, int _number) : Inventory(2) {
 
 Player::~Player() {}
 
-int Player::getPlayerNumber() const {
+int Player::getPlayerNumber() const
+{
     return number;
 }
 
-string Player::getPlayerName() const {
+string Player::getPlayerName() const
+{
     return name;
 }
 
-long long Player::getPlayerPoint() const {
+long long Player::getPlayerPoint() const
+{
     return point;
 }
 
-bool Player::getPlayerStatus() const {
+bool Player::getPlayerStatus() const
+{
     return status;
 }
 
-void Player::setPlayerStatus(bool status){
-    this->status=status;
+void Player::setPlayerStatus(bool status)
+{
+    this->status = status;
 }
 
-Action& Player::getPlayerAction(){
+Action &Player::getPlayerAction()
+{
     return playerAction;
 }
 
-void Player::addPlayerPoint(long long additionalPoint) {
+void Player::addPlayerPoint(long long additionalPoint)
+{
     point += additionalPoint;
 }
 
-bool Player::doesAbilityCardExist() const {
+bool Player::doesAbilityCardExist() const
+{
     return ability != NULL;
 }
 
-bool Player::getAbilityCardStatus() const {
-    if(ability == NULL) throw NoAbilityAvailable();
+bool Player::getAbilityCardStatus() const
+{
+    if (ability == NULL)
+        throw NoAbilityAvailable();
     return ability->getStatus();
 }
 
-void Player::setAbilityCardStatus(bool status) {
+void Player::setAbilityCardStatus(bool status)
+{
     ability->setStatus(status);
 }
 
-bool Player::abilityDisabled() const {
+bool Player::abilityDisabled() const
+{
     return ability->disabled();
 }
 
-void Player::disableAbilityCard() {
+void Player::disableAbilityCard()
+{
     ability->disable();
 }
 
-void Player::enableAbilityCard() {
+void Player::enableAbilityCard()
+{
     ability->enable();
 }
 
-void Player::returnAbilityToDeck(Deck& deck) {
+void Player::returnAbilityToDeck(Deck &deck)
+{
     deck.returnAbilityToDeck(ability);
     ability = NULL;
 }
 
-void Player::takeAbilityFromDeck(Deck& deck) {
+void Player::takeAbilityFromDeck(Deck &deck)
+{
     ability = deck.takeAbilityFromDeck(number);
 }
 
-void Player::doAction(Game& game) {
+void Player::doAction(Game &game)
+{
     string input;
     bool invalidInput;
     const string abilityInvalidMsg = "Ets, tidak bisa. Kamu tidak punya kartu Ability ";
-    do {
+    do
+    {
         invalidInput = false;
-		cout << "Masukkan input pengguna: ";
+        cout << "Masukkan input pengguna: ";
         cin >> input;
-        if (input == "NEXT") {
+        if (input == "NEXT")
+        {
             cout << "Giliran dilanjut ke pemain selanjutnya.\n";
         }
-        else if (input == "RE-ROLL" || input == "QUADRUPLE" || input == "QUARTER" || input == "REVERSE" || input == "SWAPCARD" || input == "SWITCH" || input == "ABILITYLESS") {
-            if(ability == NULL) {
+        else if (input == "RE-ROLL" || input == "QUADRUPLE" || input == "QUARTER" || input == "REVERSE" || input == "SWAPCARD" || input == "SWITCH" || input == "ABILITYLESS")
+        {
+            if (ability == NULL)
+            {
                 cout << abilityInvalidMsg << input << ".\n";
                 invalidInput = true;
             }
-            else {
-                if (ability->getType() == input) {
+            else
+            {
+                if (ability->getType() == input)
+                {
                     ability->useAbility(game);
                 }
-                else {
+                else
+                {
                     cout << abilityInvalidMsg << input << ".\n";
                     invalidInput = true;
                 }
             }
         }
-        else if (input == "DOUBLE") {
+        else if (input == "DOUBLE")
+        {
             playerAction.actionDoDouble(game);
         }
-        else if (input == "HALF") {
+        else if (input == "HALF")
+        {
             playerAction.actionDoHalf(game);
         }
-        else {
+        else
+        {
             cout << "Sintaks input tidak valid, mohon ulangi!\n";
             invalidInput = true;
         }
@@ -121,51 +149,60 @@ void Player::doAction(Game& game) {
     } while (invalidInput);
 }
 
-void Player::useAbility(Game& game) {
-    if (ability == NULL) throw NoAbilityAvailable();
-    else {
+void Player::useAbility(Game &game)
+{
+    if (ability == NULL)
+        throw NoAbilityAvailable();
+    else
+    {
         ability->useAbility(game);
     }
 }
 
-void Player::printCards() {
-	cout << (*this);
+void Player::printCards()
+{
+    cout << (*this);
 }
 
-void Player::printInfo() {
-    cout << "ID: " << number << '\n';
-    cout << "Name: " << name << '\n';
-    cout << "Point: " << point << '\n';
-    if(ability != NULL) {
+void Player::printInfo()
+{
+    cout << "ID       : " << number << '\n';
+    cout << "NAME     : " << name << '\n';
+    cout << "POINT    : " << point << '\n';
+    if (ability != NULL)
+    {
         ability->printCard();
     }
 }
 
-void Player::printCardsSpecifier() {
+void Player::printCardsSpecifier()
+{
     vector<MainCard> cards = this->getInventoryCards();
 
-	int size=cards.size();
+    int size = cards.size();
 
-    for(int i=0; i<size; i++)
+    for (int i = 0; i < size; i++)
     {
-        for(int i=0; i<6; i++)
-            cout<<" ";
-        cout<<i+1;
-        for(int i=0; i<7; i++)
-            cout<<" ";
-        
+        for (int i = 0; i < 6; i++)
+            cout << " ";
+        cout << i + 1;
+        for (int i = 0; i < 7; i++)
+            cout << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 
-bool Player::operator< (Comparable& other) {
+bool Player::operator<(Comparable &other)
+{
     return point < other.getValue();
 }
 
-bool Player::operator> (Comparable& other) {
+bool Player::operator>(Comparable &other)
+{
     return point > other.getValue();
 }
 
-bool Player::operator== (Comparable& other) {
+bool Player::operator==(Comparable &other)
+{
     return point == other.getValue();
 }

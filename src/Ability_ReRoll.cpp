@@ -32,7 +32,7 @@ void ReRoll::useAbility(Game &game)
 // Print card info and status
 void ReRoll::printCard()
 {
-	std::cout << "NAME     : Re-Roll" << std::endl;
-	std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
+	std::cout << "NAME     : " << this->type << std::endl;
+	std::cout << "STATUS   : " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
 	std::cout << "ABILITY  : Membuang kedua kartu yang ada di tangannya dan mengambil ulang dua kartu baru dari deck" << std::endl;
 }
