@@ -85,7 +85,7 @@ void Deck::getDeckFromInput() {
     string filename="deck.txt";
 
     ifstream fin(filename);
-    if(!fin.is_open()) throw InvalidFileSyntax();
+    if(!fin.is_open()) throw InvalidFile();
 
     // create card table to check for duplicate card during input
     map<MainCard, bool> cardTable;
@@ -121,14 +121,14 @@ void Deck::getDeckFromInput() {
                         numRead = true;
                     }
                     else {
-                        throw InputInvalid();
+                        throw InvalidFileInput();
                     }
                 }
                 else if (num == 1 && (*it - '0')<= 3) {
                     num *= 10;
                     num += *it - '0';
                 }
-                else throw InputInvalid();
+                else throw InvalidFileInput();
             }
 
             // read card color
@@ -145,14 +145,14 @@ void Deck::getDeckFromInput() {
                         color = temp;
                         colorRead = true;
                     }
-                    else throw InputInvalid();
+                    else throw InvalidFileInput();
                 }
                 else {
-                    throw InputInvalid();
+                    throw InvalidFileInput();
                 }
             }
 
-            if (!(numRead && colorRead)) throw InputInvalid();
+            if (!(numRead && colorRead)) throw InvalidFileInput();
 
             MainCard inCard(num, color);
             if(cardTable[inCard]) throw DuplicateCardExist();
@@ -162,7 +162,7 @@ void Deck::getDeckFromInput() {
         }
     } catch (exception& err) {
         cout << err.what() << n+1 << '\n';
-        throw InvalidFileSyntax();
+        throw InvalidFile();
     }
 }
 

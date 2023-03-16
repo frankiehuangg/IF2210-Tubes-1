@@ -13,15 +13,6 @@ public:
 	virtual const char *printError() const throw() = 0;
 };
 
-class InvalidFileSyntax : public GameException
-{
-public:
-	const char *printError() const throw()
-	{
-		return "File input invalid!";
-	}
-};
-
 class PlayerNotExist : public GameException
 {
 public:
@@ -68,23 +59,7 @@ public:
 	}
 };
 
-class InputInvalid : public GameException
-{
-public:
-	const char *printError() const throw()
-	{
-		return "Input format invalid at line ";
-	}
-};
 
-class DuplicateCardExist : public GameException
-{
-public:
-	const char *printError() const throw()
-	{
-		return "Duplicate card exist at line ";
-	}
-};
 
 class NotExpected : public GameException
 {
@@ -108,6 +83,31 @@ public:
 	const char *printError() const throw()
 	{
 		return this->_message.c_str();
+	}
+};class InvalidFile : public GameException
+{
+public:
+	const char *printError() const throw()
+	{
+		return "File input invalid!";
+	}
+};
+
+class InvalidFileInput : public GameException
+{
+public:
+	const char *printError() const throw()
+	{
+		return "Input format invalid at line ";
+	}
+};
+
+class DuplicateCardExist : public GameException
+{
+public:
+	const char *printError() const throw()
+	{
+		return "Duplicate card exist at line ";
 	}
 };
 
