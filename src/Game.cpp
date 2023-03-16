@@ -1,3 +1,5 @@
+#include <iostream>
+#include <limits>
 #include "header/Game.hpp"
 
 Game::Game(int round, int turn, long long point, int PLAYER_AMOUNT, long long WIN_POINT) : PLAYER_AMOUNT(PLAYER_AMOUNT), WIN_POINT(WIN_POINT)
@@ -5,6 +7,43 @@ Game::Game(int round, int turn, long long point, int PLAYER_AMOUNT, long long WI
 	this->round = round;
 	this->turn = turn;
 	this->point = point;
+}
+
+void Game::playerInit()
+{
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	// Create player
+	int i = 0;
+	while (i < this->PLAYER_AMOUNT)
+	{
+		bool exception_caught = true;
+
+		try
+		{
+			cout << "Masukkan nama pemain ke-" << i + 1 << ": ";
+			string name; getline(cin, name);
+
+			checkPlayerNameExist(name);
+
+			Player p(name, i + 1);
+
+			this->players.push_back(p);
+
+			exception_caught = false;
+		}
+		catch (CreatePlayerFailed &e)
+		{
+			cout << e.printError() << endl;
+		}
+		catch (PlayerNameInvalid &e)
+		{
+			cout << e.printError() << endl;
+		}
+
+		if (!exception_caught)
+			i++;
+	}
 }
 
 void Game::checkPlayerNameExist(string name)

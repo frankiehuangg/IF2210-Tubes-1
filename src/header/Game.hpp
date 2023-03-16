@@ -28,6 +28,7 @@ public:
 	 * @param long long WIN_POINT	The amount of point needed to win the game */
 	Game(int, int, long long, int, long long);
 
+	void playerInit();
 	
 	/***** Exception Handling *****/
 	/* Check whether player name already exist in vector of players
