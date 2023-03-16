@@ -24,12 +24,38 @@ public:
 	virtual bool operator==(Comparable &) = 0;
 };
 
-/* Return maximum element of a Comparable vector, must contain at least one element */
+/* Return maximum element of a vector, must contain at least one element */
 template <class T>
-T &maxElmt(const vector<T> &);
+T maxElmt(const vector<T> &container)
+{
+	T maxs = container[0];
 
-/* Return index of maximum element of a Comparable vector, must contain at least one element */
+	for (T element : container)
+	{
+		if (element > maxs)
+		{
+			maxs = element;
+		}
+	}
+	return maxs;
+}
+
+/* Return index of maximum element of a vector, must contain at least one element */
 template <class T>
-int maxElmtidx(const vector<T> &);
+int maxElmtidx(const vector<T> &container)
+{
+	int maxidx = 0;
+
+	for (int i = 1; i < container.size(); i++)
+	{
+		T temp=container[i];
+		T temp2=container[maxidx];
+		if (temp > temp2)
+		{
+			maxidx = i;
+		}
+	}
+	return maxidx;
+}
 
 #endif

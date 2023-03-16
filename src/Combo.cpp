@@ -113,8 +113,8 @@ Combo::Combo(const Player& player, const Table& table) {
             name = "Pair";
         }
         else /* High Card */ {
-            int largest = perm[i].size() - 1;
-            tempval = perm[i][largest].getValue();
+            MainCard largest=maxElmt(perm[i]);
+            tempval = largest.getValue();
             name = "High Card";
         }
 
