@@ -4,41 +4,9 @@
 
 Poker::Poker() : Game(0, 64, 0, 7, 1LL << 31), ROUND_AMOUNT(6), combos(PLAYER_AMOUNT)
 {
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
+	
 	this->shuffle = 0;
-
-	// Create player
-	int i = 0;
-	while (i < this->PLAYER_AMOUNT)
-	{
-		bool exception_caught = true;
-
-		try
-		{
-			cout << "Masukkan nama pemain ke-" << i + 1 << ": ";
-			string name; getline(cin, name);
-
-			checkPlayerNameExist(name);
-
-			Player p(name, i + 1);
-
-			this->players.push_back(p);
-
-			exception_caught = false;
-		}
-		catch (CreatePlayerFailed &e)
-		{
-			cout << e.printError() << endl;
-		}
-		catch (PlayerNameInvalid &e)
-		{
-			cout << e.printError() << endl;
-		}
-
-		if (!exception_caught)
-			i++;
-	}
+	playerInit();
 }
 
 void Poker::roundRobin()
