@@ -176,7 +176,8 @@ AbilityCard* Deck::takeAbilityFromDeck(int n) {
 }
 
 void Deck::returnAbilityToDeck(AbilityCard * ability) {
-    ability->setStatus(true);
+    ability->setStatus(true);   // kartu kembali bisa digunakan
+    ability->enable();          // kartu yang sebelumnya ter-disable oleh abilityless kembali di enable
     usedBy[ability] = -1;
     abilityCardTop++;
 }
