@@ -1,7 +1,6 @@
 #ifndef _COMBO_HPP_
 #define _COMBO_HPP_
 
-#include <map>
 #include <algorithm>	// sort
 #include <string>
 #include "Comparable.hpp"
