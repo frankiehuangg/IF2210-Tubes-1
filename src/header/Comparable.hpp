@@ -46,7 +46,7 @@ int maxElmtidx(const vector<T> &container)
 {
 	int maxidx = 0;
 
-	for (int i = 1; i < container.size(); i++)
+	for (int i = 1; i < (int)container.size(); i++)
 	{
 		T temp=container[i];
 		T temp2=container[maxidx];

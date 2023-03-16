@@ -39,8 +39,6 @@ void ComboCalculator::start()
     cout<<"Masukkan jumlah pemain(1-7)"<<endl;
     playerNum=intIO.getInputInAccepted(1,7);
 
-    int tempNum;
-    int tempCol;
     for(int i=1; i<=playerNum; i++)
     {
         cout<<"Masukkan untuk player ke-"<<i<<endl;
