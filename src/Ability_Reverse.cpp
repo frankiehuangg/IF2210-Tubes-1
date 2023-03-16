@@ -49,7 +49,7 @@ void Reverse::useAbility(Game &game)
 
 		game.setPlayerTurn(current);
 
-		status = false;
+		this->status = false;
 
 		game.getPlayerInTurn().doAction(game);
 	}
