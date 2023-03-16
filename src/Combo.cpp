@@ -112,10 +112,12 @@ Combo::Combo(const Player& player, const Table& table) {
             tempval = (card[1] + 16*card[2]) + 1.39;
             name = "Pair";
         }
-        else /* High Card */ {
-            MainCard largest=maxElmt(perm[i]);
-            tempval = largest.getValue();
+        else if(checkHighCard(perm[i])) {
+            tempval = perm[i][0].getValue();
             name = "High Card";
+        }
+        else {
+            continue;
         }
 
         if(value < tempval) {
