@@ -107,7 +107,8 @@ void Poker::newShuffle()
 		cout << this->combos[i].what() << '\n';
 	}
 
-	// int winnerID = maxElmtidx(this->combos);
+	int winnerID = maxElmtidx(this->combos);
+	/*
 	int winnerID = 0;
 	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
 	{
@@ -116,6 +117,8 @@ void Poker::newShuffle()
 			winnerID = i;
 		}
 	}
+	*/
+	
 
 	this->players[winnerID].addPlayerPoint(this->point);
 

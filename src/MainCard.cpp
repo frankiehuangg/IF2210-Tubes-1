@@ -80,7 +80,7 @@ ostream& operator<< (ostream& os, const vector<MainCard>& cards)
 
 	for (int i = 0; i < length; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards.txt", "r");
+		FILE *fin = fopen("src/ascii/cards2.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 
@@ -106,13 +106,13 @@ ostream& operator<< (ostream& os, const vector<MainCard>& cards)
 		for (int j = 0; j < length; j++)
 		{
 			if (cards[j].getColor() == 0)
-				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";
-			else if (cards[j].getColor() == 1)
-				os << C02 << print[i][j].erase(print[i][j].length()-1) << " ";
-			else if (cards[j].getColor() == 2)
 				os << C03 << print[i][j].erase(print[i][j].length()-1) << " ";
-			else
+			else if (cards[j].getColor() == 1)
 				os << C04 << print[i][j].erase(print[i][j].length()-1) << " ";
+			else if (cards[j].getColor() == 2)
+				os << C02 << print[i][j].erase(print[i][j].length()-1) << " ";
+			else
+				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";
 		}
 		os << endl;
 	}
