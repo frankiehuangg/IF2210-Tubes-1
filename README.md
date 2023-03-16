@@ -95,9 +95,9 @@ make run
       ├─ Action.cpp
       ├─ Cangkul.cpp
       ├─ Combo.cpp
+      ├─ Combo_Calculator.cpp
       ├─ Comparable.cpp
       ├─ Deck.cpp
-      ├─ Exception.hpp
       ├─ Game.cpp
       ├─ Inventory.cpp
       ├─ Main.cpp
@@ -113,8 +113,8 @@ This project is *finished*.
 *There are no plans to change, add, or optimize the program in the near future.*
 
 ## Room for Improvement
-- More efficient divide and conquer algorithm
-- Snappier GUI
+- Better TUI
+- Cleaner code and implementation
 
 ## Acknowledgements
 - This project is spearheaded by the IF2210 Informatics major at Institut Teknologi Bandung, which has been well organized by the IF2210 - 2023 professors and assistants.
