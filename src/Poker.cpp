@@ -152,28 +152,31 @@ void Poker::newRound()
 {
 	this->turn = 0;
 
-
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
+		// system("clear");
 		
-		cout << "Round: " << getRound()+1 << endl;
+		cout << "Round\t\t: " << getRound()+1 << endl;
 
-		cout << "Poin game sekarang: " << this->point << endl;
+		cout << "Game point\t: " << this->point << endl;
 
-		cout << "Giliran pemain ke-" << this->turn << endl << endl;
-
-		players[turn].printInfo();
+		cout << "Table cards" << endl;
 
 		this->table.printCards();
 
+		players[turn].printInfo();
+
+		cout << "Player cards" << endl;
 		this->players[turn].printCards();
 
 		// Ambil aksi pemain
 		this->players[turn].doAction(*this);
 
 		this->turn++;
+
+		cout << "Press any key to continue..." << endl;
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cin.get(); 
 	}
-	
-	// system("clear");
 }

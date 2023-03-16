@@ -26,13 +26,16 @@ void ReRoll::useAbility(Game &game)
 		// take from deck
 		player.takeCardFromDeck(deck, 2);
 	}
+
+	cout << "Kartu pemain baru:" << endl;
+	cout << game.getPlayer().getInventoryCards();
 }
 
 /***** Print card *****/
 // Print card info and status
 void ReRoll::printCard()
 {
-	std::cout << "NAME     : Re-Roll" << std::endl;
-	std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
-	std::cout << "ABILITY  : Membuang kedua kartu yang ada di tangannya dan mengambil ulang dua kartu baru dari deck" << std::endl;
+	std::cout << "NAME     \t: " << this->type << std::endl;
+	std::cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
+	std::cout << "ABILITY  \t: Membuang kedua kartu yang ada di tangannya dan mengambil ulang dua kartu baru dari deck" << std::endl;
 }

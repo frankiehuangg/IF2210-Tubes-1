@@ -44,21 +44,9 @@ void Abilityless::useAbility(Game &game)
                 }
             }
 
-            string choicesRaw;
             int choices;
-            bool isValidInputNumber = false;
-            std::cin.ignore();
-            while (!isValidInputNumber || choices < 1 || choices > 6)
-            {
-                std::cout << "Mohon masukkan angka 1-6!" << std::endl;
-                std::cout << "> ";
-                std::getline(std::cin, choicesRaw);
-                if (choicesRaw.length() == 1 && isdigit(choicesRaw[0]))
-                {
-                    choices = stoi(choicesRaw);
-                    isValidInputNumber = true;
-                }
-            }
+            IOHandler<int> intIO;
+            choices = intIO.getInputInAccepted(1, 6);
 
             bool isOtherDisabled = game.getPlayer(index_id[choices]).abilityDisabled();
             bool statusOther = game.getPlayer(index_id[choices]).getAbilityCardStatus();
@@ -94,7 +82,7 @@ void Abilityless::useAbility(Game &game)
 // Print card info and status
 void Abilityless::printCard()
 {
-    std::cout << "NAME     : " << this->type << std::endl;
-    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
-    std::cout << "ABILITY  : Mematikan kemampuan kartu lawan" << std::endl;
+    std::cout << "NAME     \t: " << this->type << std::endl;
+    std::cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
+    std::cout << "ABILITY  \t: Menonaktifkan kemampuan kartu lawan" << std::endl;
 }

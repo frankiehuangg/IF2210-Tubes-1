@@ -42,7 +42,7 @@ void Cangkul::roundManage()
 	int iterator=size-1;
 	map<int,int> rank;
 
-	for(int i=players.size()-1; i>=0; i--)
+	for(int i=this->PLAYER_AMOUNT-1; i>=0; i--)
 	{
 		MainCard curCard=table.getCard(iterator);
 		if(players[i].getPlayerStatus())
@@ -59,7 +59,8 @@ void Cangkul::roundManage()
 	}
 
 	this->players.clear();
-	for(int i=0; i<temp.size(); i++)
+	int temp_size = temp.size();
+	for(int i=0; i<temp_size; i++)
 		this->players.push_back(temp[i]);
 	this->table.returnCardToDeck(dump);
 
@@ -117,7 +118,7 @@ void Cangkul::newRound()
 	int curColor=table.getCard(0).getColor();
 
 	// Giliran sebanyak pemain
-	while (this->turn < this->players.size() && !gameOver())
+	while (this->turn < this->PLAYER_AMOUNT && !gameOver())
 	{
 		cout << "Giliran pemain dengan ID " << players[turn].getPlayerNumber() << " dengan nama " << players[turn].getPlayerName() << endl;
 
@@ -141,10 +142,10 @@ void Cangkul::newRound()
 
 bool Cangkul::gameOver()
 {
-	if (this->players.size()<=1) return true;
+	if (this->PLAYER_AMOUNT<=1) return true;
 
 	int count=0;
-	for (int i = 0; i < this->players.size(); i++)
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
 		if (this->players[i].getInventoryCards().size() == 0 && this->players[i].getPlayerStatus())
 			count++;
 
@@ -154,13 +155,13 @@ bool Cangkul::gameOver()
 /* Check who won the game  */
 void Cangkul::gameWinner()
 {
-	if (this->players.size()==1)
+	if (this->PLAYER_AMOUNT==1)
 	{
 		Player win= players[0];
 		cout<<"Player "<<win.getPlayerName()<<" dengan ID "<<win.getPlayerNumber()<<" memenangkan permainan!"<<endl;
 	}
 
-	for (int i = 0; i < this->players.size(); i++)
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
 		if (this->players[i].getInventoryCards().size() == 0 && this->players[i].getPlayerStatus())
 		{
 			Player win= players[i];

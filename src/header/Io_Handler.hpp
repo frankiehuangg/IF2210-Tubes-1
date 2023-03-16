@@ -10,6 +10,7 @@ template<class T>
 class IOHandler{
     private:
     vector<T> acceptedInput;
+    vector<T> declinedInput;
     
     public:
     /* IOHandler default constructor
@@ -24,6 +25,10 @@ class IOHandler{
 	 * @param T acc 	            new accepted inputs */
     void addAccepted(T);
 
+    /* declined adder
+	 * @param T acc 	            new declined inputs */
+    void addDeclined(T);
+
     /***** Input *****/
 	/* Input a value of type T */
     T getInput();
@@ -35,6 +40,9 @@ class IOHandler{
      * @param int l                 left of range(inclusive)
      * @param int r                 right of range(inclusive) */
     T getInputInAccepted(int,int);
+
+    /* Input a value of type T that does not exists in declinedInput*/
+    T getInputNotInDeclined();
 
 };
 
@@ -95,9 +103,9 @@ T IOHandler<T>::getInputInAccepted(){
                 if(input==it)
                 valid = true;
             }
-            if(!valid) throw InputInvalid();
+            if(!valid) throw NotExpected();
         }
-        catch (InputInvalid &e) 
+        catch (NotExpected &e) 
         {
             cout << e.printError() << endl;
         }   
@@ -116,9 +124,33 @@ T IOHandler<T>::getInputInAccepted(int l, int r){
             input = getInput();
             if(input>=l && input<=r)
                 valid=true;
-            if(!valid) throw InputInvalid();
+            if(!valid) throw NotExpected();
         }
-        catch (InputInvalid &e) 
+        catch (NotExpected &e) 
+        {
+            cout << e.printError() << endl;
+        }   
+    }
+    return input;
+}
+
+template<class T>
+T IOHandler<T>::getInputNotInDeclined(){
+    T input;
+    bool valid = false;
+    while (!valid) 
+    {
+        try
+        {
+            input = getInput();
+            for(T it: declinedInput)
+            {
+                if(input==it)
+                valid = false;
+            }
+            if(!valid) throw NotExpected();
+        }
+        catch (NotExpected &e) 
         {
             cout << e.printError() << endl;
         }   

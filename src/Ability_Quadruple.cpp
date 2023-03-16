@@ -33,7 +33,7 @@ void Quadruple::useAbility(Game &game)
 // Print card info and status
 void Quadruple::printCard()
 {
-    std::cout << "NAME     : " << this->type << std::endl;
-    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? " Belum digunakan" : (!this->status ? " Sudah digunakan" : " Dinonaktifkan")) << std::endl;
-    std::cout << "ABILITY  : Menaikkan total poin hadiah menjadi 4x lipat" << std::endl;
+    std::cout << "NAME     \t: " << this->type << std::endl;
+    std::cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
+    std::cout << "ABILITY  \t: Menaikkan total poin hadiah menjadi 4x lipat" << std::endl;
 }
