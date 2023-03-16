@@ -39,6 +39,9 @@ public:
 	/* Returns the value of turn */
 	int getTurn() const;
 
+	/* Set the value of turn */
+	void setTurn(int);
+
 	/* Returns the value of round */
 	int getRound() const;
 

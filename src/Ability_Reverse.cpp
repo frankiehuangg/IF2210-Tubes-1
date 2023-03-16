@@ -48,7 +48,7 @@ void Reverse::useAbility(Game &game)
 		cout << "<p" << current[0].getPlayerNumber() << "> " << endl;
 
 		game.setPlayerTurn(current);
-
+		game.setTurn(game.getTurn()+1);
 		this->status = false;
 
 		game.getPlayerInTurn().doAction(game);
