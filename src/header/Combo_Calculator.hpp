@@ -70,8 +70,7 @@ void ComboCalculator::calculate()
     }
     catch(char const* cc){
         cout<<cc<<endl;
-    }
-    
+    }   
 }
 
 void ComboCalculator::announce()
