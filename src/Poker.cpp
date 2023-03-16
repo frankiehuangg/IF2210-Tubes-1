@@ -72,7 +72,29 @@ void Poker::newShuffle()
 			if (!this->table.isInventoryEmpty())
 				this->table.returnCardToDeck(this->deck);
 
-			this->deck.shuffleMainCards();
+			bool repeat;
+			do{
+				repeat = false;
+				try {
+					cout<<"Pilih input deck: "<<endl;
+					cout<<"1. Acak"<<endl;
+					cout<<"2. Dari file"<<endl;
+					
+					IOHandler<int> intIO;
+					int input=intIO.getInputInAccepted(1,2);
+
+					if(input==1)
+					{
+						this->deck.shuffleMainCards();
+					}
+					else
+					{
+						this->deck.getDeckFromInput();
+					}
+				} catch (InvalidFile& err) {
+					repeat = true;
+				}
+			} while (repeat);
 
 			// Ambil 2 kartu dari deck ke pemain
 			for (int i = 0; i < this->PLAYER_AMOUNT*2; i++)
