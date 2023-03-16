@@ -154,12 +154,13 @@ void Player::printCards()
 
 void Player::printInfo()
 {
-	cout << "\nPlayer Status" << endl;
+	cout << "\nPlayer Status\n";
     cout << "Number   \t: " << number << '\n';
     cout << "Name     \t: " << name << '\n';
     cout << "Point    \t: " << point << '\n';
     if (ability != NULL)
     {
+        cout << "\nPlayer Ability\n";
         ability->printCard();
     }
 }
