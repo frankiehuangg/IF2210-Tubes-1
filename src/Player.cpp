@@ -101,9 +101,10 @@ void Player::takeAbilityFromDeck(Deck &deck)
 void Player::doAction(Game &game)
 {
     string input;
-    bool repeat = false;
+    bool repeat;
     do
     {
+        repeat = false;
         try {
             cout << "Masukkan input pengguna: ";
             cin >> input;
@@ -128,8 +129,8 @@ void Player::doAction(Game &game)
                 throw NotExpected();
             }
         }
-        catch (exception& err) {
-            cout << err.what() << '\n';
+        catch (GameException& err) {
+            cout << err.printError() << '\n';
             repeat = true;
         }
     } while (repeat);
