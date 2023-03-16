@@ -101,60 +101,46 @@ void Player::takeAbilityFromDeck(Deck &deck)
 void Player::doAction(Game &game)
 {
     string input;
-    bool invalidInput;
-    const string abilityInvalidMsg = "Ets, tidak bisa. Kamu tidak punya kartu Ability ";
+    bool invalidInput = false;
     do
     {
-        invalidInput = false;
-        cout << "Masukkan input pengguna: ";
-        cin >> input;
-        if (input == "NEXT")
-        {
-            cout << "Giliran dilanjut ke pemain selanjutnya.\n";
-        }
-        else if (input == "RE-ROLL" || input == "QUADRUPLE" || input == "QUARTER" || input == "REVERSE" || input == "SWAPCARD" || input == "SWITCH" || input == "ABILITYLESS")
-        {
-            if (ability == NULL)
+        try {
+            cout << "Masukkan input pengguna: ";
+            cin >> input;
+            if (input == "NEXT")
             {
-                cout << abilityInvalidMsg << input << ".\n";
-                invalidInput = true;
+                cout << "Giliran dilanjut ke pemain selanjutnya.\n";
+            }
+            else if (input == "RE-ROLL" || input == "QUADRUPLE" || input == "QUARTER" || input == "REVERSE" || input == "SWAPCARD" || input == "SWITCH" || input == "ABILITYLESS")
+            {
+                useAbility(game, input);
+            }
+            else if (input == "DOUBLE")
+            {
+                playerAction.actionDoDouble(game);
+            }
+            else if (input == "HALF")
+            {
+                playerAction.actionDoHalf(game);
             }
             else
             {
-                if (ability->getType() == input)
-                {
-                    ability->useAbility(game);
-                }
-                else
-                {
-                    cout << abilityInvalidMsg << input << ".\n";
-                    invalidInput = true;
-                }
+                throw NotExpected();
             }
         }
-        else if (input == "DOUBLE")
-        {
-            playerAction.actionDoDouble(game);
+        catch (exception& err) {
+            cout << err.what() << '\n';
         }
-        else if (input == "HALF")
-        {
-            playerAction.actionDoHalf(game);
-        }
-        else
-        {
-            cout << "Sintaks input tidak valid, mohon ulangi!\n";
-            invalidInput = true;
-        }
-
     } while (invalidInput);
 }
 
-void Player::useAbility(Game &game)
+void Player::useAbility(Game &game, string type)
 {
     if (ability == NULL)
         throw NoAbilityAvailable();
     else
     {
+        if(ability->getType() != type) throw NoAbilityAvailable(type);
         ability->useAbility(game);
     }
 }

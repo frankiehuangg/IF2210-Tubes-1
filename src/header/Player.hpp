@@ -94,7 +94,7 @@ public:
 
 	/* Use AbilityCard's ability
 	 * @param Game& game	Game */
-	void useAbility(Game&);
+	void useAbility(Game&, string);
 
 	/***** Print *****/
 	/* Prints the player's current card */
