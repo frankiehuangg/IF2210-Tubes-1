@@ -34,7 +34,7 @@ void Reverse::useAbility(Game &game)
 		cout << cur_name << " melakukan reverse!" << endl;
 		cout << "(sisa) urutan eksekusi giliran ini : ";
 
-		for (unsigned i = cur_turn + 2; i < game.getPlayerCount(); i++)
+		for (int i = cur_turn + 2; i < game.getPlayerCount(); i++)
 		{
 			cout << "<p" << current[i].getPlayerNumber() << "> ";
 		}

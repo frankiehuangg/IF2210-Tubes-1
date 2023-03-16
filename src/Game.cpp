@@ -12,7 +12,7 @@ void Game::checkPlayerNameExist(string name)
 	if (name == "")
 		throw PlayerNameInvalid();
 	
-	for (unsigned i = 0; i < this->players.size(); i++)
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
 	{
 		if (this->players[i].getPlayerName() == name)
 			throw CreatePlayerFailed();
@@ -61,7 +61,8 @@ Player& Game::getPlayerInTurn(int index)
 
 Player& Game::getPlayer(int number)
 {
-	for (int i = 0; i < this->players.size(); i++)
+	int players_size = this->players.size();
+	for (int i = 0; i < players_size; i++)
 		if (this->players[i].getPlayerNumber() == number)
 			return this->players[i];
 
@@ -70,7 +71,7 @@ Player& Game::getPlayer(int number)
 
 Player& Game::getPlayer(string name)
 {
-	for (int i = 0; i < this->players.size(); i++)
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
 		if (this->players[i].getPlayerName() == name)
 			return this->players[i];
 
@@ -79,7 +80,7 @@ Player& Game::getPlayer(string name)
 void Game::printPlayerTurn()
 {
 	cout<<"Current round's turn : ";
-	for (int i = 0; i < this->players.size(); i++)
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
 		cout<<this->players[i].getPlayerNumber()<<" ";
 	cout<<endl;
 }
