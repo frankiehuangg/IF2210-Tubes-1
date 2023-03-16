@@ -114,17 +114,6 @@ void Poker::newShuffle()
 	}
 
 	int winnerID = maxElmtidx(this->combos);
-	/*
-	int winnerID = 0;
-	for (int i = 1; i < this->PLAYER_AMOUNT; i++)
-	{
-		if (this->combos[i] > this->combos[winnerID])
-		{
-			winnerID = i;
-		}
-	}
-	*/
-	
 
 	this->players[winnerID].addPlayerPoint(this->point);
 

@@ -86,7 +86,4 @@ void ComboCalculator::announce()
 {
     int winnerID=maxElmtidx(this->combos);
     cout << "Pemain " << this->players[winnerID].getPlayerNumber() << " memenangkan permainan!" << endl;
-    
-    //cout<<"Combo tertinggi dari susunan ini adalah "<<comboType<<endl;
-    //cout<<"dengan skor "<<value<<endl;
 }
