@@ -39,24 +39,37 @@ public:
 	friend ostream& operator<<(ostream&, const Combo&);
 
 private:
-	// Combo list:
-	// 0 = no combo
-	// 1 = pair
-	// 2 = two pair
-	// 3 = three of a kind dst.
-	// static const map<int, float> combo_list;
 	vector<MainCard> cards;
-
 	string combotype;
 	
+	/* Utility methods for checking combination types
+	 * @param vector<MainCard>& cardSublist	subset dari kartu pemain dan kartu table */
+	
+	// High card: Nilai kartu tertinggi yang dimiliki player jika tidak ada kombinasi lain.
 	bool checkHighCard(vector<MainCard>& cardSublist);
+
+	// Pair: Jika terdapat dua kartu yang memiliki angka yang sama.
 	bool checkPair(vector<MainCard>& cardSublist);
+
+	// Two pair: Jika terdapat dua pair
 	bool checkTwoPair(vector<MainCard>& cardSublist);
+
+	// Three of a kind: Jika terdapat tiga kartu yang memiliki angka yang sama.
 	bool checkThreeOfaKind(vector<MainCard>& cardSublist);
+
+	// Straight: Jika terdapat lima kartu yang berurutan. Misalnya 3 4 5 6 7
 	bool checkStraight(vector<MainCard>& cardSublist); 
+	
+	// Flush: Jika terdapat lima kartu dengan warna yang sama. 
 	bool checkFlush(vector<MainCard>& cardSublist);
+
+	// Full house: Jika terdapat tiga kartu dengan warna yang sama dan dua kartu lainnya dengan warna yang sama
 	bool checkFullHouse(vector<MainCard>& cardSublist);
+
+	// Four of a kind: Jika terdapat empat kartu yang memiliki angka yang sama
 	bool checkFourOfaKind(vector<MainCard>& cardSublist);
+
+	// Straight flush: Jika terdapat lima kartu berurutan dengan warna yang sama
 	bool checkStraightFlush(vector<MainCard>& cardSublist);
 };
 
