@@ -166,9 +166,10 @@ void Player::printCards()
 
 void Player::printInfo()
 {
-    cout << "ID       : " << number << '\n';
-    cout << "NAME     : " << name << '\n';
-    cout << "POINT    : " << point << '\n';
+	cout << "\nPlayer Status" << endl;
+    cout << "Number   \t: " << number << '\n';
+    cout << "Name     \t: " << name << '\n';
+    cout << "Point    \t: " << point << '\n';
     if (ability != NULL)
     {
         ability->printCard();
