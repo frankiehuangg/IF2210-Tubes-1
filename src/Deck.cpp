@@ -2,26 +2,33 @@
 #include "header/Io_Handler.hpp"
 
 Deck::Deck() : Inventory(52) {
-    cout<<"Pilih input deck: "<<endl;
-    cout<<"1. Acak"<<endl;
-    cout<<"2. Dari file"<<endl;
+    bool repeat;
+    do{
+        repeat = false;
+        try {
+            cout<<"Pilih input deck: "<<endl;
+            cout<<"1. Acak"<<endl;
+            cout<<"2. Dari file"<<endl;
+            
+            IOHandler<int> intIO;
+            int input=intIO.getInputInAccepted(1,2);
 
-    IOHandler<int> intIO;
-    int input=intIO.getInputInAccepted(1,2);
-
-    if(input==1)
-    {
-        for (int i = 1; i <= 13; i++) {
-            for (int j = 0; j <= 3; j++) {
-                cards.push_back(MainCard(i, j));
+            if(input==1)
+            {
+                for (int i = 1; i <= 13; i++) {
+                    for (int j = 0; j <= 3; j++) {
+                        cards.push_back(MainCard(i, j));
+                    }
+                }
             }
+            else
+            {
+                getDeckFromInput();
+            }
+        } catch (InvalidFile& err) {
+            repeat = true;
         }
-    }
-    else
-    {
-        getDeckFromInput();
-    }
-    
+    } while (repeat);
     
     // initiate ability cards
     AbilityCard* card;
@@ -81,12 +88,7 @@ void Deck::shuffleMainCards() {
 
 // Baca urutan deck dari file
 void Deck::getDeckFromInput() {
-    cout << "Input nama file: ";
-    string filename="deck.txt";
-
-    ifstream fin(filename);
-    if(!fin.is_open()) throw InvalidFile();
-
+    vector<MainCard> tempcards;
     // create card table to check for duplicate card during input
     map<MainCard, bool> cardTable;
     for (int i = 1; i <= 13; i++) {
@@ -95,75 +97,51 @@ void Deck::getDeckFromInput() {
         }
     }
 
+    cout << "Input nama file: ";
+    string filename;
+    do {
+        getline(cin, filename);
+    } while (filename == "");
+
+    FILE* fin = fopen(filename.c_str(), "r");
+    if(fin == NULL){
+        cout << "File not found\n";
+        throw InvalidFile();
+    }
+
     // parse input
-    string line;
-    int n = 0;
+    char line[100];
+    int n = 1;
     try {
-        while(getline(fin, line)) {
-            bool numRead = false, colorRead = true;
+        while(fgets(line, sizeof(line), fin)!=NULL) {
             int num, color;
-            num = 1;
-            color = 0;
-            
-            string::iterator it;
-            // read card number
-            for(it = line.begin(); it != line.end(); ++it) {
-                if(!numRead) {
-                    if (*it == ' ') {
-                        continue;
-                    }
-                    else if (isdigit(*it)) {
-                        int temp = *it - '0';
-                        if(temp == 0) {
-                            continue;
-                        }
-                        num = temp;
-                        numRead = true;
-                    }
-                    else {
-                        throw InvalidFileInput();
-                    }
-                }
-                else if (num == 1 && (*it - '0')<= 3) {
-                    num *= 10;
-                    num += *it - '0';
-                }
-                else throw InvalidFileInput();
-            }
-
-            // read card color
-            for(/* it = it */; it != line.end(); ++it) {
-                if (*it == ' ') {
-                    continue;
-                }
-                else if (isdigit(*it) && !colorRead) {
-                    int temp = *it - '0';
-                    if(temp == 0) {
-                        continue;
-                    }
-                    else if (0 <= temp && temp <= 3){
-                        color = temp;
-                        colorRead = true;
-                    }
-                    else throw InvalidFileInput();
-                }
-                else {
-                    throw InvalidFileInput();
-                }
-            }
-
-            if (!(numRead && colorRead)) throw InvalidFileInput();
+            char dummy;
+            if(sscanf(line, "%d %d %c", &num, &color, &dummy) != 2) throw InvalidFileInput();
 
             MainCard inCard(num, color);
             if(cardTable[inCard]) throw DuplicateCardExist();
-            
-            cards[n] = MainCard(num, color);
+            tempcards.push_back(inCard);
             n++;
         }
-    } catch (exception& err) {
-        cout << err.what() << n+1 << '\n';
+        
+        if(tempcards.size() < 52) {
+            throw CardsIncomplete();
+        }
+    }
+    catch (InvalidFileInput& err) {
+        cout << err.printError() << n << '\n';
         throw InvalidFile();
     }
+    catch (DuplicateCardExist& err) {
+        cout << err.printError() << n << '\n';
+        throw InvalidFile();
+    }
+    catch (CardsIncomplete& err) {
+        cout << err.printError() << '\n';
+        throw InvalidFile();
+    }
+
+    cards = tempcards;
 }
 
 // Acak AbilityCard
