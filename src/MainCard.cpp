@@ -101,6 +101,7 @@ ostream& operator<< (ostream& os, const vector<MainCard>& cards)
 
 	for (int i = 0; i < 11; i++)
 	{
+		os << "                     ";
 		for (int j = 0; j < length; j++)
 		{
 			if (cards[j].getColor() == 0)
