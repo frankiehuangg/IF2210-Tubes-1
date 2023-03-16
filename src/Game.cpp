@@ -12,7 +12,8 @@ void Game::checkPlayerNameExist(string name)
 	if (name == "")
 		throw PlayerNameInvalid();
 	
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+	int size = players.size();
+	for (int i = 0; i < size; i++)
 	{
 		if (this->players[i].getPlayerName() == name)
 			throw CreatePlayerFailed();
