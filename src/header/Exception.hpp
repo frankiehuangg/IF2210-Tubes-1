@@ -59,8 +59,6 @@ public:
 	}
 };
 
-
-
 class NotExpected : public GameException
 {
 public:
@@ -84,12 +82,14 @@ public:
 	{
 		return this->_message.c_str();
 	}
-};class InvalidFile : public GameException
+};
+
+class InvalidFile : public GameException
 {
 public:
 	const char *printError() const throw()
 	{
-		return "File input invalid!";
+		return "File input invalid";
 	}
 };
 
@@ -108,6 +108,15 @@ public:
 	const char *printError() const throw()
 	{
 		return "Duplicate card exist at line ";
+	}
+};
+
+class CardsIncomplete : public GameException
+{
+public:
+	const char *printError() const throw()
+	{
+		return "Not enough cards to form complete set";
 	}
 };
 
