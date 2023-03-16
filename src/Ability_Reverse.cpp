@@ -41,7 +41,7 @@ void Reverse::useAbility(Game &game)
 
 		cout << endl;
 		cout << "urutan giliran eksekusi selanjutnya : ";
-		for (int i = 1; i <= game.getPlayerCount() - 1; i++)
+		for (int i = 1; i <= current.size()- 1; i++)
 		{
 			cout << "<p" << current[i].getPlayerNumber() << "> ";
 		}
