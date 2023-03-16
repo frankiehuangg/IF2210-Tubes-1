@@ -12,6 +12,7 @@ MainCard::MainCard(int val1, int val2)
 {
     this->card.first = val1;
     this->card.second = val2;
+	this->value = val1 * 0.1 + val2 * 0.03;
 }
 
 /***** Getter & Setter *****/
