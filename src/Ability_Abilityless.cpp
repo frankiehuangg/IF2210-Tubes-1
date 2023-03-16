@@ -82,7 +82,7 @@ void Abilityless::useAbility(Game &game)
 // Print card info and status
 void Abilityless::printCard()
 {
-    std::cout << "NAME     : " << this->type << std::endl;
-    std::cout << "STATUS   : " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
-    std::cout << "ABILITY  : Menonaktifkan kemampuan kartu lawan" << std::endl;
+    std::cout << "NAME     \t: " << this->type << std::endl;
+    std::cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
+    std::cout << "ABILITY  \t: Menonaktifkan kemampuan kartu lawan" << std::endl;
 }

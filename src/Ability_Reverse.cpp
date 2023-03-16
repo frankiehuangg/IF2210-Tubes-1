@@ -57,7 +57,7 @@ void Reverse::useAbility(Game &game)
 
 void Reverse::printCard()
 {
-	std::cout << "NAME     : " << this->type << std::endl;
-	std::cout << "STATUS   : " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
-	std::cout << "ABILITY  : Mengubah urutan permainan" << std::endl;
+	std::cout << "NAME     \t: " << this->type << std::endl;
+	std::cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << std::endl;
+	std::cout << "ABILITY  \t: Mengubah urutan permainan" << std::endl;
 }

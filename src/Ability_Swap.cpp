@@ -54,9 +54,9 @@ void Swap::useAbility(Game &game)
 
 void Swap::printCard()
 {
-    cout << "NAME     : " << this->type << endl;
-    cout << "STATUS   : " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << endl;
-    cout << "ABILITY  : memilih dua pemain yang akan menukarkan masing-masing satu kartu secara acak" << endl;
+    cout << "NAME     \t: " << this->type << endl;
+    cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << endl;
+    cout << "ABILITY  \t: memilih dua pemain yang akan menukarkan masing-masing satu kartu secara acak" << endl;
 }
 
 int Swap::inputPlayerToSwap(Game &game, int currentPlayerNum)

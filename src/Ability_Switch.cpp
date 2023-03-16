@@ -80,11 +80,14 @@ void Switch::useAbility(Game &game)
 
         this->setStatus(false);
     }
+
+	cout << "Kartu pemain baru:" << endl;
+	cout << game.getPlayer().getInventoryCards();
 }
 
 void Switch::printCard()
 {
-    cout << "NAME     : " << this->type << endl;
-    cout << "STATUS   : " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << endl;
-    cout << "ABILITY  : Menukar main card milikmu denganmain card milik pemain lain" << endl;
+    cout << "NAME     \t: " << this->type << endl;
+    cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << endl;
+    cout << "ABILITY  \t: Menukar main card milikmu denganmain card milik pemain lain" << endl;
 }
