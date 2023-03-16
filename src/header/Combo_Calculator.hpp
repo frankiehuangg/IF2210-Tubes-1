@@ -67,7 +67,6 @@ void ComboCalculator::calculate()
     Combo c(p,t);
     value=c.getValue();
     comboType=c.what();
-    cout<<"lolos,,";
     }
     catch(char const* cc){
         cout<<cc<<endl;

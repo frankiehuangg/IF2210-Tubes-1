@@ -16,7 +16,7 @@ using namespace std;
 // Forward declaration
 class Game;
 
-class Player : public Inventory, public Comparable {
+class Player : public Inventory{
 private:
 	string name;
 	int number;
@@ -107,16 +107,16 @@ public:
 	void printCardsSpecifier();
 
 	/* Checks whether the current player value > the other player value
-	 * @param Comparable& other		The other player */
-	bool operator< (Comparable&);
+	 * @param Player& other		The other player */
+	bool operator< (Player&);
 
 	/* Checks whether the current player value < the other player value
-	 * @param Comparable& other		The other player */
-	bool operator> (Comparable&);
+	 * @param Player& other		The other player */
+	bool operator> (Player&);
 
 	/* Checks whether the current player value == the other player value
-	 * @param Comparable& other		The other player */
-	bool operator== (Comparable&);
+	 * @param Player& other		The other player */
+	bool operator== (Player&);
 
 };
 

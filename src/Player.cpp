@@ -180,17 +180,17 @@ void Player::printCardsSpecifier()
     cout << endl;
 }
 
-bool Player::operator<(Comparable &other)
+bool Player::operator<(Player &other)
 {
-    return point < other.getValue();
+    return point < other.getPlayerPoint();
 }
 
-bool Player::operator>(Comparable &other)
+bool Player::operator>(Player &other)
 {
-    return point > other.getValue();
+    return point > other.getPlayerPoint();
 }
 
-bool Player::operator==(Comparable &other)
+bool Player::operator==(Player &other)
 {
-    return point == other.getValue();
+    return point == other.getPlayerPoint();
 }
