@@ -2,33 +2,11 @@
 #include "header/Io_Handler.hpp"
 
 Deck::Deck() : Inventory(52) {
-    bool repeat;
-    do{
-        repeat = false;
-        try {
-            cout<<"Pilih input deck: "<<endl;
-            cout<<"1. Acak"<<endl;
-            cout<<"2. Dari file"<<endl;
-            
-            IOHandler<int> intIO;
-            int input=intIO.getInputInAccepted(1,2);
-
-            if(input==1)
-            {
-                for (int i = 1; i <= 13; i++) {
-                    for (int j = 0; j <= 3; j++) {
-                        cards.push_back(MainCard(i, j));
-                    }
-                }
-            }
-            else
-            {
-                getDeckFromInput();
-            }
-        } catch (InvalidFile& err) {
-            repeat = true;
+    for (int i = 1; i <= 13; i++) {
+        for (int j = 0; j <= 3; j++) {
+            cards.push_back(MainCard(i, j));
         }
-    } while (repeat);
+    }
     
     // initiate ability cards
     AbilityCard* card;
