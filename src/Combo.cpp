@@ -237,9 +237,9 @@ bool Combo::checkFullHouse(vector<MainCard>& cardSublist)
 
 bool Combo::checkFourOfaKind(vector<MainCard>& cardSublist)
 {
-    if (cardSublist.size() != 5) return false;
+    if (cardSublist.size() != 4) return false;
     int cardNum = cardSublist[0].getNumber();
-    for (int i = 1; i < 5; i++) 
+    for (int i = 1; i < 4; i++) 
     {
         if (cardSublist[i].getNumber() != cardNum) return false;
     }
