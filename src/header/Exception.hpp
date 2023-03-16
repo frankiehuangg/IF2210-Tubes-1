@@ -2,6 +2,7 @@
 #define _EXCEPTION_HPP_
 
 #include <exception>
+#include <string>
 
 using namespace std;
 
@@ -43,10 +44,20 @@ public:
 
 class NoAbilityAvailable : public exception
 {
+private:
+	string _message;
 public:
+	NoAbilityAvailable()
+	{
+		this->_message = "Kamu belum punya ability saat ini 😔";
+	}
+	NoAbilityAvailable(string type)
+	{
+		this->_message = "Ets, tidak bisa. Kamu tidak punya kartu Ability " + type;
+	}
 	const char *printError() const throw()
 	{
-		return "Player has no ability available";
+		return this->_message.c_str();;
 	}
 };
 
@@ -80,16 +91,16 @@ public:
 class AbilityCardDisabled : public exception
 {
 private:
-	char *_message;
+	string _message;
 
 public:
-	AbilityCardDisabled(char *message)
+	AbilityCardDisabled(string message)
 	{
 		this->_message = message;
 	}
 	const char *printError() const throw()
 	{
-		return this->_message;
+		return this->_message.c_str();
 	}
 };
 
