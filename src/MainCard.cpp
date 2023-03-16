@@ -80,7 +80,7 @@ ostream &operator<<(ostream &os, const vector<MainCard> &cards)
 
 	for (int i = 0; i < length; i++)
 	{
-		FILE *fin = fopen("src/ascii/cards2.txt", "r");
+		FILE *fin = fopen("src/ascii/cards.txt", "r");
 
 		int line_num = (cards[i].getNumber() - 1) * 11;
 
