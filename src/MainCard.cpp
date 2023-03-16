@@ -10,8 +10,8 @@
 /* Constructor & destructor */
 MainCard::MainCard(int val1, int val2)
 {
-    this->card.first = val1;
-    this->card.second = val2;
+	this->card.first = val1;
+	this->card.second = val2;
 	this->value = val1 * 0.1 + val2 * 0.03;
 }
 
@@ -19,32 +19,32 @@ MainCard::MainCard(int val1, int val2)
 // Number - Assumption: First element of the pair
 int MainCard::getNumber() const
 {
-    return this->card.first;
+	return this->card.first;
 }
 void MainCard::setNumber(int number)
 {
-    this->card.first = number;
+	this->card.first = number;
 }
 
 // Color - Assumption: Second element of the pair
 int MainCard::getColor() const
 {
-    return this->card.second;
+	return this->card.second;
 }
 void MainCard::setColor(int color)
 {
-    this->card.second = color;
+	this->card.second = color;
 }
 
 /***** Print *****/
 // Print card number and color, ends with endl
 void MainCard::printCard()
 {
-    std::cout << this->card.first << "(" << this->card.second << ")" << endl;
+	std::cout << this->card.first << "(" << this->card.second << ")" << endl;
 }
 
 /***** Comparison *****/
-bool operator< (const MainCard m1, const MainCard m2)
+bool operator<(const MainCard m1, const MainCard m2)
 {
 	return m1.getValue() < m2.getValue();
 }
@@ -52,25 +52,25 @@ bool operator< (const MainCard m1, const MainCard m2)
 // Cek apakah nilai kartu < kartu lain
 bool MainCard::operator<(Comparable &other)
 {
-    // Not sure yet
-    return this->value < other.getValue();
+	// Not sure yet
+	return this->value < other.getValue();
 }
 
 // Cek apakah nilai kartu > kartu lain
 bool MainCard::operator>(Comparable &other)
 {
-    // Not sure yet
-    return this->value > other.getValue();
+	// Not sure yet
+	return this->value > other.getValue();
 }
 
 // Cek apakah nilai kartu = kartu lain
 bool MainCard::operator==(Comparable &other)
 {
-    // Not sure yet
-    return this->value == other.getValue();
+	// Not sure yet
+	return this->value == other.getValue();
 }
 
-ostream& operator<< (ostream& os, const vector<MainCard>& cards)
+ostream &operator<<(ostream &os, const vector<MainCard> &cards)
 {
 	string print[11][cards.size()];
 
