@@ -64,6 +64,11 @@ int Game::getTurn() const
 	return this->turn;
 }
 
+void Game::setTurn(int trn)
+{
+	this->turn=trn;
+}
+
 int Game::getRound() const
 {
 	return this->round;

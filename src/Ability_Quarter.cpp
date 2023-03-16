@@ -12,7 +12,7 @@ void Quarter::useAbility(Game &game)
 {
     if (this->status && !this->isdisabled)
     {
-        int initialPoint = game.getPoint();
+        long long initialPoint = game.getPoint();
         if (initialPoint > 3)
         {
             game.setPoint(initialPoint / 4);

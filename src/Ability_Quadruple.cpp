@@ -13,7 +13,7 @@ void Quadruple::useAbility(Game &game)
 {
     if (this->status && !this->isdisabled)
     {
-        int initialPoint = game.getPoint();
+        long long initialPoint = game.getPoint();
         game.setPoint(initialPoint * 4);
         this->status = false;
         std::cout << game.getPlayerInTurn().getPlayerName() << " melakukan QUADRUPLE!" << std::endl;

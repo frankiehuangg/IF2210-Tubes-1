@@ -18,6 +18,7 @@ void ReRoll::useAbility(Game &game)
 	{
 		Player &player = game.getPlayer();
 		Deck &deck = game.getDeck();
+		this->status = false;
 
 		// move to deck
 		vector<MainCard> vec = player - 2;
@@ -29,6 +30,7 @@ void ReRoll::useAbility(Game &game)
 
 	cout << "Kartu pemain baru:" << endl;
 	cout << game.getPlayer().getInventoryCards();
+	
 }
 
 /***** Print card *****/

@@ -4,7 +4,7 @@
 
 Poker::Poker() : Game(0, 64, 0, 7, 1LL << 31), ROUND_AMOUNT(6), combos(PLAYER_AMOUNT)
 {
-	
+
 	this->shuffle = 0;
 	playerInit();
 }
@@ -19,9 +19,10 @@ void Poker::roundRobin()
 void Poker::newShuffle()
 {
 	setPoint(64);
+	this->round = 0;
 
 	table.setOpened(0);
-	
+
 	for (int i = 0; i < this->ROUND_AMOUNT; i++)
 	{
 		// Ronde 1, pemain mendapatkan 2 MainCard dari Deck
@@ -41,17 +42,19 @@ void Poker::newShuffle()
 				this->table.returnCardToDeck(this->deck);
 
 			bool repeat;
-			do{
+			do
+			{
 				repeat = false;
-				try {
-					cout<<"Pilih input deck: "<<endl;
-					cout<<"1. Acak"<<endl;
-					cout<<"2. Dari file"<<endl;
-					
-					IOHandler<int> intIO;
-					int input=intIO.getInputInAccepted(1,2);
+				try
+				{
+					cout << "Pilih input deck: " << endl;
+					cout << "1. Acak" << endl;
+					cout << "2. Dari file" << endl;
 
-					if(input==1)
+					IOHandler<int> intIO;
+					int input = intIO.getInputInAccepted(1, 2);
+
+					if (input == 1)
 					{
 						this->deck.shuffleMainCards();
 					}
@@ -59,19 +62,21 @@ void Poker::newShuffle()
 					{
 						this->deck.getDeckFromInput();
 					}
-				} catch (InvalidFile& err) {
+				}
+				catch (InvalidFile &err)
+				{
 					repeat = true;
 				}
 			} while (repeat);
 
 			// Ambil 2 kartu dari deck ke pemain
-			for (int i = 0; i < this->PLAYER_AMOUNT*2; i++)
-				this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
+			for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+				this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 2);
 
 			// Taruh 5 kartu dari deck ke table
 			this->table.takeCardFromDeck(this->deck, 5);
 		}
-			
+
 		// Ronde 2, pemain dapat menggunakan abilityCard
 		if (this->round == 1)
 		{
@@ -98,12 +103,14 @@ void Poker::newShuffle()
 	}
 
 	// Calculate winning combo
-	for (int i = 0; i < this->PLAYER_AMOUNT; i++){
-		Player& player = this->players[i];
+	for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+	{
+		Player &player = this->players[i];
 		this->combos[i] = Combo(player, this->table);
-		player.printInfo();
+		// player.printInfo();
+		cout << "Player " << player.getPlayerName() << " mendapatkan combo ";
+		cout << "⚡" << this->combos[i].what() << "⚡" << '\n';
 		cout << this->combos[i];
-		cout << this->combos[i].what() << '\n';
 	}
 
 	// int winnerID = maxElmtidx(this->combos);
@@ -120,12 +127,13 @@ void Poker::newShuffle()
 
 	if (!gameOver())
 	{
+		cout << "Pemain " << this->players[winnerID].getPlayerName() << " mendapatkan poin " << this->point << endl;
 		this->shuffle++;
 		newShuffle();
 	}
 	else
 	{
-		cout << "Pemain " << this->players[winnerID].getPlayerName() << " memenangkan permainan!" << endl;
+		cout << "Pemain " << this->players[winnerID].getPlayerName() << " memenangkan permainan dengan poin " << this->players[winnerID].getPlayerPoint() << "!" << endl;
 	}
 }
 
@@ -145,9 +153,9 @@ void Poker::newRound()
 	// Ronde sebanyak pemain
 	while (this->turn < this->PLAYER_AMOUNT)
 	{
-		// system("clear");
-		
-		cout << "Round\t\t: " << getRound()+1 << endl;
+		system("clear");
+
+		cout << "Round\t\t: " << getRound() + 1 << endl;
 
 		cout << "Game point\t: " << this->point << endl;
 
@@ -167,6 +175,6 @@ void Poker::newRound()
 
 		cout << "Press any key to continue..." << endl;
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		cin.get(); 
+		cin.get();
 	}
 }
