@@ -1,27 +1,39 @@
 #include "Combo.hpp"
 
 class ComboCalculator:public Table{
-    public:
-    ComboCalculator(){}
-    void start();
-    void calculate();
-    void announce();
-
     private:
     vector<MainCard> stored;
+    vector<Player> players;
+    vector<Combo> combos;
     float value;
     string comboType;
+    int playerNum;
+
+    public:
+    /* ComboCalculator constructor */
+    ComboCalculator(){}
+
+    /* Start the module */
+    void start();
+
+    /* Calculate all combos */
+    void calculate();
+
+    /* Announce winner */
+    void announce();
+
+    /* Input a certain amount of card 
+     * @param int amount        Amount of card to be input */
+    void getCard(int);
+
 };
 
-void ComboCalculator::start()
-{
+void ComboCalculator::getCard(int amount){
+    int tempNum, tempCol;
     IOHandler<int> intIO;
-    int tempNum;
-    int tempCol;
-    for(int i=1; i<=7; i++)
-    {
 
-        cout<<"Masukkan kartu ke- "<<i<<":"<<endl;
+    for(int j=1;j<=amount;j++){
+        cout<<"Masukkan kartu ke- "<<j<<":"<<endl;
 
         bool invalid=true;
         while(invalid){
@@ -41,11 +53,29 @@ void ComboCalculator::start()
 
             }
         }
-        
         MainCard cardtemp(tempNum,tempCol);
         stored.push_back(cardtemp);
         cout<<endl;
     }
+}
+
+void ComboCalculator::start()
+{
+    IOHandler<int> intIO;
+
+    cout<<"Masukkan jumlah pemain(1-7)"<<endl;
+    playerNum=intIO.getInputInAccepted(1,7);
+
+    int tempNum;
+    int tempCol;
+    for(int i=1; i<=playerNum; i++)
+    {
+        cout<<"Masukkan untuk player ke-"<<i<<endl;
+        getCard(2);
+    }
+
+    cout<<"Masukkan untuk table"<<endl;
+    getCard(5);
 
     (*this).operator+(stored);
 
@@ -56,25 +86,34 @@ void ComboCalculator::start()
 void ComboCalculator::calculate()
 {
     Table t;
-    Player p("dummy",0);
-    p.takeCardFromDeck((*this),2);
-    t.takeCardFromDeck((*this),5);
     t.setOpened(7);
-    t.printCards();
-    
-    p.printCards();
-    try{
-    Combo c(p,t);
-    value=c.getValue();
-    comboType=c.what();
+    for(int i=1; i<=playerNum; i++)
+    {
+        Player p=Player("dummy",i);
+        p.takeCardFromDeck((*this),2);
+        players.push_back(p);
+        p.printCards();
     }
-    catch(char const* cc){
-        cout<<cc<<endl;
-    }   
+
+    t.takeCardFromDeck((*this),5);
+    t.printCards();
+
+   for (int i = 0; i < playerNum; i++){
+		Player& player = players[i];
+		Combo c = Combo(player, t);
+        combos.push_back(c);
+		player.printInfo();
+
+		cout << this->combos[i];
+		cout << this->combos[i].what() << '\n';
+	}  
 }
 
 void ComboCalculator::announce()
 {
-    cout<<"Combo tertinggi dari susunan ini adalah "<<comboType<<endl;
-    cout<<"dengan skor "<<value<<endl;
+    int winnerID=maxElmtidx(this->combos);
+    cout << "Pemain " << this->players[winnerID].getPlayerNumber() << " memenangkan permainan!" << endl;
+    
+    //cout<<"Combo tertinggi dari susunan ini adalah "<<comboType<<endl;
+    //cout<<"dengan skor "<<value<<endl;
 }

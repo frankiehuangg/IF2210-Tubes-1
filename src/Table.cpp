@@ -96,13 +96,13 @@ ostream& operator<<(ostream& os, Table table)
 		for (int j = 0; j < openThen; j++)
 		{
 			if (cards[j].getColor() == 0)
-				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";
-			else if (cards[j].getColor() == 1)
-				os << C02 << print[i][j].erase(print[i][j].length()-1) << " ";
-			else if (cards[j].getColor() == 2)
 				os << C03 << print[i][j].erase(print[i][j].length()-1) << " ";
-			else
+			else if (cards[j].getColor() == 1)
 				os << C04 << print[i][j].erase(print[i][j].length()-1) << " ";
+			else if (cards[j].getColor() == 2)
+				os << C02 << print[i][j].erase(print[i][j].length()-1) << " ";
+			else
+				os << C01 << print[i][j].erase(print[i][j].length()-1) << " ";
 		}
 		for (int j = table.getOpened(); j < numCard; j++)
 		{
