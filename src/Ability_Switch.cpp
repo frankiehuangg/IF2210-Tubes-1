@@ -16,7 +16,7 @@ void Switch::useAbility(Game &game)
     }
     else if (this->isdisabled)
     {
-        cout << "Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭" << std::endl;
+        throw AbilityCardDisabled("Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭");
     }
     else
     {
@@ -39,8 +39,8 @@ void Switch::useAbility(Game &game)
         this->setStatus(false);
     }
 
-	cout << "Kartu pemain baru:" << endl;
-	cout << game.getPlayer().getInventoryCards();
+    cout << "Kartu pemain baru:" << endl;
+    cout << game.getPlayer().getInventoryCards();
 }
 
 void Switch::printCard()

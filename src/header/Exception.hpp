@@ -5,11 +5,10 @@
 
 using namespace std;
 
-
-class InvalidFileSyntax: public exception 
+class InvalidFileSyntax : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "File input invalid!";
 	}
@@ -17,8 +16,8 @@ class InvalidFileSyntax: public exception
 
 class PlayerNotExist : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "Player does not exist!";
 	}
@@ -26,8 +25,8 @@ class PlayerNotExist : public exception
 
 class PlayerNameInvalid : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "Name not allowed. Please choose another name.";
 	}
@@ -35,46 +34,62 @@ class PlayerNameInvalid : public exception
 
 class CreatePlayerFailed : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "Name is chosen by another player. Please choose another name";
 	}
 };
 
-class NoAbilityAvailable: public exception
+class NoAbilityAvailable : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "Player has no ability available";
 	}
 };
 
-class InputInvalid: public exception
+class InputInvalid : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "Input format invalid at line ";
 	}
 };
 
-class DuplicateCardExist: public exception
+class DuplicateCardExist : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "Duplicate card exist at line ";
 	}
 };
 
-class NotExpected: public exception
+class NotExpected : public exception
 {
-	public:
-	const char* printError() const throw()
+public:
+	const char *printError() const throw()
 	{
 		return "Input tidak sesuai kriteria. Mohon ulangi.";
+	}
+};
+
+class AbilityCardDisabled : public exception
+{
+private:
+	char *_message;
+
+public:
+	AbilityCardDisabled(char *message)
+	{
+		this->_message = message;
+	}
+	const char *printError() const throw()
+	{
+		return this->_message;
 	}
 };
 

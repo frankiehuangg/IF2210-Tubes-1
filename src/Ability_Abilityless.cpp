@@ -54,23 +54,23 @@ void Abilityless::useAbility(Game &game)
             {
                 game.getPlayer(index_id[choices]).disableAbilityCard();
                 std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dinonaktifkan!" << std::endl;
-                this->status = false;
             }
             else if (!statusOther)
             {
                 std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dipakai sebelumnya." << std::endl;
-                std::cout << "Yah, nyerangnya gagal deh..🤣" << std::endl;
+                std::cout << "Yah, nyerangnya gagal deh, kartunya jadi sia-sia..🤣" << std::endl;
             }
             else
             {
                 std::cout << "Kartu ability " << game.getPlayer(index_id[choices]).getPlayerName() << " telah dinonaktifkan." << std::endl;
-                std::cout << "Yah, nyerangnya gagal deh..🤣" << std::endl;
+                std::cout << "Yah, nyerangnya gagal deh, kartunya jadi sia-sia..🤣" << std::endl;
             }
+            this->status = false;
         }
     }
     else if (this->isdisabled)
     {
-        std::cout << "Yah.., sayang sekali kamu sudah menonaktifkan kartumu sendiri.😭🤣" << std::endl;
+        throw AbilityCardDisabled("Yah.., sayang sekali kamu sudah menonaktifkan kartumu sendiri.😭🤣");
     }
     else
     {

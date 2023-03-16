@@ -27,7 +27,7 @@ void Quarter::useAbility(Game &game)
     }
     else if (this->isdisabled)
     {
-        std::cout << "Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭" << std::endl;
+        throw AbilityCardDisabled("Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭");
     }
     else
     {

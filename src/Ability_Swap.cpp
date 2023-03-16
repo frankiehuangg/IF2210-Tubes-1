@@ -15,7 +15,7 @@ void Swap::useAbility(Game &game)
     }
     else if (this->isdisabled)
     {
-        cout << "Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭" << endl;
+        throw AbilityCardDisabled("Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭");
     }
     else
     {
@@ -46,7 +46,7 @@ void Swap::useAbility(Game &game)
         cout << "1. Kanan \n2. Kiri" << endl;
         option2 = optionIO.getInputInAccepted(1, 2);
 
-        // Swap kartu pemain_1 dengan pemain_2 
+        // Swap kartu pemain_1 dengan pemain_2
         swapCardAtIdx(game, playerNumber1, playerNumber2, option1, option2);
         this->setStatus(false);
     }
@@ -58,7 +58,6 @@ void Swap::printCard()
     cout << "STATUS   \t: " << (this->status && !this->isdisabled ? "Belum digunakan" : (!this->status ? "Sudah digunakan" : "Dinonaktifkan")) << endl;
     cout << "ABILITY  \t: memilih dua pemain yang akan menukarkan masing-masing satu kartu secara acak" << endl;
 }
-
 
 int Swap::inputPlayerToSwap(Game &game, int currentPlayerNum, int alreadySelectedPlayerNum, string outputMsg)
 {
@@ -104,11 +103,11 @@ int Swap::inputPlayerToSwap(Game &game, int currentPlayerNum, int alreadySelecte
     return playerNumber;
 }
 
-void Swap::swapCardAtIdx(Game& game, int playerNum1, int playerNum2, int idx1, int idx2) 
+void Swap::swapCardAtIdx(Game &game, int playerNum1, int playerNum2, int idx1, int idx2)
 {
-    //Prekondisi: idx1 dan idx2 valid
-    Player& player1 = game.getPlayer(playerNum1);
-    Player& player2 = game.getPlayer(playerNum2);
+    // Prekondisi: idx1 dan idx2 valid
+    Player &player1 = game.getPlayer(playerNum1);
+    Player &player2 = game.getPlayer(playerNum2);
     MainCard temp = player1.getCard(idx1 - 1);
     player1.setCard(idx1 - 1, player2.getCard(idx2 - 1));
     player2.setCard(idx2 - 1, temp);
