@@ -6,7 +6,14 @@
 
 using namespace std;
 
-class InvalidFileSyntax : public exception
+class GameException : public exception
+{
+public:
+	virtual ~GameException() {}
+	virtual const char *printError() const throw() = 0;
+};
+
+class InvalidFileSyntax : public GameException
 {
 public:
 	const char *printError() const throw()
@@ -15,7 +22,7 @@ public:
 	}
 };
 
-class PlayerNotExist : public exception
+class PlayerNotExist : public GameException
 {
 public:
 	const char *printError() const throw()
@@ -24,7 +31,7 @@ public:
 	}
 };
 
-class PlayerNameInvalid : public exception
+class PlayerNameInvalid : public GameException
 {
 public:
 	const char *printError() const throw()
@@ -33,7 +40,7 @@ public:
 	}
 };
 
-class CreatePlayerFailed : public exception
+class CreatePlayerFailed : public GameException
 {
 public:
 	const char *printError() const throw()
@@ -42,7 +49,7 @@ public:
 	}
 };
 
-class NoAbilityAvailable : public exception
+class NoAbilityAvailable : public GameException
 {
 private:
 	string _message;
@@ -61,7 +68,7 @@ public:
 	}
 };
 
-class InputInvalid : public exception
+class InputInvalid : public GameException
 {
 public:
 	const char *printError() const throw()
@@ -70,7 +77,7 @@ public:
 	}
 };
 
-class DuplicateCardExist : public exception
+class DuplicateCardExist : public GameException
 {
 public:
 	const char *printError() const throw()
@@ -79,7 +86,7 @@ public:
 	}
 };
 
-class NotExpected : public exception
+class NotExpected : public GameException
 {
 public:
 	const char *printError() const throw()
@@ -88,7 +95,7 @@ public:
 	}
 };
 
-class AbilityCardDisabled : public exception
+class AbilityCardDisabled : public GameException
 {
 private:
 	string _message;
