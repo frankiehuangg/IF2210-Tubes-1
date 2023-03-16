@@ -101,7 +101,7 @@ void Player::takeAbilityFromDeck(Deck &deck)
 void Player::doAction(Game &game)
 {
     string input;
-    bool invalidInput = false;
+    bool repeat = false;
     do
     {
         try {
@@ -130,8 +130,9 @@ void Player::doAction(Game &game)
         }
         catch (exception& err) {
             cout << err.what() << '\n';
+            repeat = true;
         }
-    } while (invalidInput);
+    } while (repeat);
 }
 
 void Player::useAbility(Game &game, string type)
