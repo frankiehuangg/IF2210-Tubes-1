@@ -165,7 +165,25 @@ void Deck::shuffleAbilityCards() {
 
 // Cetak kartu
 void Deck::printCards() {
+    vector<MainCard> temp=getInventoryCards();
+    int size=temp.size();
+    while(size>0)
+    {
+        int decrease=min(size,10);
+        vector<MainCard>print;
+        for(int i=0;i<decrease;i++) 
+            print.push_back(temp[i]);
 
+        vector<MainCard>::iterator it = temp.begin();
+	    vector<MainCard>::iterator it2 = temp.begin()+decrease;
+        temp.erase(it,it2);
+
+        cout<<print;
+        print.clear();
+        
+        size-=decrease;   
+    }
+    
 }
 
 AbilityCard* Deck::takeAbilityFromDeck(int n) {
