@@ -7,7 +7,7 @@ OUTPUT_FILE = main
 G++ = g++ -Wall -O1 $(SOURCE_FOLDER)
 
 run: build
-	@mkdir bin/
+	@if [[ ! -d bin ]]; then mkdir bin/ ; fi
 	@clear
 	@./bin/main
 
