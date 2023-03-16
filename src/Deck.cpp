@@ -1,11 +1,27 @@
 #include "header/Deck.hpp"
+#include "header/Io_Handler.hpp"
 
 Deck::Deck() : Inventory(52) {
-    for (int i = 1; i <= 13; i++) {
-        for (int j = 0; j <= 3; j++) {
-            cards.push_back(MainCard(i, j));
+    cout<<"Pilih input deck: "<<endl;
+    cout<<"1. Acak"<<endl;
+    cout<<"2. Dari file"<<endl;
+
+    IOHandler<int> intIO;
+    int input=intIO.getInputInAccepted(1,2);
+
+    if(input==1)
+    {
+        for (int i = 1; i <= 13; i++) {
+            for (int j = 0; j <= 3; j++) {
+                cards.push_back(MainCard(i, j));
+            }
         }
     }
+    else
+    {
+        getDeckFromInput();
+    }
+    
     
     // initiate ability cards
     AbilityCard* card;
@@ -39,6 +55,8 @@ Deck::Deck() : Inventory(52) {
     usedBy.emplace(card, -1);
 
     abilityCardTop = 6;  // 0..6, -1 means empty
+
+
 }
 
 Deck::~Deck() {
@@ -64,8 +82,7 @@ void Deck::shuffleMainCards() {
 // Baca urutan deck dari file
 void Deck::getDeckFromInput() {
     cout << "Input nama file: ";
-    string filename;
-    getline(cin, filename);
+    string filename="deck.txt";
 
     ifstream fin(filename);
     if(!fin.is_open()) throw InvalidFileSyntax();
