@@ -19,6 +19,7 @@ void Poker::roundRobin()
 void Poker::newShuffle()
 {
 	setPoint(64);
+	this->round=0;
 
 	table.setOpened(0);
 	
@@ -65,8 +66,8 @@ void Poker::newShuffle()
 			} while (repeat);
 
 			// Ambil 2 kartu dari deck ke pemain
-			for (int i = 0; i < this->PLAYER_AMOUNT*2; i++)
-				this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 1);
+			for (int i = 0; i < this->PLAYER_AMOUNT; i++)
+				this->players[i % this->PLAYER_AMOUNT].takeCardFromDeck(this->deck, 2);
 
 			// Taruh 5 kartu dari deck ke table
 			this->table.takeCardFromDeck(this->deck, 5);
