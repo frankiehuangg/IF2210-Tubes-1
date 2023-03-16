@@ -15,7 +15,7 @@ void Swap::useAbility(Game &game)
     }
     else if (this->isdisabled)
     {
-        cout << "Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭" << std::endl;
+        cout << "Yah.., sayang sekali kartumu sudah dinonaktifkan oleh pemain lain.😭" << endl;
     }
     else
     {
@@ -26,10 +26,12 @@ void Swap::useAbility(Game &game)
         cout << currentPlayer.getPlayerName() << " melakukan SWAPCARD!" << endl;
 
         // Mendapatkan input player yang akan diswap
-        playerNumber1 = inputPlayerToSwap(game, currentPlayerNum);
+        string outputMsg = "Silahkan pilih pemain yang kartunya ingin kamu tukar: ";
+        playerNumber1 = inputPlayerToSwap(game, currentPlayerNum, 0, outputMsg);
         Player &player1 = game.getPlayer(playerNumber1);
 
-        playerNumber2 = inputPlayerToSwap(game, currentPlayerNum, playerNumber1);
+        outputMsg = "Silahkan pilih pemain lain yang kartunya ingin kamu tukar: ";
+        playerNumber2 = inputPlayerToSwap(game, currentPlayerNum, playerNumber1, outputMsg);
         Player &player2 = game.getPlayer(playerNumber2);
 
         // Mendapatkan input kartu mana yang akan diswap (kiri/kanan)
@@ -37,17 +39,15 @@ void Swap::useAbility(Game &game)
         int option1, option2;
 
         cout << "Silakan pilih kartu kiri/kanan " << player1.getPlayerName() << endl;
-        cout << "1. Kiri \n2. Kanan" << endl;
+        cout << "1. Kanan \n2. Kiri" << endl;
         option1 = optionIO.getInputInAccepted(1, 2);
 
         cout << "Silakan pilih kartu kiri/kanan " << player2.getPlayerName() << endl;
-        cout << "1. Kiri \n2. Kanan" << endl;
+        cout << "1. Kanan \n2. Kiri" << endl;
         option2 = optionIO.getInputInAccepted(1, 2);
 
-        // Swap kartu pemain_1 dengan pemain_2 (Mungkin juga bisa dibikin satu method)
-        MainCard temp = player1.getCard(option1 - 1);
-        player1.setCard(option1 - 1, player2.getCard(option2 - 1));
-        player2.setCard(option2 - 1, temp);
+        // Swap kartu pemain_1 dengan pemain_2 
+        swapCardAtIdx(game, playerNumber1, playerNumber2, option1, option2);
         this->setStatus(false);
     }
 }
@@ -59,63 +59,21 @@ void Swap::printCard()
     cout << "ABILITY  \t: memilih dua pemain yang akan menukarkan masing-masing satu kartu secara acak" << endl;
 }
 
-int Swap::inputPlayerToSwap(Game &game, int currentPlayerNum)
-{
-    int playerNumber;
-    int playerCount = game.getPlayerCount();
-    bool valid = false;
-    while (!valid)
-    {
-        try
-        {
-            cout << "Silahkan pilih pemain yang kartunya ingin kamu tukar: " << endl;
-            int num = 1;
-            for (int i = 1; i <= playerCount; i++)
-            {
-                Player &playerLoop = game.getPlayer(i);
-                if (playerLoop.getPlayerNumber() != currentPlayerNum)
-                {
-                    cout << num << ". " << playerLoop.getPlayerName() << endl;
-                    ++num;
-                }
-            }
 
-            cout << "> ";
-            string inputNumber;
-            cin >> inputNumber;
-            if (isdigit(inputNumber[0]) && inputNumber.length() == 1)
-            {
-                playerNumber = inputNumber[0] - '0';
-                if (playerNumber >= currentPlayerNum)
-                    ++playerNumber;
-                game.getPlayer(playerNumber); // Kalo ga berhasil akan throw PlayerNotExist
-                valid = true;
-            }
-            else
-            {
-                cout << "Masukan tidak valid. Ulangi!" << endl;
-            }
-        }
-        catch (PlayerNotExist &e)
-        {
-            cout << "Pemain tidak ditemukan. Ulangi!" << endl;
-        }
-    }
-
-    return playerNumber;
-}
-
-int Swap::inputPlayerToSwap(Game &game, int currentPlayerNum, int alreadySelectedPlayerNum)
+int Swap::inputPlayerToSwap(Game &game, int currentPlayerNum, int alreadySelectedPlayerNum, string outputMsg)
 {
     int playerOption, playerNumber;
     vector<int> playerNumsTemp;
     int playerCount = game.getPlayerCount();
-    bool valid = false;
-    while (!valid)
+    // bool valid = false;
+    bool exceptionCaught;
+    IOHandler<int> optionIO;
+
+    do
     {
         try
         {
-            cout << "Silahkan pilih pemain lain yang kartunya ingin kamu tukar: " << endl;
+            cout << outputMsg << endl;
             int num = 1;
             for (int i = 1; i <= playerCount; i++)
             {
@@ -128,27 +86,30 @@ int Swap::inputPlayerToSwap(Game &game, int currentPlayerNum, int alreadySelecte
                     playerNumsTemp.push_back(playerLoop.getPlayerNumber());
                 }
             }
-            cout << "> ";
-            string inputNumber;
-            cin >> inputNumber;
-            if (isdigit(inputNumber[0]) && inputNumber.length() == 1)
-            {
-                playerOption = inputNumber[0] - '0';
-                playerNumber = playerNumsTemp[playerOption - 1];
-                game.getPlayer(playerNumber); // Kalo ga berhasil akan throw PlayerNotExist
-                valid = true;
-            }
-            else
-            {
-                cout << "Masukan tidak valid. Ulangi!" << endl;
-            }
+
+            playerOption = optionIO.getInputInAccepted(1, playerNumsTemp.size());
+            playerNumber = playerNumsTemp[playerOption - 1];
+            game.getPlayer(playerNumber); // Kalo ga berhasil akan throw PlayerNotExist
+            exceptionCaught = false;
         }
         catch (PlayerNotExist &e)
         {
             cout << "Pemain tidak ditemukan. Ulangi!" << endl;
             playerNumsTemp.clear();
+            exceptionCaught = true;
         }
-    }
+
+    } while (exceptionCaught);
 
     return playerNumber;
+}
+
+void Swap::swapCardAtIdx(Game& game, int playerNum1, int playerNum2, int idx1, int idx2) 
+{
+    //Prekondisi: idx1 dan idx2 valid
+    Player& player1 = game.getPlayer(playerNum1);
+    Player& player2 = game.getPlayer(playerNum2);
+    MainCard temp = player1.getCard(idx1 - 1);
+    player1.setCard(idx1 - 1, player2.getCard(idx2 - 1));
+    player2.setCard(idx2 - 1, temp);
 }

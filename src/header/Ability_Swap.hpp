@@ -16,10 +16,9 @@ public:
 	// Print card info and status, if round = 1 print "NOT AVAILABLE or sum other shit idk"
 	void printCard();
 
-private: 
-	/**** Some utility methods to help useaAbility() ****/
-	int inputPlayerToSwap(Game&, int);
-	int inputPlayerToSwap(Game&, int, int);
+	/**** Some utility methods to help useAbility() ****/
+	static int inputPlayerToSwap(Game&, int, int, string);
+	static void swapCardAtIdx(Game& game, int playerNum1, int playerNum2, int idx1, int idx2);
 };
 
 #endif
